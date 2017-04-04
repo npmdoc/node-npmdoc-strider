@@ -1,0 +1,3691 @@
+<html><head></head><body><div class="apidocDiv">
+<style>
+/*csslint
+*/
+.apidocDiv {
+    background: #fff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+.apidocDiv a[href] {
+    color: #33f;
+    font-weight: bold;
+    text-decoration: none;
+}
+.apidocDiv a[href]:hover {
+    text-decoration: underline;
+}
+.apidocCodeCommentSpan {
+    background: #bbf;
+    color: #000;
+    display: block;
+}
+.apidocCodeKeywordSpan {
+    color: #d00;
+    font-weight: bold;
+}
+.apidocCodePre {
+    background: #eef;
+    border: 1px solid;
+    color: #777;
+    padding: 5px;
+    white-space: pre-wrap;
+}
+.apidocFooterDiv {
+    margin-top: 20px;
+    text-align: center;
+}
+.apidocModuleLi {
+    margin-top: 10px;
+}
+.apidocSectionDiv {
+    border-top: 1px solid;
+    margin-top: 20px;
+}
+.apidocSignatureSpan {
+    color: #777;
+    font-weight: bold;
+}
+</style>
+<h1>api documentation for
+    <a href="https://github.com/Strider-CD/strider#readme">strider (v1.9.6)</a>
+</h1>
+<h4>Brilliant continuous deployment platform</h4>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.strider">module strider</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.backchannel">
+            function <span class="apidocSignatureSpan">strider.</span>backchannel
+            <span class="apidocSignatureSpan">(emitter, ws)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.websockets">
+            function <span class="apidocSignatureSpan">strider.</span>websockets
+            <span class="apidocSignatureSpan">(sio, sessionStore)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">strider.</span>app</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">strider.</span>auth</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">strider.</span>backchannel.prototype</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">strider.</span>email</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">strider.</span>humane</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">strider.</span>jobs</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">strider.</span>libconfig</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">strider.</span>logging</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">strider.</span>middleware</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">strider.</span>plugin_templates</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">strider.</span>projects</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">strider.</span>ssh</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">strider.</span>swig_filters</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">strider.</span>users</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">strider.</span>websockets.prototype</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.strider.app">module strider.app</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.app.init">
+            function <span class="apidocSignatureSpan">strider.app.</span>init
+            <span class="apidocSignatureSpan">(config)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.app.run">
+            function <span class="apidocSignatureSpan">strider.app.</span>run
+            <span class="apidocSignatureSpan">(app)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.strider.auth">module strider.auth</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.auth.authenticate">
+            function <span class="apidocSignatureSpan">strider.auth.</span>authenticate
+            <span class="apidocSignatureSpan">(req, res, next)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.auth.forgot">
+            function <span class="apidocSignatureSpan">strider.auth.</span>forgot
+            <span class="apidocSignatureSpan">(req, res)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.auth.logout">
+            function <span class="apidocSignatureSpan">strider.auth.</span>logout
+            <span class="apidocSignatureSpan">(req, res)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.auth.requireAdminOr401">
+            function <span class="apidocSignatureSpan">strider.auth.</span>requireAdminOr401
+            <span class="apidocSignatureSpan">(req, res, next)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.auth.requireProjectAdmin">
+            function <span class="apidocSignatureSpan">strider.auth.</span>requireProjectAdmin
+            <span class="apidocSignatureSpan">(req, res, next)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.auth.requireUser">
+            function <span class="apidocSignatureSpan">strider.auth.</span>requireUser
+            <span class="apidocSignatureSpan">(req, res, next)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.auth.requireUserOr401">
+            function <span class="apidocSignatureSpan">strider.auth.</span>requireUserOr401
+            <span class="apidocSignatureSpan">(req, res, next)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.auth.reset">
+            function <span class="apidocSignatureSpan">strider.auth.</span>reset
+            <span class="apidocSignatureSpan">(req, res)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.auth.resetPost">
+            function <span class="apidocSignatureSpan">strider.auth.</span>resetPost
+            <span class="apidocSignatureSpan">(req, res)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.auth.setup">
+            function <span class="apidocSignatureSpan">strider.auth.</span>setup
+            <span class="apidocSignatureSpan">(app)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.strider.backchannel">module strider.backchannel</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.backchannel.backchannel">
+            function <span class="apidocSignatureSpan">strider.</span>backchannel
+            <span class="apidocSignatureSpan">(emitter, ws)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.strider.backchannel.prototype">module strider.backchannel.prototype</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.backchannel.prototype.jobDone">
+            function <span class="apidocSignatureSpan">strider.backchannel.prototype.</span>jobDone
+            <span class="apidocSignatureSpan">(emitter, data)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.backchannel.prototype.newJob">
+            function <span class="apidocSignatureSpan">strider.backchannel.prototype.</span>newJob
+            <span class="apidocSignatureSpan">(job)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.backchannel.prototype.onUpdate">
+            function <span class="apidocSignatureSpan">strider.backchannel.prototype.</span>onUpdate
+            <span class="apidocSignatureSpan">(project, event, args)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.backchannel.prototype.send">
+            function <span class="apidocSignatureSpan">strider.backchannel.prototype.</span>send
+            <span class="apidocSignatureSpan">(project, event, args)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.backchannel.prototype.sendJobs">
+            function <span class="apidocSignatureSpan">strider.backchannel.prototype.</span>sendJobs
+            <span class="apidocSignatureSpan">(project, event, args)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.strider.email">module strider.email</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.email.notifyEmailChange">
+            function <span class="apidocSignatureSpan">strider.email.</span>notifyEmailChange
+            <span class="apidocSignatureSpan">(user, oldEmail)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.email.notifyNewAdmin">
+            function <span class="apidocSignatureSpan">strider.email.</span>notifyNewAdmin
+            <span class="apidocSignatureSpan">(user, email)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.email.notifyPasswordChange">
+            function <span class="apidocSignatureSpan">strider.email.</span>notifyPasswordChange
+            <span class="apidocSignatureSpan">(user)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.email.revokeInvite">
+            function <span class="apidocSignatureSpan">strider.email.</span>revokeInvite
+            <span class="apidocSignatureSpan">(code, email)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.email.sendInvite">
+            function <span class="apidocSignatureSpan">strider.email.</span>sendInvite
+            <span class="apidocSignatureSpan">(code, email)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.email.sendInviteCollaboratorExistingUser">
+            function <span class="apidocSignatureSpan">strider.email.</span>sendInviteCollaboratorExistingUser
+            <span class="apidocSignatureSpan">(req, email, url)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.email.sendInviteCollaboratorNewUser">
+            function <span class="apidocSignatureSpan">strider.email.</span>sendInviteCollaboratorNewUser
+            <span class="apidocSignatureSpan">(inviter, email, code, url)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.email.sendPasswordReset">
+            function <span class="apidocSignatureSpan">strider.email.</span>sendPasswordReset
+            <span class="apidocSignatureSpan">(user)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.strider.humane">module strider.humane</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.humane.humaneDate">
+            function <span class="apidocSignatureSpan">strider.humane.</span>humaneDate
+            <span class="apidocSignatureSpan">(date, compareTo)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.strider.jobs">module strider.jobs</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.jobs.jobProject">
+            function <span class="apidocSignatureSpan">strider.jobs.</span>jobProject
+            <span class="apidocSignatureSpan">(project, prev, user)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.jobs.latestJobs">
+            function <span class="apidocSignatureSpan">strider.jobs.</span>latestJobs
+            <span class="apidocSignatureSpan">(user, small, done)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.jobs.small">
+            function <span class="apidocSignatureSpan">strider.jobs.</span>small
+            <span class="apidocSignatureSpan">(job)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.jobs.sort">
+            function <span class="apidocSignatureSpan">strider.jobs.</span>sort
+            <span class="apidocSignatureSpan">(a, b)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.jobs.status">
+            function <span class="apidocSignatureSpan">strider.jobs.</span>status
+            <span class="apidocSignatureSpan">(job)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.strider.libconfig">module strider.libconfig</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.libconfig.addPlugins">
+            function <span class="apidocSignatureSpan">strider.libconfig.</span>addPlugins
+            <span class="apidocSignatureSpan">(rc, env)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.libconfig.camel">
+            function <span class="apidocSignatureSpan">strider.libconfig.</span>camel
+            <span class="apidocSignatureSpan">(words)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.libconfig.deprecated">
+            function <span class="apidocSignatureSpan">strider.libconfig.</span>deprecated
+            <span class="apidocSignatureSpan">(env)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.libconfig.filterEnv">
+            function <span class="apidocSignatureSpan">strider.libconfig.</span>filterEnv
+            <span class="apidocSignatureSpan">(env, defaults)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.libconfig.getConfig">
+            function <span class="apidocSignatureSpan">strider.libconfig.</span>getConfig
+            <span class="apidocSignatureSpan">()</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.libconfig.smtp">
+            function <span class="apidocSignatureSpan">strider.libconfig.</span>smtp
+            <span class="apidocSignatureSpan">(rc)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">strider.libconfig.</span>defaults</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.strider.logging">module strider.logging</a><ol>
+
+        <li>
+
+            <span class="apidocSignatureSpan">boolean <span class="apidocSignatureSpan">strider.logging.</span>emitErrs</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">boolean <span class="apidocSignatureSpan">strider.logging.</span>exitOnError</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">boolean <span class="apidocSignatureSpan">strider.logging.</span>padLevels</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">boolean <span class="apidocSignatureSpan">strider.logging.</span>stripColors</span>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.logging.debug">
+            function <span class="apidocSignatureSpan">strider.logging.</span>debug
+            <span class="apidocSignatureSpan">(msg)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.logging.error">
+            function <span class="apidocSignatureSpan">strider.logging.</span>error
+            <span class="apidocSignatureSpan">(msg)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.logging.info">
+            function <span class="apidocSignatureSpan">strider.logging.</span>info
+            <span class="apidocSignatureSpan">(msg)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.logging.silly">
+            function <span class="apidocSignatureSpan">strider.logging.</span>silly
+            <span class="apidocSignatureSpan">(msg)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.logging.verbose">
+            function <span class="apidocSignatureSpan">strider.logging.</span>verbose
+            <span class="apidocSignatureSpan">(msg)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.logging.warn">
+            function <span class="apidocSignatureSpan">strider.logging.</span>warn
+            <span class="apidocSignatureSpan">(msg)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">number <span class="apidocSignatureSpan">strider.logging.</span>_eventsCount</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">strider.logging.</span>_events</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">strider.logging.</span>_names</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">strider.logging.</span>domain</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">strider.logging.</span>exceptionHandlers</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">strider.logging.</span>filters</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">strider.logging.</span>id</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">strider.logging.</span>levels</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">strider.logging.</span>profilers</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">strider.logging.</span>rewriters</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">object <span class="apidocSignatureSpan">strider.logging.</span>transports</span>
+
+        </li>
+
+        <li>
+
+            <span class="apidocSignatureSpan">string <span class="apidocSignatureSpan">strider.logging.</span>level</span>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.strider.middleware">module strider.middleware</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.middleware.anonProject">
+            function <span class="apidocSignatureSpan">strider.middleware.</span>anonProject
+            <span class="apidocSignatureSpan">(req, res, next)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.middleware.bodySetter">
+            function <span class="apidocSignatureSpan">strider.middleware.</span>bodySetter
+            <span class="apidocSignatureSpan">(req, res, next)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.middleware.custom404">
+            function <span class="apidocSignatureSpan">strider.middleware.</span>custom404
+            <span class="apidocSignatureSpan">(req, res, next)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.middleware.project">
+            function <span class="apidocSignatureSpan">strider.middleware.</span>project
+            <span class="apidocSignatureSpan">(req, res, next)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.middleware.projectPlugin">
+            function <span class="apidocSignatureSpan">strider.middleware.</span>projectPlugin
+            <span class="apidocSignatureSpan">(req, res, next)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.middleware.projectProvider">
+            function <span class="apidocSignatureSpan">strider.middleware.</span>projectProvider
+            <span class="apidocSignatureSpan">(req, res, next)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.middleware.requireBody">
+            function <span class="apidocSignatureSpan">strider.middleware.</span>requireBody
+            <span class="apidocSignatureSpan">(paramsList)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.middleware.require_admin">
+            function <span class="apidocSignatureSpan">strider.middleware.</span>require_admin
+            <span class="apidocSignatureSpan">(req, res, next)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.middleware.require_auth">
+            function <span class="apidocSignatureSpan">strider.middleware.</span>require_auth
+            <span class="apidocSignatureSpan">(req, res, next)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.middleware.require_auth_browser">
+            function <span class="apidocSignatureSpan">strider.middleware.</span>require_auth_browser
+            <span class="apidocSignatureSpan">(req, res, next)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.middleware.require_project_admin">
+            function <span class="apidocSignatureSpan">strider.middleware.</span>require_project_admin
+            <span class="apidocSignatureSpan">(req, res, next)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.strider.plugin_templates">module strider.plugin_templates</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.plugin_templates.engine">
+            function <span class="apidocSignatureSpan">strider.plugin_templates.</span>engine
+            <span class="apidocSignatureSpan">(path, options, fn)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.plugin_templates.registerBlock">
+            function <span class="apidocSignatureSpan">strider.plugin_templates.</span>registerBlock
+            <span class="apidocSignatureSpan">(block, render)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.plugin_templates.registerTemplate">
+            function <span class="apidocSignatureSpan">strider.plugin_templates.</span>registerTemplate
+            <span class="apidocSignatureSpan">(name, template, dir)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.strider.projects">module strider.projects</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.projects.allProjects">
+            function <span class="apidocSignatureSpan">strider.projects.</span>allProjects
+            <span class="apidocSignatureSpan">(done)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.strider.ssh">module strider.ssh</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.ssh.generateKeyPair">
+            function <span class="apidocSignatureSpan">strider.ssh.</span>generateKeyPair
+            <span class="apidocSignatureSpan">(comment, callback)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.strider.swig_filters">module strider.swig_filters</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.swig_filters.scriptjson">
+            function <span class="apidocSignatureSpan">strider.swig_filters.</span>scriptjson
+            <span class="apidocSignatureSpan">(input)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.strider.users">module strider.users</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.users.makeAdmin">
+            function <span class="apidocSignatureSpan">strider.users.</span>makeAdmin
+            <span class="apidocSignatureSpan">(user, done)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.strider.websockets">module strider.websockets</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.websockets.websockets">
+            function <span class="apidocSignatureSpan">strider.</span>websockets
+            <span class="apidocSignatureSpan">(sio, sessionStore)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.websockets.init">
+            function <span class="apidocSignatureSpan">strider.websockets.</span>init
+            <span class="apidocSignatureSpan">(server, sessionStore)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+    <li class="apidocModuleLi"><a href="#apidoc.module.strider.websockets.prototype">module strider.websockets.prototype</a><ol>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.websockets.prototype.addSocket">
+            function <span class="apidocSignatureSpan">strider.websockets.prototype.</span>addSocket
+            <span class="apidocSignatureSpan">(uid, socket)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.websockets.prototype.connected">
+            function <span class="apidocSignatureSpan">strider.websockets.prototype.</span>connected
+            <span class="apidocSignatureSpan">(socket)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.websockets.prototype.removeSocket">
+            function <span class="apidocSignatureSpan">strider.websockets.prototype.</span>removeSocket
+            <span class="apidocSignatureSpan">(uid, socket)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.websockets.prototype.send">
+            function <span class="apidocSignatureSpan">strider.websockets.prototype.</span>send
+            <span class="apidocSignatureSpan">(users, args)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.websockets.prototype.sendEach">
+            function <span class="apidocSignatureSpan">strider.websockets.prototype.</span>sendEach
+            <span class="apidocSignatureSpan">(users, fn)</span>
+            </a>
+
+        </li>
+
+        <li>
+
+            <a class="apidocElementLiA" href="#apidoc.element.strider.websockets.prototype.sendPublic">
+            function <span class="apidocSignatureSpan">strider.websockets.prototype.</span>sendPublic
+            <span class="apidocSignatureSpan">(users, args)</span>
+            </a>
+
+        </li>
+
+    </ol></li>
+
+</ol></div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.strider" id="apidoc.module.strider">module strider</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.strider.backchannel" id="apidoc.element.strider.backchannel">
+        function <span class="apidocSignatureSpan">strider.</span>backchannel
+        <span class="apidocSignatureSpan">(emitter, ws)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function BackChannel(emitter, ws) {
+  this.ws = ws;
+  this.users = {};
+  this.public = {};
+  this.waiting = {};
+
+  emitter.on('job.prepare', prepareJob.bind(null, emitter));
+  emitter.on('job.new', this.newJob.bind(this));
+  emitter.on('browser.update', this.onUpdate.bind(this));
+  emitter.on('job.done', this.jobDone.bind(this, emitter));
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.strider.websockets" id="apidoc.element.strider.websockets">
+        function <span class="apidocSignatureSpan">strider.</span>websockets
+        <span class="apidocSignatureSpan">(sio, sessionStore)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function UserSockets(sio, sessionStore) {
+  this.sio = sio;
+  this.sockets = {};
+  this.sessionStore = sessionStore;
+  //sio.enable('browser client minification');  // send minified client
+  //sio.enable('browser client etag');          // apply etag caching logic based on version number
+  //sio.enable('browser client gzip');
+  //sio.set('log level', 1);
+  //sio.set('authorization', authorize.bind(this, sessionStore))
+  sio.use(authorize.bind(this, sessionStore));
+  sio.sockets.on('connection', this.connected.bind(this));
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.strider.app" id="apidoc.module.strider.app">module strider.app</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.strider.app.init" id="apidoc.element.strider.app.init">
+        function <span class="apidocSignatureSpan">strider.app.</span>init
+        <span class="apidocSignatureSpan">(config)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">init = function (config) {
+  var mongodbUrl = config.db_uri;
+  debug('Using MongoDB URL: %s', mongodbUrl);
+
+  mongoose.connect(mongodbUrl, function (error) {
+    if (error) {
+      console.log('Could not connect to DB: %s', error);
+      process.exit(1);
+    }
+  });
+
+  mongoose.connection.on('error', function (error) {
+    debug('MongoDB connection error: %s', error);
+  });
+
+  sessionStore = new mongoStore({
+    mongooseConnection: mongoose.connection
+  });
+
+  swig.init({
+    root: config.viewpath,
+    // allows errors to be thrown and caught by express instead of suppressed by Swig
+    allowErrors: true,
+    cache: false,
+    filters: require('./swig-filters'),
+    tags: require('./swig-tags').tags,
+    extensions: {plugin: pluginTemplates}
+  });
+
+  var app = express();
+
+  if (isDevelopment) {
+    app.use(morganDebug('strider:http', 'dev'));
+  }
+
+  if (isTest) {
+    // awesome view testingness
+    require('./views-test')(app);
+  }
+
+  app.set('views', path.join(__dirname, 'views'));
+  app.engine('html', pluginTemplates.engine);
+
+  if (config.cors) {
+    app.use(cors(config.cors));
+  }
+
+  app.use(middleware.bodySetter);
+  // parse application/x-www-form-urlencoded
+  app.use(bodyParser.urlencoded({extended: false, limit: config.body_parser_limit}));
+  // parse application/json
+  app.use(bodyParser.json({limit: config.body_parser_limit}));
+  app.use(cookieParser());
+  app.use(compression());
+  app.use(methodOverride());
+  app.use(serveFavicon(path.join(__dirname, '..', 'public', 'favicon.ico'), {maxAge: 2592000000}));
+
+  app.use(expressSession({
+    secret: config.session_secret, store: sessionStore,
+    cookie: {maxAge: MONTH_IN_MILLISECONDS},
+    resave: false,
+    saveUninitialized: true
+  }));
+  app.use(connectFlash());
+
+  app.use(function (req, res, next) {
+    res.locals.models = models;
+    next();
+  });
+
+  auth.setup(app); // app.use(passport) is included
+
+  app.use('/vendor', express.static(path.join(__dirname, '..', 'vendor'), {maxAge: MONTH_IN_MILLISECONDS}));
+  app.use(express.static(path.join(__dirname, '..', 'dist'), {maxAge: MONTH_IN_MILLISECONDS}));
+  app.use(express.static(path.join(__dirname, '..', 'public'), {maxAge: MONTH_IN_MILLISECONDS}));
+
+  if (!config.smtp) {
+    debug('No SMTP creds - forgot password flow will not work');
+  }
+
+  // Routes
+  app.get('/', routes.index);
+  app.get('/about', function (req, res) {
+    res.render('about');
+  });
+
+  app.get('/status', routes.status);
+  app.post('/login', function (req, res, next) {
+    if (!req.user) {
+      return next();
+    }
+
+    res.redirect('/');
+  }, auth.authenticate);
+  app.get('/logout', auth.logout);
+  app.get('/forgot', function (req, res) {
+    res.render('forgot.html', {
+      user: req.user,
+      messages: req.flash('error')
+    });
+  });
+  app.post('/forgot', auth.forgot);
+  app.get('/reset/:token', auth.reset);
+  app.post('/reset/:token', auth.resetPost);
+
+  // Compiled plugin config assets
+  app.get('/scripts/plugin-config-compiled.js', apiConfig.server('config', 'js'));
+  app.get('/styles/plugin-config-compiled.css', apiConfig.server('config', 'css'));
+  app.get('/scripts/account-plugins-compiled.js', apiConfig.server('account', 'js'));
+  app.get('/styles/account-plugins-compiled.css', apiConfig.server('account', 'css'));
+  app.get('/scripts/plugin-status-compiled.js', apiConfig.server('status', 'js'));
+  app.get('/styles/plugin-status-compiled.css', apiConfig.server('status', 'css'));
+
+  app.get('/admin/projects', auth.requireAdminOr401, routesAdmin.projects);
+  app.get('/admin/users', auth.requireAdminOr401, routesAdmin.users);
+  app.get('/admin/jobs', auth.requireAdminOr401, function (req, res) {
+    res.render('admin/jobs.html', {
+      version: pjson.version
+    });
+  });
+  app.get('/admin/make_admin', auth.requireAdminOr401, routesAdmin.makeAdmin);
+  app.post('/admin/remove_user', auth.requireAdminOr401, routesAdmin.removeUser);
+  app.get('/admin/invites', auth.requireAdminOr401, routesAdmin.invites);
+  app.get('/admin/:org/:repo/job/:job_id', auth.requireAdminOr401, routesAdmin.job);
+  app.get('/admin/plugins', auth.requireAdminOr401, ...</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+var k;
+// override with c
+for (k in c) {
+  appConfig[k] = c[k];
+}
+
+// Initialize the (web) app
+var appInstance = app.<span class="apidocCodeKeywordSpan">init</span>(appConfig);
+var cb = callback || defaultCallback;
+
+function defaultCallback(err) {
+  if (err) {
+    throw err;
+  }
+}
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.strider.app.run" id="apidoc.element.strider.app.run">
+        function <span class="apidocSignatureSpan">strider.app.</span>run
+        <span class="apidocSignatureSpan">(app)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">run = function (app) {
+  var config = require('./config');
+
+  if (isDevelopment) {
+    app.use(errorHandler({dumpExceptions: true, showStack: true}));
+  }
+
+  if (isProduction) {
+    app.use(errorHandler({dumpExceptions: true, showStack: false}));
+  }
+
+  // Custom 404 handler.
+  // Run after extensions, which might load static middlewares.
+  app.use(middleware.custom404);
+
+  // Initialize socket.io
+  var server = app.listen(config.port, config.host);
+  var sockets = websockets.init(server, sessionStore);
+  new Backchannel(common.emitter, sockets);
+
+  console.log(chalk.green('Express server listening on port %s in %s mode'), config.port, app.settings.env);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.strider.auth" id="apidoc.module.strider.auth">module strider.auth</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.strider.auth.authenticate" id="apidoc.element.strider.auth.authenticate">
+        function <span class="apidocSignatureSpan">strider.auth.</span>authenticate
+        <span class="apidocSignatureSpan">(req, res, next)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function authenticate(req, res, next) {
+  if (http.IncomingMessage.prototype.logIn
+      &amp;&amp; http.IncomingMessage.prototype.logIn !== IncomingMessageExt.logIn) {
+    require('../framework/connect').__monkeypatchNode();
+  }
+
+
+  // accumulator for failures from each strategy in the chain
+  var failures = [];
+
+  function allFailed() {
+    if (callback) {
+      if (!multi) {
+        return callback(null, false, failures[0].challenge, failures[0].status);
+      } else {
+        var challenges = failures.map(function(f) { return f.challenge; });
+        var statuses = failures.map(function(f) { return f.status; });
+        return callback(null, false, challenges, statuses);
+      }
+    }
+
+    // Strategies are ordered by priority.  For the purpose of flashing a
+    // message, the first failure will be displayed.
+    var failure = failures[0] || {}
+      , challenge = failure.challenge || {}
+      , msg;
+
+    if (options.failureFlash) {
+      var flash = options.failureFlash;
+      if (typeof flash == 'string') {
+        flash = { type: 'error', message: flash };
+      }
+      flash.type = flash.type || 'error';
+
+      var type = flash.type || challenge.type || 'error';
+      msg = flash.message || challenge.message || challenge;
+      if (typeof msg == 'string') {
+        req.flash(type, msg);
+      }
+    }
+    if (options.failureMessage) {
+      msg = options.failureMessage;
+      if (typeof msg == 'boolean') {
+        msg = challenge.message || challenge;
+      }
+      if (typeof msg == 'string') {
+        req.session.messages = req.session.messages || [];
+        req.session.messages.push(msg);
+      }
+    }
+    if (options.failureRedirect) {
+      return res.redirect(options.failureRedirect);
+    }
+
+    // When failure handling is not delegated to the application, the default
+    // is to respond with 401 Unauthorized.  Note that the WWW-Authenticate
+    // header will be set according to the strategies in use (see
+    // actions#fail).  If multiple strategies failed, each of their challenges
+    // will be included in the response.
+    var rchallenge = []
+      , rstatus, status;
+
+    for (var j = 0, len = failures.length; j &lt; len; j++) {
+      failure = failures[j];
+      challenge = failure.challenge;
+      status = failure.status;
+
+      rstatus = rstatus || status;
+      if (typeof challenge == 'string') {
+        rchallenge.push(challenge);
+      }
+    }
+
+    res.statusCode = rstatus || 401;
+    if (res.statusCode == 401 &amp;&amp; rchallenge.length) {
+      res.setHeader('WWW-Authenticate', rchallenge);
+    }
+    if (options.failWithError) {
+      return next(new AuthenticationError(http.STATUS_CODES[res.statusCode], rstatus));
+    }
+    res.end(http.STATUS_CODES[res.statusCode]);
+  }
+
+  (function attempt(i) {
+    var layer = name[i];
+    // If no more strategies exist in the chain, authentication has failed.
+    if (!layer) { return allFailed(); }
+
+    // Get the strategy, which will be used as prototype from which to create
+    // a new instance.  Action functions will then be bound to the strategy
+    // within the context of the HTTP request/response pair.
+    var prototype = passport._strategy(layer);
+    if (!prototype) { return next(new Error('Unknown authentication strategy "' + layer + '"')); }
+
+    var strategy = Object.create(prototype);
+
+
+    // ----- BEGIN STRATEGY AUGMENTATION -----
+    // Augment the new strategy instance with action functions.  These action
+    // functions are bound via closure the the request/response pair.  The end
+    // goal of the strategy is to invoke *one* of these action methods, in
+    // order to indicate successful or failed authentication, redirect to a
+    // third-party identity provider, etc.
+
+    /**
+     * Authenticate `user`, with optional `info`.
+     *
+     * Strategies should call this function to successfully authenticate a
+     * user.  `user` should be an object supplied by the application after it
+     * has been given an opportunity to verify credentials.  `info` is an
+     * optional argument containing additional ...</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+function setupPasswordAuth() {
+  passport.use(new LocalStrategy({
+usernameField: 'email'
+  }, function (username, password, done) {
+console.log('username: %s', username);
+
+User.<span class="apidocCodeKeywordSpan">authenticate</span>(username, password, function (err, user) {
+  if (err || !user) {
+    console.log('no user');
+    return done(null, false, {message: 'Incorrect username.'});
+  }
+
+  return done(null, user);
+});
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.strider.auth.forgot" id="apidoc.element.strider.auth.forgot">
+        function <span class="apidocSignatureSpan">strider.auth.</span>forgot
+        <span class="apidocSignatureSpan">(req, res)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function forgot(req, res) {
+  var email = req.body.email.toLowerCase();
+
+  User.findOne({email: {$regex: new RegExp(email, 'i')}}, function (error, user) {
+    if (error) {
+      req.flash('error', 'An error occured while attempting to reset your password.');
+      return res.redirect('/forgot');
+    }
+
+    if (user) {
+      randomBytes(20).then(function (buffer) {
+        return buffer.toString('hex');
+      }).then(function (token) {
+        user.resetPasswordToken = token;
+        user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
+
+        return new BluebirdPromise(function (resolve, reject) {
+          user.save(function (err, u) {
+            if (err) {
+              reject(err);
+            } else {
+              resolve(u);
+            }
+          });
+        });
+      }).then(function (user) {
+        mailer.sendPasswordReset(user);
+        req.flash('info', 'Please check your email for the password reset url. Thank you!');
+        res.redirect('/');
+      }).catch(function (error) {
+        console.error('Password reset error: ', error);
+      });
+    } else {
+      req.flash('error', 'We could not find a user with that email.');
+      return res.redirect('/forgot');
+    }
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.strider.auth.logout" id="apidoc.element.strider.auth.logout">
+        function <span class="apidocSignatureSpan">strider.auth.</span>logout
+        <span class="apidocSignatureSpan">(req, res)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function logout(req, res) {
+  req.logout();
+  res.redirect('/');
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+var _authenticate = passport.authenticate('local', {
+successRedirect: '/',
+failureRedirect: '/login?failed=true'
+});
+
+function logout(req, res) {
+req.<span class="apidocCodeKeywordSpan">logout</span>();
+res.redirect('/');
+}
+
+function forgot(req, res) {
+var email = req.body.email.toLowerCase();
+
+User.findOne({email: {$regex: new RegExp(email, 'i')}}, function (error, user) {
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.strider.auth.requireAdminOr401" id="apidoc.element.strider.auth.requireAdminOr401">
+        function <span class="apidocSignatureSpan">strider.auth.</span>requireAdminOr401
+        <span class="apidocSignatureSpan">(req, res, next)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function requireAdminOr401(req, res, next) {
+  if (!req.user || !req.user['account_level'] || req.user.account_level &lt; 1) {
+    res.status(401).send('not authorized');
+  } else {
+    next();
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.strider.auth.requireProjectAdmin" id="apidoc.element.strider.auth.requireProjectAdmin">
+        function <span class="apidocSignatureSpan">strider.auth.</span>requireProjectAdmin
+        <span class="apidocSignatureSpan">(req, res, next)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function requireProjectAdmin(req, res, next) {
+  if (!req.project) return res.status(404).send('Project not loaded');
+  if (!req.user) return res.status(401).send('No user');
+  var isAdmin = req.user.account_level &amp;&amp; req.user.account_level &gt; 0;
+  var notAuthed = (!req.accessLevel || req.accessLevel &lt; 2) &amp;&amp; !isAdmin;
+  if (notAuthed) return res.status(401).send('Not authorized for configuring this project');
+  next();
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.strider.auth.requireUser" id="apidoc.element.strider.auth.requireUser">
+        function <span class="apidocSignatureSpan">strider.auth.</span>requireUser
+        <span class="apidocSignatureSpan">(req, res, next)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function requireUser(req, res, next) {
+  if (req.user) {
+    next();
+  } else {
+    req.session.return_to = req.url;
+    res.redirect('/login');
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.strider.auth.requireUserOr401" id="apidoc.element.strider.auth.requireUserOr401">
+        function <span class="apidocSignatureSpan">strider.auth.</span>requireUserOr401
+        <span class="apidocSignatureSpan">(req, res, next)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function requireUserOr401(req, res, next) {
+  if (req.user) {
+    next();
+  } else {
+    res.status(401).send('not authorized');
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.strider.auth.reset" id="apidoc.element.strider.auth.reset">
+        function <span class="apidocSignatureSpan">strider.auth.</span>reset
+        <span class="apidocSignatureSpan">(req, res)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function reset(req, res) {
+  var token = req.params.token;
+
+  User.findOne({
+    resetPasswordToken: token,
+    resetPasswordExpires: {$gt: Date.now()}
+  }, function (err, user) {
+    if (!user) {
+      req.flash('error', 'Password reset token is invalid or has expired.');
+      return res.redirect('/forgot');
+    }
+
+    res.render('reset.html', {
+      token: token,
+      user: user
+    });
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.strider.auth.resetPost" id="apidoc.element.strider.auth.resetPost">
+        function <span class="apidocSignatureSpan">strider.auth.</span>resetPost
+        <span class="apidocSignatureSpan">(req, res)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function resetPost(req, res) {
+  var password = req.body.password;
+  var confirmation = req.body.passwordConfirmation;
+
+  if (password === confirmation) {
+    User.findOne({
+      resetPasswordToken: req.params.token,
+      resetPasswordExpires: {$gt: Date.now()}
+    }, function (err, user) {
+      if (!user) {
+        req.flash('error', 'Password reset token is invalid or has expired.');
+        return res.redirect('back');
+      }
+
+      user.password = password;
+      user.resetPasswordToken = undefined;
+      user.resetPasswordExpires = undefined;
+
+      user.save(function (err) {
+        if (err) {
+          req.flash('error', 'Couldn\'t save changes with new password.');
+          return res.redirect('/');
+        }
+
+        req.login(user, function (err) {
+          if (err) {
+            req.flash('error', 'You\'r user authentication was not successful.');
+          }
+
+          res.redirect('/');
+        });
+      });
+    });
+  } else {
+    res.redirect(req.header('Referer'));
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.strider.auth.setup" id="apidoc.element.strider.auth.setup">
+        function <span class="apidocSignatureSpan">strider.auth.</span>setup
+        <span class="apidocSignatureSpan">(app)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function setup(app) {
+  app.registerAuthStrategy = function (strategy) {
+    passport.use(strategy);
+  };
+
+  app.authenticate = function () {
+    console.log('AUTHENTICATE', arguments);
+
+    var res = passport.authenticate.apply(passport, arguments);
+    console.log('!!!', res);
+
+    return function (req) {
+      console.log('&gt;&gt;&gt;&gt; AUTHENTICATE', req._passport, req._passport.instance._strategies.github);
+      res.apply(this, arguments);
+    };
+  };
+
+  setupPasswordAuth(app);
+
+  // serialize user on login
+  passport.serializeUser(function (user, done) {
+    done(null, user.id);
+  });
+
+  // deserialize user on logout
+  passport.deserializeUser(function (id, done) {
+    User.findById(id, function (err, user) {
+      done(err, user);
+    });
+  });
+
+  app.use(passport.initialize());
+  app.use(passport.session());
+  app.use(basicAuth);
+
+  // Middleware to setup view parameters with user
+  app.use(function (req, res, next) {
+    if (req.user) {
+      req.user.gravatar = utils.gravatar(req.user.email);
+    }
+
+    res.locals.currentUser = req.user || null;
+    next();
+  });
+
+  registerRoutes(app);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+app.use(connectFlash());
+
+app.use(function (req, res, next) {
+  res.locals.models = models;
+  next();
+});
+
+auth.<span class="apidocCodeKeywordSpan">setup</span>(app); // app.use(passport) is included
+
+app.use('/vendor', express.static(path.join(__dirname, '..', 'vendor'), {maxAge: MONTH_IN_MILLISECONDS
+}));
+app.use(express.static(path.join(__dirname, '..', 'dist'), {maxAge: MONTH_IN_MILLISECONDS}));
+app.use(express.static(path.join(__dirname, '..', 'public'), {maxAge: MONTH_IN_MILLISECONDS}));
+
+if (!config.smtp) {
+  debug('No SMTP creds - forgot password flow will not work');
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.strider.backchannel" id="apidoc.module.strider.backchannel">module strider.backchannel</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.strider.backchannel.backchannel" id="apidoc.element.strider.backchannel.backchannel">
+        function <span class="apidocSignatureSpan">strider.</span>backchannel
+        <span class="apidocSignatureSpan">(emitter, ws)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function BackChannel(emitter, ws) {
+  this.ws = ws;
+  this.users = {};
+  this.public = {};
+  this.waiting = {};
+
+  emitter.on('job.prepare', prepareJob.bind(null, emitter));
+  emitter.on('job.new', this.newJob.bind(this));
+  emitter.on('browser.update', this.onUpdate.bind(this));
+  emitter.on('job.done', this.jobDone.bind(this, emitter));
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.strider.backchannel.prototype" id="apidoc.module.strider.backchannel.prototype">module strider.backchannel.prototype</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.strider.backchannel.prototype.jobDone" id="apidoc.element.strider.backchannel.prototype.jobDone">
+        function <span class="apidocSignatureSpan">strider.backchannel.prototype.</span>jobDone
+        <span class="apidocSignatureSpan">(emitter, data)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">jobDone = function (emitter, data) {
+  var self = this;
+  Job.findById(data.id, function (err, job) {
+    if (err) return debug('Error finding job', err.message);
+    if (!job) return debug('job.done but job not found:', data.id);
+    _.extend(job, data);
+    try {
+      job.duration = data.finished.getTime() - data.started.getTime();
+    } catch (ignore) {
+      job.duration = 1;
+    }
+    job.markModified('phases');
+    job.markModified('plugin_data');
+    job.test_exitcode = job.phases.test &amp;&amp; job.phases.test.exitCode;
+    job.deploy_exitcode = job.phases.deploy &amp;&amp; job.phases.deploy.exitCode;
+    job.save();
+    job = job.toJSON();
+
+    Project.findOne({name: job.project}).lean().exec(function (err, project) {
+      if (err) return debug('Error finding project for job', err.message, job.project);
+      if (!project) return debug('Project for job.done not found', job.project);
+
+      job.project = utils.sanitizeProject(project);
+      job.status = jobs.status(job);
+      self.sendJobs(project.name, 'job.done', [job]);
+      emitter.emit('job.doneAndSaved', job);
+    });
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.strider.backchannel.prototype.newJob" id="apidoc.element.strider.backchannel.prototype.newJob">
+        function <span class="apidocSignatureSpan">strider.backchannel.prototype.</span>newJob
+        <span class="apidocSignatureSpan">(job)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">newJob = function (job) {
+  debug('new job was created');
+  var self = this;
+  var name = job.project.name;
+
+  this.waiting[name] = [];
+  this.public[name] = job.project.public;
+
+  async.parallel({
+    collaborators: function (paraCallback) {
+      User.collaborators(name, 0, function (err, users) {
+        paraCallback(err, users);
+      });
+    },
+
+    admins: function (paraCallback) {
+      User.admins(paraCallback);
+    }
+  }, function (err, users) {
+    if (err) return debug('new job: Failed to query for users');
+    if (!users.collaborators) return debug('new job: no users found');
+    self.users[name] = [];
+
+    users.collaborators.forEach(function (user) {
+      self.users[name].push(user._id.toString());
+    });
+    // also send to system admins
+    users.admins.forEach(function (user) {
+      self.users[name].push(user._id.toString());
+    });
+
+    // Admins maybe collaborators, so unique the array
+    self.users[name] = _.uniq(self.users[name]);
+
+    var njob = jobs.small(job);
+
+    njob.project = utils.sanitizeProject(job.project);
+    self.sendJobs(name, 'job.new', [njob]);
+
+    var waiting = self.waiting[name];
+    if (Array.isArray(waiting)) {
+      waiting.forEach(function (item) {
+        self.send.apply(self, [name].concat(item));
+      });
+    }
+    delete self.waiting[name];
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.strider.backchannel.prototype.onUpdate" id="apidoc.element.strider.backchannel.prototype.onUpdate">
+        function <span class="apidocSignatureSpan">strider.backchannel.prototype.</span>onUpdate
+        <span class="apidocSignatureSpan">(project, event, args)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">onUpdate = function (project, event, args) {
+  if (this.waiting[project]) {
+    return this.waiting[project].push([event, args]);
+  }
+  this.send(project, event, args);
+  if (event === 'job.status.started') {
+    Job.findById(args[0], function (err, job) {
+      if (err) return debug('[backchannel][job.status.started] error getting job', args[0], err);
+      if (!job) return debug('[backchannel][job.status.started] job not found', args[0]);
+      job.started = args[1];
+      job.save();
+    });
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.strider.backchannel.prototype.send" id="apidoc.element.strider.backchannel.prototype.send">
+        function <span class="apidocSignatureSpan">strider.backchannel.prototype.</span>send
+        <span class="apidocSignatureSpan">(project, event, args)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">send = function (project, event, args) {
+  if (this.users[project]) {
+    this.ws.send(this.users[project], [event, args, 'yours']);
+  }
+  if (this.public[project]) {
+    this.ws.sendPublic(this.users[project], [event, args, 'public']);
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    console.error('Invalid auth header');
+    return next();
+  }
+
+  User.authenticate(plain[0], plain.slice(1).join(':'), function (err, user) {
+    if (err || !user) {
+      console.log('basic auth: user not found');
+      return res.status(401).<span class="apidocCodeKeywordSpan">send</span>('Invalid username/password in basic auth');
+    }
+
+    req.user = user;
+
+    return next();
+  });
+}
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.strider.backchannel.prototype.sendJobs" id="apidoc.element.strider.backchannel.prototype.sendJobs">
+        function <span class="apidocSignatureSpan">strider.backchannel.prototype.</span>sendJobs
+        <span class="apidocSignatureSpan">(project, event, args)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">sendJobs = function (project, event, args) {
+  if (this.users[project]) {
+    this.ws.sendEach(this.users[project], function (user) {
+      return [event, args.map(function (job) {
+        job = _.assign({}, job);
+        job.project = _.assign({}, job.project);
+        job.project.access_level = User.projectAccessLevel(user, job.project);
+        return job;
+      }), 'yours'];
+    });
+  }
+  if (this.public[project]) {
+    this.ws.sendPublic(this.users[project], [event, args.map(function (job) {
+      job = _.assign({}, job);
+      job.project = _.assign({}, job.project);
+      job.project.access_level = 0;
+      return job;
+    }), 'public']);
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+// Admins maybe collaborators, so unique the array
+self.users[name] = _.uniq(self.users[name]);
+
+var njob = jobs.small(job);
+
+njob.project = utils.sanitizeProject(job.project);
+self.<span class="apidocCodeKeywordSpan">sendJobs</span>(name, 'job.new', [njob]);
+
+var waiting = self.waiting[name];
+if (Array.isArray(waiting)) {
+  waiting.forEach(function (item) {
+    self.send.apply(self, [name].concat(item));
+  });
+}
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.strider.email" id="apidoc.module.strider.email">module strider.email</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.strider.email.notifyEmailChange" id="apidoc.element.strider.email.notifyEmailChange">
+        function <span class="apidocSignatureSpan">strider.email.</span>notifyEmailChange
+        <span class="apidocSignatureSpan">(user, oldEmail)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">notifyEmailChange = function (user, oldEmail) {
+  var currentTime = new Date();
+  var subject = `[STRIDER] - Email Address Change Notification - ${currentTime.getHours()}:${currentTime.getMinutes()}`;
+  var to = user.email;
+  var bodyText = text.notify_email_change({ old_email: oldEmail, user: user });
+  var bodyHtml = html.notify_email_change({ old_email: oldEmail, user: user });
+
+  mailer.send(to, subject, bodyText, bodyHtml);
+  mailer.send(oldEmail, subject, bodyText, bodyHtml);
+
+  console.log(`send email change notification to ${oldEmail} and ${to}`);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.strider.email.notifyNewAdmin" id="apidoc.element.strider.email.notifyNewAdmin">
+        function <span class="apidocSignatureSpan">strider.email.</span>notifyNewAdmin
+        <span class="apidocSignatureSpan">(user, email)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">notifyNewAdmin = function (user, email) {
+  var currentTime = new Date();
+  var subject = `[STRIDER] - New Admin  - ${user} - ${currentTime.getHours()}:${currentTime.getMinutes()}`;
+  var body = `Hello Core,\n\nYou have a new admin colleague: ${user}\n\nHopefully this isn't unexpected.\n\nRegards,\n - StriderCD
+.com\n   Brilliant Continuous Delivery`;
+
+  mailer.send(email, subject, body, body);
+  console.log(`Sending admin notification for new admin ${user}`);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    if (env === 'production') {
+      getAdmins(function (err, admins) {
+        admins
+          .filter(function removeSelf(admin) {
+            return admin.email !== user.email;
+          })
+          .forEach(function notifyAdmin(admin) {
+            email.<span class="apidocCodeKeywordSpan">notifyNewAdmin</span>(user, admin.email);
+          });
+      });
+    }
+
+    done(null, num);
+  });
+}
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.strider.email.notifyPasswordChange" id="apidoc.element.strider.email.notifyPasswordChange">
+        function <span class="apidocSignatureSpan">strider.email.</span>notifyPasswordChange
+        <span class="apidocSignatureSpan">(user)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">notifyPasswordChange = function (user) {
+  var currentTime = new Date();
+  var subject = `[STRIDER] - Password Change Notification - ${currentTime.getHours()}:${currentTime.getMinutes()}`;
+  var bodyText = text.notify_password_change();
+  var bodyHtml = html.notify_password_change();
+  var to = user.email;
+
+  mailer.send(to, subject, bodyText, bodyHtml);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.strider.email.revokeInvite" id="apidoc.element.strider.email.revokeInvite">
+        function <span class="apidocSignatureSpan">strider.email.</span>revokeInvite
+        <span class="apidocSignatureSpan">(code, email)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">revokeInvite = function (code, email) {
+  var subject = 'Strider Invitation';
+  var bodyHtml = html.revoke_invite({code: code, strider_server_name: config.server_name});
+  var bodyText = text.revoke_invite({code: code, strider_server_name: config.server_name});
+
+  mailer.send(email, subject, bodyText, bodyHtml);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.strider.email.sendInvite" id="apidoc.element.strider.email.sendInvite">
+        function <span class="apidocSignatureSpan">strider.email.</span>sendInvite
+        <span class="apidocSignatureSpan">(code, email)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">sendInvite = function (code, email) {
+  var subject = 'Strider Invitation';
+  var bodyHtml = html.invite({code: code, strider_server_name: config.server_name});
+  var bodyText = text.invite({code: code, strider_server_name: config.server_name});
+
+  mailer.send(email, subject, bodyText, bodyHtml);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.strider.email.sendInviteCollaboratorExistingUser" id="apidoc.element.strider.email.sendInviteCollaboratorExistingUser">
+        function <span class="apidocSignatureSpan">strider.email.</span>sendInviteCollaboratorExistingUser
+        <span class="apidocSignatureSpan">(req, email, url)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">sendInviteCollaboratorExistingUser = function (req, email, url) {
+  // not actually properly capitalized right now
+  var displayName = url.replace(/^.*com\//gi, '');
+  var subject = `[STRIDER] Invite to ${displayName}`;
+  var to = email;
+  var pugVariables = {
+    inviter: req.user.email,
+    display_name: displayName,
+    strider_server_name: config.server_name
+  };
+  var bodyText = text.collaborator_invite_existing_user(pugVariables);
+  var bodyHtml = html.collaborator_invite_existing_user(pugVariables);
+
+  mailer.send(to, subject, bodyText, bodyHtml);
+
+  console.log(`send collaborator invite to existing user ${email} for ${displayName}`);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.strider.email.sendInviteCollaboratorNewUser" id="apidoc.element.strider.email.sendInviteCollaboratorNewUser">
+        function <span class="apidocSignatureSpan">strider.email.</span>sendInviteCollaboratorNewUser
+        <span class="apidocSignatureSpan">(inviter, email, code, url)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">sendInviteCollaboratorNewUser = function (inviter, email, code, url) {
+  // not actually properly capitalized right now
+  var displayName = url.replace(/^.*com\//gi, '');
+  var subject = `[STRIDER] Invite to ${displayName}`;
+  var to = email;
+  var pugVariables = {
+    inviter: inviter.email,
+    display_name: displayName,
+    code: code,
+    strider_server_name: config.server_name
+  };
+
+  var bodyText = text.collaborator_invite_new_user(pugVariables);
+  var bodyHtml = html.collaborator_invite_new_user(pugVariables);
+
+  mailer.send(to, subject, bodyText, bodyHtml);
+
+  console.log(`send collaborator invite to new user ${email} for ${displayName}`);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.strider.email.sendPasswordReset" id="apidoc.element.strider.email.sendPasswordReset">
+        function <span class="apidocSignatureSpan">strider.email.</span>sendPasswordReset
+        <span class="apidocSignatureSpan">(user)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">sendPasswordReset = function (user) {
+  var currentTime = new Date();
+  var templateOptions = {
+    token: user.resetPasswordToken,
+    strider_server_name: config.server_name
+  };
+  var subject = `[STRIDER] - Password Reset - ${currentTime.getHours()}:${currentTime.getMinutes()}`;
+  var bodyText = text.send_password_reset(templateOptions);
+  var bodyHtml = html.send_password_reset(templateOptions);
+  var to = user.email;
+
+  mailer.send(to, subject, bodyText, bodyHtml);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+          reject(err);
+        } else {
+          resolve(u);
+        }
+      });
+    });
+  }).then(function (user) {
+    mailer.<span class="apidocCodeKeywordSpan">sendPasswordReset</span>(user);
+    req.flash('info', 'Please check your email for the password reset url. Thank you!');
+    res.redirect('/');
+  }).catch(function (error) {
+    console.error('Password reset error: ', error);
+  });
+} else {
+  req.flash('error', 'We could not find a user with that email.');
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.strider.humane" id="apidoc.module.strider.humane">module strider.humane</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.strider.humane.humaneDate" id="apidoc.element.strider.humane.humaneDate">
+        function <span class="apidocSignatureSpan">strider.humane.</span>humaneDate
+        <span class="apidocSignatureSpan">(date, compareTo)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function humaneDate(date, compareTo) {
+  if (!date) {
+    return;
+  }
+
+  var lang = {
+    ago: 'Ago',
+    from: '',
+    now: 'Just Now',
+    minute: 'Minute',
+    minutes: 'Minutes',
+    hour: 'Hour',
+    hours: 'Hours',
+    day: 'Day',
+    days: 'Days',
+    week: 'Week',
+    weeks: 'Weeks',
+    month: 'Month',
+    months: 'Months',
+    year: 'Year',
+    years: 'Years'
+  };
+  var formats = [
+    [60, lang.now],
+    [3600, lang.minute, lang.minutes, 60], // 60 minutes, 1 minute
+    [86400, lang.hour, lang.hours, 3600], // 24 hours, 1 hour
+    [604800, lang.day, lang.days, 86400], // 7 days, 1 day
+    [2628000, lang.week, lang.weeks, 604800], // ~1 month, 1 week
+    [31536000, lang.month, lang.months, 2628000], // 1 year, ~1 month
+    [Infinity, lang.year, lang.years, 31536000] // Infinity, 1 year
+  ];
+  var isString = typeof date == 'string';
+  date = isString ?
+    new Date(date.replace(/-/g, '/').replace(/[TZ]/g, ' ')) :
+    date;
+
+  compareTo = compareTo || new Date;
+  var seconds = (compareTo - date +
+      (compareTo.getTimezoneOffset() -
+        // if we received a GMT time from a string, doesn't include time zone bias
+        // if we got a date object, the time zone is built in, we need to remove it.
+        (isString ? 0 : date.getTimezoneOffset())
+      ) * 60000
+    ) / 1000;
+
+  var token;
+  if (seconds &lt; 0) {
+    seconds = Math.abs(seconds);
+    token = lang.from ? ` ${lang.from}` : '';
+  } else {
+    token = lang.ago ? ` ${lang.ago}` : '';
+  }
+
+<span class="apidocCodeCommentSpan">  /*
+   * 0 seconds &amp;&amp; &lt; 60 seconds        Now
+   * 60 seconds                       1 Minute
+   * &gt; 60 seconds &amp;&amp; &lt; 60 minutes     X Minutes
+   * 60 minutes                       1 Hour
+   * &gt; 60 minutes &amp;&amp; &lt; 24 hours       X Hours
+   * 24 hours                         1 Day
+   * &gt; 24 hours &amp;&amp; &lt; 7 days           X Days
+   * 7 days                           1 Week
+   * &gt; 7 days &amp;&amp; &lt; ~ 1 Month          X Weeks
+   * ~ 1 Month                        1 Month
+   * &gt; ~ 1 Month &amp;&amp; &lt; 1 Year          X Months
+   * 1 Year                           1 Year
+   * &gt; 1 Year                         X Years
+   *
+   * Single units are +10%. 1 Year shows first at 1 Year + 10%
+   */
+</span>
+  function normalize(val, single) {
+    var margin = 0.1;
+    if (val &gt;= single &amp;&amp; val &lt;= single * (1 + margin)) {
+      return single;
+    }
+    return val;
+  }
+
+  for (var i = 0, format = formats[0]; formats[i]; format = formats[++i]) {
+    if (seconds &lt; format[0]) {
+      if (i === 0) {
+        // Now
+        return format[1];
+      }
+
+      var val = Math.ceil(normalize(seconds, format[3]) / (format[3]));
+      return `${val} ${(val != 1 ? format[2] : format[1])}${(i &gt; 0 ? token : '')}`;
+    }
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.strider.jobs" id="apidoc.module.strider.jobs">module strider.jobs</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.strider.jobs.jobProject" id="apidoc.element.strider.jobs.jobProject">
+        function <span class="apidocSignatureSpan">strider.jobs.</span>jobProject
+        <span class="apidocSignatureSpan">(project, prev, user)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function jobProject(project, prev, user) {
+  prev.forEach(function (job) {
+    job.status = status(job);
+  });
+
+  project = utils.sanitizeProject(project);
+  project.prev = prev;
+
+  if (user) {
+    project.access_level = User.projectAccessLevel(user, project);
+  }
+
+  return project;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.strider.jobs.latestJobs" id="apidoc.element.strider.jobs.latestJobs">
+        function <span class="apidocSignatureSpan">strider.jobs.</span>latestJobs
+        <span class="apidocSignatureSpan">(user, small, done)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function latestJobs(user, small, done) {
+  if (arguments.length === 2) {
+    done = small;
+    small = false;
+  }
+  var tasks = { public: latestPublicJobs.bind(null, user, small) };
+  if (user) {
+    tasks.yours = latestUsersJobs.bind(null, user, small);
+  }
+  async.parallel(tasks, done);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.strider.jobs.small" id="apidoc.element.strider.jobs.small">
+        function <span class="apidocSignatureSpan">strider.jobs.</span>small
+        <span class="apidocSignatureSpan">(job)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function small(job) {
+  var big = ['phases', 'plugin_data', 'std', 'stderr', 'stdout', 'stdmerged'];
+  var njob = {};
+  if (job.toJSON) job = job.toJSON();
+  for (var name in job) {
+    if (big.indexOf(name) !== -1) continue;
+    njob[name] = job[name];
+  }
+  njob.status = status(job);
+  return njob;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+users.admins.forEach(function (user) {
+  self.users[name].push(user._id.toString());
+});
+
+// Admins maybe collaborators, so unique the array
+self.users[name] = _.uniq(self.users[name]);
+
+var njob = jobs.<span class="apidocCodeKeywordSpan">small</span>(job);
+
+njob.project = utils.sanitizeProject(job.project);
+self.sendJobs(name, 'job.new', [njob]);
+
+var waiting = self.waiting[name];
+if (Array.isArray(waiting)) {
+  waiting.forEach(function (item) {
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.strider.jobs.sort" id="apidoc.element.strider.jobs.sort">
+        function <span class="apidocSignatureSpan">strider.jobs.</span>sort
+        <span class="apidocSignatureSpan">(a, b)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function jobSort(a, b) {
+  if (a.nojobs) {
+    if (b.nojobs) return 0;
+    return -1;
+  }
+  if (b.nojobs) return 1;
+  if (a.status === 'running') {
+    if (b.status === 'running') return 0;
+    return -1;
+  }
+  if (b.status === 'running') return 1;
+  if (a.status === 'submitted') {
+    if (b.status === 'submitted') return 0;
+    return -1;
+  }
+  if (b.status === 'submitted') return 1;
+  if (!a.finished || !a.finished.getTime) return -1;
+  if (!b.finished || !b.finished.getTime) return 1;
+  return b.finished.getTime() - a.finished.getTime();
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+}
+
+return project;
+}
+
+function latestJob(project, user, small, done) {
+var query = Job.find({project: project.name.toLowerCase(), archived: null})
+  .<span class="apidocCodeKeywordSpan">sort</span>({finished: -1})
+  .limit(6)
+  .lean();
+
+if (small) {
+  query = query.select('-phases -std');
+}
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.strider.jobs.status" id="apidoc.element.strider.jobs.status">
+        function <span class="apidocSignatureSpan">strider.jobs.</span>status
+        <span class="apidocSignatureSpan">(job)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function status(job) {
+  if (job.errored) return 'errored';
+  if (!job.started) return 'submitted';
+  if (!job.finished) return 'running';
+  if (job.test_exitcode !== 0) return 'failed';
+  if (job.type !== TEST_ONLY &amp;&amp; job.deploy_exitcode !== 0) return 'failed';
+  return 'passed';
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    console.error('Invalid auth header');
+    return next();
+  }
+
+  User.authenticate(plain[0], plain.slice(1).join(':'), function (err, user) {
+    if (err || !user) {
+      console.log('basic auth: user not found');
+      return res.<span class="apidocCodeKeywordSpan">status</span>(401).send('Invalid username/password in basic auth');
+    }
+
+    req.user = user;
+
+    return next();
+  });
+}
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.strider.libconfig" id="apidoc.module.strider.libconfig">module strider.libconfig</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.strider.libconfig.addPlugins" id="apidoc.element.strider.libconfig.addPlugins">
+        function <span class="apidocSignatureSpan">strider.libconfig.</span>addPlugins
+        <span class="apidocSignatureSpan">(rc, env)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function addPlugins(rc, env) {
+  var parts;
+  if (!rc.plugins) rc.plugins = {};
+  for (var key in env) {
+    if (!key.match(/^plugin_/i)) continue;
+    parts = key.toLowerCase().split('_');
+    if (parts.length === 2) {
+      try {
+        rc.plugins[parts[1]] = JSON.parse(env[key]);
+      } catch (e) {
+        console.warn('Ignoring config because it\'s not valid JSON: ', key, env[key]);
+      }
+      continue;
+    }
+    if (!rc.plugins[parts[1]]) rc.plugins[parts[1]] = {};
+    rc.plugins[parts[1]][camel(parts.slice(2))] = env[key];
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.strider.libconfig.camel" id="apidoc.element.strider.libconfig.camel">
+        function <span class="apidocSignatureSpan">strider.libconfig.</span>camel
+        <span class="apidocSignatureSpan">(words)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function camel(words) {
+  return words[0] + words.slice(1)
+    .map(function (word) {
+      return word[0].toUpperCase() + word.slice(1);
+    }).join('');
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.strider.libconfig.deprecated" id="apidoc.element.strider.libconfig.deprecated">
+        function <span class="apidocSignatureSpan">strider.libconfig.</span>deprecated
+        <span class="apidocSignatureSpan">(env)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function deprecated(env) {
+  var nenv = _.extend({}, env);
+  if (env.APP_ID) {
+    console.warn('WARNING: You are using APP_ID to configure Github OAuth application id.');
+    console.warn('This name has been deprecated. Please use PLUGIN_GITHUB_APP_ID instead.\n');
+    nenv.PLUGIN_GITHUB_APP_ID = env.APP_ID;
+  }
+  if (env.APP_SECRET) {
+    console.warn('WARNING: You are using APP_SECRET to configure Github OAuth application secret.');
+    console.warn('This name has been deprecated. Please use PLUGIN_GITHUB_APP_SECRET instead.\n');
+    nenv.PLUGIN_GITHUB_APP_SECRET = env.APP_SECRET;
+  }
+  if (env.GITHUB_APP_ID) {
+    console.warn('WARNING: You are using GITHUB_APP_ID to configure Github OAuth application id.');
+    console.warn('This name has been deprecated. Please use PLUGIN_GITHUB_APP_ID instead.\n');
+    nenv.PLUGIN_GITHUB_APP_ID = env.GITHUB_APP_ID;
+  }
+  if (env.GITHUB_SECRET) {
+    console.warn('WARNING: You are using GITHUB_SECRET to configure Github OAuth application secret.');
+    console.warn('This name has been deprecated. Please use PLUGIN_GITHUB_APP_SECRET instead.\n');
+    nenv.PLUGIN_GITHUB_APP_SECRET = env.GITHUB_SECRET;
+  }
+  if (env.GITHUB_API_ENDPOINT) {
+    console.warn('WARNING: You are using GITHUB_API_ENDPOINT to configure Github API base URL.');
+    console.warn('This name has been deprecated. Please use PLUGIN_GITHUB_API_BASE instead.\n');
+    nenv.PLUGIN_GITHUB_API_BASE = env.GITHUB_API_ENDPOINT;
+  }
+  return nenv;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.strider.libconfig.filterEnv" id="apidoc.element.strider.libconfig.filterEnv">
+        function <span class="apidocSignatureSpan">strider.libconfig.</span>filterEnv
+        <span class="apidocSignatureSpan">(env, defaults)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function filterEnv(env, defaults) {
+  var res = {};
+  for (var k in env) {
+    if (defaults[k.toLowerCase()] !== undefined) {
+      res[`strider_${k.toLowerCase()}`] = env[k];
+    } else {
+      res[k] = env[k];
+    }
+  }
+  return res;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.strider.libconfig.getConfig" id="apidoc.element.strider.libconfig.getConfig">
+        function <span class="apidocSignatureSpan">strider.libconfig.</span>getConfig
+        <span class="apidocSignatureSpan">()</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function getConfig() {
+  process.env = filterEnv(deprecated(process.env), envDefaults);
+  var rc = require('rc')('strider', defaults);
+
+  if (!rc.smtp) rc.smtp = smtp(rc);
+  if (!rc.smtp) rc.stubSmtp = true;
+
+  rc.ldap = getConfigByName('ldap');
+
+  addPlugins(rc, process.env);
+
+  // BACK COMPAT until we get strider config into plugins...
+  if (hasGithub) {
+    rc.plugins.github = rc.plugins.github || {};
+    rc.plugins.github.hostname = rc.server_name;
+  }
+
+  debug(rc);
+
+  return rc;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+
+
+
+
+'use strict';
+
+module.exports = require('./libconfig').<span class="apidocCodeKeywordSpan">getConfig</span>();
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.strider.libconfig.smtp" id="apidoc.element.strider.libconfig.smtp">
+        function <span class="apidocSignatureSpan">strider.libconfig.</span>smtp
+        <span class="apidocSignatureSpan">(rc)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function smtp(rc) {
+  if (!rc.smtp_host) {
+    return;
+  }
+
+  var options = {
+    host: rc.smtp_host,
+    port: rc.smtp_port,
+    from: rc.smtp_from,
+    secure: rc.smtp_secure
+  };
+
+  if (rc.smtp_user) {
+    options.auth = {
+      user: rc.smtp_user,
+      pass: rc.smtp_pass
+    };
+  }
+
+  return options;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.strider.logging" id="apidoc.module.strider.logging">module strider.logging</a></h1>
+
+
+
+
+
+
+
+
+
+
+    <h2>
+        <a href="#apidoc.element.strider.logging.debug" id="apidoc.element.strider.logging.debug">
+        function <span class="apidocSignatureSpan">strider.logging.</span>debug
+        <span class="apidocSignatureSpan">(msg)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">debug = function (msg) {
+  // build argument list (level, msg, ... [string interpolate], [{metadata}], [callback])
+  var args = [level].concat(Array.prototype.slice.call(arguments));
+  target.log.apply(target, args);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+// socket callback. Adds a new socket
+connected: function (socket) {
+  var session = socket.handshake.session;
+
+  if (session &amp;&amp; session.passport) {
+    this.addSocket(session.passport.user, socket);
+  } else {
+    console.<span class="apidocCodeKeywordSpan">debug</span>('Websocket connection does not have authorization - nothing to
+ do.');
+  }
+},
+// send a message to a number of users
+// send([uid, uid, ...], arguments)
+send: function (users, args) {
+  for (var i = 0; i &lt; users.length; i++) {
+    if (!this.sockets[users[i]]) continue;
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.strider.logging.error" id="apidoc.element.strider.logging.error">
+        function <span class="apidocSignatureSpan">strider.logging.</span>error
+        <span class="apidocSignatureSpan">(msg)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">error = function (msg) {
+  // build argument list (level, msg, ... [string interpolate], [{metadata}], [callback])
+  var args = [level].concat(Array.prototype.slice.call(arguments));
+  target.log.apply(target, args);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+    loadExtensions(loader, extdir, context, appInstance, function () {
+      // kill zombie jobs
+      killZombies(function () {
+var tasks = [];
+
+if (!common.extensions.runner || typeof common.extensions.runner !== 'object') {
+  console.<span class="apidocCodeKeywordSpan">error</span>('Strider seems to have been misconfigured - there are no available
+ runner plugins. ' +
+    'Please make sure all dependencies are up to date.');
+  process.exit(1);
+}
+
+Object.keys(common.extensions.runner).forEach(function (name) {
+  var runner = common.extensions.runner[name];
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.strider.logging.info" id="apidoc.element.strider.logging.info">
+        function <span class="apidocSignatureSpan">strider.logging.</span>info
+        <span class="apidocSignatureSpan">(msg)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">info = function (msg) {
+  // build argument list (level, msg, ... [string interpolate], [{metadata}], [callback])
+  var args = [level].concat(Array.prototype.slice.call(arguments));
+  target.log.apply(target, args);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.strider.logging.silly" id="apidoc.element.strider.logging.silly">
+        function <span class="apidocSignatureSpan">strider.logging.</span>silly
+        <span class="apidocSignatureSpan">(msg)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">silly = function (msg) {
+  // build argument list (level, msg, ... [string interpolate], [{metadata}], [callback])
+  var args = [level].concat(Array.prototype.slice.call(arguments));
+  target.log.apply(target, args);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.strider.logging.verbose" id="apidoc.element.strider.logging.verbose">
+        function <span class="apidocSignatureSpan">strider.logging.</span>verbose
+        <span class="apidocSignatureSpan">(msg)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">verbose = function (msg) {
+  // build argument list (level, msg, ... [string interpolate], [{metadata}], [callback])
+  var args = [level].concat(Array.prototype.slice.call(arguments));
+  target.log.apply(target, args);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.strider.logging.warn" id="apidoc.element.strider.logging.warn">
+        function <span class="apidocSignatureSpan">strider.logging.</span>warn
+        <span class="apidocSignatureSpan">(msg)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">warn = function (msg) {
+  // build argument list (level, msg, ... [string interpolate], [{metadata}], [callback])
+  var args = [level].concat(Array.prototype.slice.call(arguments));
+  target.log.apply(target, args);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  for (var key in env) {
+    if (!key.match(/^plugin_/i)) continue;
+    parts = key.toLowerCase().split('_');
+    if (parts.length === 2) {
+      try {
+        rc.plugins[parts[1]] = JSON.parse(env[key]);
+      } catch (e) {
+        console.<span class="apidocCodeKeywordSpan">warn</span>('Ignoring config because it\'s not valid JSON: ',
+key, env[key]);
+      }
+      continue;
+    }
+    if (!rc.plugins[parts[1]]) rc.plugins[parts[1]] = {};
+    rc.plugins[parts[1]][camel(parts.slice(2))] = env[key];
+  }
+}
+...</pre></li>
+    </ul>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.strider.middleware" id="apidoc.module.strider.middleware">module strider.middleware</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.strider.middleware.anonProject" id="apidoc.element.strider.middleware.anonProject">
+        function <span class="apidocSignatureSpan">strider.middleware.</span>anonProject
+        <span class="apidocSignatureSpan">(req, res, next)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function anonProject(req, res, next) {
+  var name = `${req.params.org}/${req.params.repo}`;
+
+  name = name.toLowerCase();
+
+  Project.findOne({name: name})
+    .populate('creator')
+    .exec(function (err, project) {
+      if (err) {
+        return res.status(500).send({
+          error: 'Failed to find project',
+          info: err
+        });
+      }
+
+      if (!project) {
+        return res.status(404).send('Project not found');
+      }
+
+      if (!project.creator) {
+        return res.status(400).send('Project malformed; project creator user is missing.');
+      }
+
+      req.project = project;
+      req.accessLevel = User.projectAccessLevel(req.user, project);
+
+      if (req.user &amp;&amp; project.creator) {
+        req.user.isProjectCreator = project.creator._id.toString() === req.user._id.toString();
+      }
+
+      next();
+    });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.strider.middleware.bodySetter" id="apidoc.element.strider.middleware.bodySetter">
+        function <span class="apidocSignatureSpan">strider.middleware.</span>bodySetter
+        <span class="apidocSignatureSpan">(req, res, next)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function bodySetter(req, res, next) {
+  if (req._post_body) {
+    return next();
+  }
+
+  req.post_body = req.post_body || '';
+
+  if ('POST' !== req.method) {
+    return next();
+  }
+
+  req._post_body = true;
+
+  req.on('data', function (chunk) {
+    req.post_body += chunk;
+  });
+
+  next();
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.strider.middleware.custom404" id="apidoc.element.strider.middleware.custom404">
+        function <span class="apidocSignatureSpan">strider.middleware.</span>custom404
+        <span class="apidocSignatureSpan">(req, res, next)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function custom404(req, res, next) {
+  if (req.method !== 'GET') {
+    return next();
+  }
+
+  res.statusCode = 404;
+  res.render('doesnotexist.html');
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.strider.middleware.project" id="apidoc.element.strider.middleware.project">
+        function <span class="apidocSignatureSpan">strider.middleware.</span>project
+        <span class="apidocSignatureSpan">(req, res, next)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function project(req, res, next) {
+  if (req.params.org === 'auth') {
+    return next();
+  }
+
+  anonProject(req, res, function () {
+    if (req.accessLevel &gt; -1) {
+      return next();
+    }
+
+    if (!req.user) {
+      req.session.return_to = req.url;
+      return res.redirect('/login');
+    }
+
+    res.status(401).send('Not authorized');
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.strider.middleware.projectPlugin" id="apidoc.element.strider.middleware.projectPlugin">
+        function <span class="apidocSignatureSpan">strider.middleware.</span>projectPlugin
+        <span class="apidocSignatureSpan">(req, res, next)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function projectPlugin(req, res, next) {
+  var pluginid;
+  // if only 3 args, then get pluginid from params ":plugin"
+  if (arguments.length === 4) {
+    pluginid = req;
+    req = res;
+    res = next;
+    next = arguments[3];
+  } else {
+    pluginid = req.params.plugin;
+  }
+
+  var branch = req.project.branch(req.query.branch);
+  var plugin = null;
+
+  if (!branch) {
+    return res.status(404).send('Specified branch not found for the project');
+  }
+  // if it's just mirroring master
+  if (branch.mirror_master) {
+    return res.status(400).send('Branch not individually configurable');
+  }
+
+  for (var i = 0; i &lt; branch.plugins.length; i++) {
+    if (branch.plugins[i].id === pluginid) {
+      plugin = branch.plugins[i];
+      break;
+    }
+  }
+
+  if (plugin === null) {
+    return res.status(404).send('Plugin not enabled for the specified project');
+  }
+
+  req.pluginConfig = function (config, next) {
+    if (arguments.length === 0) {
+      return plugin.config;
+    }
+
+    plugin.config = config;
+    req.project.markModified('branches');
+    req.project.save(function (err) {
+      next(err, config);
+    });
+  };
+
+  req.userConfig = function (config, next) {
+    if (!req.user.isProjectCreator) {
+      if (arguments.length === 0) {
+        return false;
+      }
+
+      return next(new Error('Current user is not the creator - cannot set the creator config'));
+    }
+
+    if (arguments.length === 0) {
+      return req.project.creator.jobplugins[pluginid];
+    }
+
+    var schema = common.userConfigs.job &amp;&amp; common.userConfigs.job[pluginid];
+
+    if (!schema) {
+      return next(new Error(`Plugin ${pluginid} doesn't define any user config`));
+    }
+
+    config = utils.validateAgainstSchema(config, schema);
+    // TODO: validation
+    req.project.creator.jobplugins[pluginid] = config;
+    req.project.creator.markModified('jobplugins');
+
+    req.project.creator.save(function (err) {
+      next(err, config);
+    });
+  };
+
+  next();
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.strider.middleware.projectProvider" id="apidoc.element.strider.middleware.projectProvider">
+        function <span class="apidocSignatureSpan">strider.middleware.</span>projectProvider
+        <span class="apidocSignatureSpan">(req, res, next)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function projectProvider(req, res, next) {
+  var project = req.project;
+
+  req.providerConfig = function (config, next) {
+    if (arguments.length === 0) {
+      return project.provider.config;
+    }
+
+    project.provider.config = config;
+    project.markModified('provider');
+    project.save(next);
+  };
+  // make this conditional?
+  if (project.provider.account) {
+    var account = project.creator.account(project.provider.id, project.provider.account);
+
+    req.accountConfig = function (config, next) {
+      if (arguments.length === 0) {
+        return account.config;
+      }
+
+      account.config = config;
+      project.creator.markModified('accounts');
+      project.creator.save(next);
+    };
+  }
+
+  next();
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.strider.middleware.requireBody" id="apidoc.element.strider.middleware.requireBody">
+        function <span class="apidocSignatureSpan">strider.middleware.</span>requireBody
+        <span class="apidocSignatureSpan">(paramsList)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function requireBody(paramsList) {
+  return function (req, res, next) {
+    var errors = [];
+    var status = 'ok';
+
+    for (var i = 0; i &lt; paramsList.length; i++) {
+      var val = req.body[paramsList[i]];
+
+      if (!val) {
+        errors.push(`required parameter \`${paramsList[i]}\` not found.`);
+        status = 'error';
+      }
+    }
+
+    if (errors.length === 0) {
+      next();
+    } else {
+      return res.status(400).json({
+        errors: errors,
+        status: status
+      });
+    }
+  };
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.strider.middleware.require_admin" id="apidoc.element.strider.middleware.require_admin">
+        function <span class="apidocSignatureSpan">strider.middleware.</span>require_admin
+        <span class="apidocSignatureSpan">(req, res, next)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function requireAdminOr401(req, res, next) {
+  if (!req.user || !req.user['account_level'] || req.user.account_level &lt; 1) {
+    res.status(401).send('not authorized');
+  } else {
+    next();
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.strider.middleware.require_auth" id="apidoc.element.strider.middleware.require_auth">
+        function <span class="apidocSignatureSpan">strider.middleware.</span>require_auth
+        <span class="apidocSignatureSpan">(req, res, next)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function requireUserOr401(req, res, next) {
+  if (req.user) {
+    next();
+  } else {
+    res.status(401).send('not authorized');
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.strider.middleware.require_auth_browser" id="apidoc.element.strider.middleware.require_auth_browser">
+        function <span class="apidocSignatureSpan">strider.middleware.</span>require_auth_browser
+        <span class="apidocSignatureSpan">(req, res, next)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function requireUser(req, res, next) {
+  if (req.user) {
+    next();
+  } else {
+    req.session.return_to = req.url;
+    res.redirect('/login');
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.strider.middleware.require_project_admin" id="apidoc.element.strider.middleware.require_project_admin">
+        function <span class="apidocSignatureSpan">strider.middleware.</span>require_project_admin
+        <span class="apidocSignatureSpan">(req, res, next)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function requireProjectAdmin(req, res, next) {
+  if (!req.project) return res.status(404).send('Project not loaded');
+  if (!req.user) return res.status(401).send('No user');
+  var isAdmin = req.user.account_level &amp;&amp; req.user.account_level &gt; 0;
+  var notAuthed = (!req.accessLevel || req.accessLevel &lt; 2) &amp;&amp; !isAdmin;
+  if (notAuthed) return res.status(401).send('Not authorized for configuring this project');
+  next();
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.strider.plugin_templates" id="apidoc.module.strider.plugin_templates">module strider.plugin_templates</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.strider.plugin_templates.engine" id="apidoc.element.strider.plugin_templates.engine">
+        function <span class="apidocSignatureSpan">strider.plugin_templates.</span>engine
+        <span class="apidocSignatureSpan">(path, options, fn)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function engine(path, options, fn) {
+  options.filename = path;
+
+  fs.readFile(path, 'utf8', function (err, str) {
+    if (err) return fn(err);
+    engine.render(str, options, fn);
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+if (isTest) {
+  // awesome view testingness
+  require('./views-test')(app);
+}
+
+app.set('views', path.join(__dirname, 'views'));
+app.<span class="apidocCodeKeywordSpan">engine</span>('html', pluginTemplates.engine);
+
+if (config.cors) {
+  app.use(cors(config.cors));
+}
+
+app.use(middleware.bodySetter);
+// parse application/x-www-form-urlencoded
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.strider.plugin_templates.registerBlock" id="apidoc.element.strider.plugin_templates.registerBlock">
+        function <span class="apidocSignatureSpan">strider.plugin_templates.</span>registerBlock
+        <span class="apidocSignatureSpan">(block, render)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function registerBlock(block, render) {
+  cache[block] = render;
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.strider.plugin_templates.registerTemplate" id="apidoc.element.strider.plugin_templates.registerTemplate">
+        function <span class="apidocSignatureSpan">strider.plugin_templates.</span>registerTemplate
+        <span class="apidocSignatureSpan">(name, template, dir)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function registerTemplate(name, template, dir) {
+  cache[name] = function (context, cb) {
+    if (/\.html$/.test(template)){
+      dir = dir || '.';
+      template = fs.readFileSync(path.join(dir, template), 'utf8');
+    }
+
+    cb(null, template);
+  };
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.strider.projects" id="apidoc.module.strider.projects">module strider.projects</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.strider.projects.allProjects" id="apidoc.element.strider.projects.allProjects">
+        function <span class="apidocSignatureSpan">strider.projects.</span>allProjects
+        <span class="apidocSignatureSpan">(done)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function allProjects(done) {
+  User.find({}, function (err, users) {
+    if (err) return done(err);
+
+    Project.find()
+      .sort({_id: -1})
+      .exec(function (err, projects) {
+        if (err) return done(err);
+        done(null, projects.map(function (project) {
+          project = utils.sanitizeProject(project);
+          project.created_date = utils.timeFromId(project._id);
+          project.users = [];
+          for (var i = 0; i &lt; users.length; i++) {
+            if ('undefined' !== typeof users[i].projects[project.name]) {
+              project.users.push({
+                email: users[i].email,
+                access: users[i].projects[project.name]
+              });
+            }
+          }
+          return project;
+        }));
+      });
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.strider.ssh" id="apidoc.module.strider.ssh">module strider.ssh</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.strider.ssh.generateKeyPair" id="apidoc.element.strider.ssh.generateKeyPair">
+        function <span class="apidocSignatureSpan">strider.ssh.</span>generateKeyPair
+        <span class="apidocSignatureSpan">(comment, callback)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">generateKeyPair = function (comment, callback) {
+  debug('Generating SSH key pair...');
+  try {
+    var key = new NodeRSA();
+    key.generateKeyPair();
+    var privateKeyPem = key.exportKey('pkcs1-private-pem');
+    var publicKeyPem = key.exportKey('pkcs1-public-pem');
+    var publicKey = sshpk.parseKey(publicKeyPem, 'pem');
+    publicKey.comment = comment;
+
+    callback(null, privateKeyPem, publicKey.toString());
+
+  } catch (error) {
+    callback(error);
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+ * @param comment {string} The comment to put on the public key.
+ * @param callback
+ */
+exports.generateKeyPair = function (comment, callback) {
+  debug('Generating SSH key pair...');
+  try {
+var key = new NodeRSA();
+key.<span class="apidocCodeKeywordSpan">generateKeyPair</span>();
+var privateKeyPem = key.exportKey('pkcs1-private-pem');
+var publicKeyPem = key.exportKey('pkcs1-public-pem');
+var publicKey = sshpk.parseKey(publicKeyPem, 'pem');
+publicKey.comment = comment;
+
+callback(null, privateKeyPem, publicKey.toString());
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.strider.swig_filters" id="apidoc.module.strider.swig_filters">module strider.swig_filters</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.strider.swig_filters.scriptjson" id="apidoc.element.strider.swig_filters.scriptjson">
+        function <span class="apidocSignatureSpan">strider.swig_filters.</span>scriptjson
+        <span class="apidocSignatureSpan">(input)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">scriptjson = function (input) {
+  return JSON.stringify(input).replace(/&lt;\//g, '&lt;\\/');
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.strider.users" id="apidoc.module.strider.users">module strider.users</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.strider.users.makeAdmin" id="apidoc.element.strider.users.makeAdmin">
+        function <span class="apidocSignatureSpan">strider.users.</span>makeAdmin
+        <span class="apidocSignatureSpan">(user, done)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function makeAdmin(user, done) {
+  if (typeof user !== 'string' &amp;&amp; user.email) {
+    user = user.email;
+  }
+
+  User.update({ email: user }, { account_level: 1 }, {}, function (err, num) {
+    if (err) return done(err);
+    if (!num) return done();
+
+    console.log(`Admin status granted to: ${user}`);
+
+    // if in production, notify all other admins about new admin
+    if (env === 'production') {
+      getAdmins(function (err, admins) {
+        admins
+          .filter(function removeSelf(admin) {
+            return admin.email !== user.email;
+          })
+          .forEach(function notifyAdmin(admin) {
+            email.notifyNewAdmin(user, admin.email);
+          });
+      });
+    }
+
+    done(null, num);
+  });
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.strider.websockets" id="apidoc.module.strider.websockets">module strider.websockets</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.strider.websockets.websockets" id="apidoc.element.strider.websockets.websockets">
+        function <span class="apidocSignatureSpan">strider.</span>websockets
+        <span class="apidocSignatureSpan">(sio, sessionStore)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">function UserSockets(sio, sessionStore) {
+  this.sio = sio;
+  this.sockets = {};
+  this.sessionStore = sessionStore;
+  //sio.enable('browser client minification');  // send minified client
+  //sio.enable('browser client etag');          // apply etag caching logic based on version number
+  //sio.enable('browser client gzip');
+  //sio.set('log level', 1);
+  //sio.set('authorization', authorize.bind(this, sessionStore))
+  sio.use(authorize.bind(this, sessionStore));
+  sio.sockets.on('connection', this.connected.bind(this));
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.strider.websockets.init" id="apidoc.element.strider.websockets.init">
+        function <span class="apidocSignatureSpan">strider.websockets.</span>init
+        <span class="apidocSignatureSpan">(server, sessionStore)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">init = function (server, sessionStore) {
+  return common.ws = new UserSockets(io.listen(server), sessionStore);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+var k;
+// override with c
+for (k in c) {
+  appConfig[k] = c[k];
+}
+
+// Initialize the (web) app
+var appInstance = app.<span class="apidocCodeKeywordSpan">init</span>(appConfig);
+var cb = callback || defaultCallback;
+
+function defaultCallback(err) {
+  if (err) {
+    throw err;
+  }
+}
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocSectionDiv">
+<h1><a href="#apidoc.module.strider.websockets.prototype" id="apidoc.module.strider.websockets.prototype">module strider.websockets.prototype</a></h1>
+
+
+    <h2>
+        <a href="#apidoc.element.strider.websockets.prototype.addSocket" id="apidoc.element.strider.websockets.prototype.addSocket">
+        function <span class="apidocSignatureSpan">strider.websockets.prototype.</span>addSocket
+        <span class="apidocSignatureSpan">(uid, socket)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">addSocket = function (uid, socket) {
+  if (!this.sockets[uid]) {
+    this.sockets[uid] = new UserSocket(uid);
+  }
+  this.sockets[uid].add(socket);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  return socks.remove(socket);
+},
+// socket callback. Adds a new socket
+connected: function (socket) {
+  var session = socket.handshake.session;
+
+  if (session &amp;&amp; session.passport) {
+    this.<span class="apidocCodeKeywordSpan">addSocket</span>(session.passport.user, socket);
+  } else {
+    console.debug('Websocket connection does not have authorization - nothing to do.');
+  }
+},
+// send a message to a number of users
+// send([uid, uid, ...], arguments)
+send: function (users, args) {
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.strider.websockets.prototype.connected" id="apidoc.element.strider.websockets.prototype.connected">
+        function <span class="apidocSignatureSpan">strider.websockets.prototype.</span>connected
+        <span class="apidocSignatureSpan">(socket)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">connected = function (socket) {
+  var session = socket.handshake.session;
+
+  if (session &amp;&amp; session.passport) {
+    this.addSocket(session.passport.user, socket);
+  } else {
+    console.debug('Websocket connection does not have authorization - nothing to do.');
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.strider.websockets.prototype.removeSocket" id="apidoc.element.strider.websockets.prototype.removeSocket">
+        function <span class="apidocSignatureSpan">strider.websockets.prototype.</span>removeSocket
+        <span class="apidocSignatureSpan">(uid, socket)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">removeSocket = function (uid, socket) {
+  var socks = this.sockets[uid];
+  if (!socks) return false;
+  return socks.remove(socket);
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">n/a</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.strider.websockets.prototype.send" id="apidoc.element.strider.websockets.prototype.send">
+        function <span class="apidocSignatureSpan">strider.websockets.prototype.</span>send
+        <span class="apidocSignatureSpan">(users, args)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">send = function (users, args) {
+  for (var i = 0; i &lt; users.length; i++) {
+    if (!this.sockets[users[i]]) continue;
+    this.sockets[users[i]].emit(args);
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+    console.error('Invalid auth header');
+    return next();
+  }
+
+  User.authenticate(plain[0], plain.slice(1).join(':'), function (err, user) {
+    if (err || !user) {
+      console.log('basic auth: user not found');
+      return res.status(401).<span class="apidocCodeKeywordSpan">send</span>('Invalid username/password in basic auth');
+    }
+
+    req.user = user;
+
+    return next();
+  });
+}
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.strider.websockets.prototype.sendEach" id="apidoc.element.strider.websockets.prototype.sendEach">
+        function <span class="apidocSignatureSpan">strider.websockets.prototype.</span>sendEach
+        <span class="apidocSignatureSpan">(users, fn)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">sendEach = function (users, fn) {
+  for (var i = 0; i &lt; users.length; i++) {
+    if (!this.sockets[users[i]] || !this.sockets[users[i]].user) continue;
+    this.sockets[users[i]].emit(fn(this.sockets[users[i]].user));
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+  if (this.public[project]) {
+    this.ws.sendPublic(this.users[project], [event, args, 'public']);
+  }
+},
+
+sendJobs: function (project, event, args) {
+  if (this.users[project]) {
+    this.ws.<span class="apidocCodeKeywordSpan">sendEach</span>(this.users[project], function (user) {
+      return [event, args.map(function (job) {
+        job = _.assign({}, job);
+        job.project = _.assign({}, job.project);
+        job.project.access_level = User.projectAccessLevel(user, job.project);
+        return job;
+      }), 'yours'];
+    });
+...</pre></li>
+    </ul>
+
+
+
+    <h2>
+        <a href="#apidoc.element.strider.websockets.prototype.sendPublic" id="apidoc.element.strider.websockets.prototype.sendPublic">
+        function <span class="apidocSignatureSpan">strider.websockets.prototype.</span>sendPublic
+        <span class="apidocSignatureSpan">(users, args)</span>
+        </a>
+    </h2>
+    <ul>
+    <li>description and source-code<pre class="apidocCodePre">sendPublic = function (users, args) {
+  for (var id in this.sockets) {
+    if (users.indexOf(id) !== -1) continue;
+    this.sockets[id].emit(args);
+  }
+}</pre></li>
+    <li>example usage<pre class="apidocCodePre">...
+
+BackChannel.prototype = {
+send: function (project, event, args) {
+  if (this.users[project]) {
+    this.ws.send(this.users[project], [event, args, 'yours']);
+  }
+  if (this.public[project]) {
+    this.ws.<span class="apidocCodeKeywordSpan">sendPublic</span>(this.users[project], [event, args, 'public']);
+  }
+},
+
+sendJobs: function (project, event, args) {
+  if (this.users[project]) {
+    this.ws.sendEach(this.users[project], function (user) {
+      return [event, args.map(function (job) {
+...</pre></li>
+    </ul>
+
+
+</div>
+
+<div class="apidocFooterDiv">
+    [ this document was created with
+    <a href="https://github.com/kaizhu256/node-utility2" target="_blank">utility2</a>
+    ]
+</div>
+</div>
+</body></html>
