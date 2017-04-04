@@ -1,17 +1,40 @@
 {
-    "buildNpmdoc":"strider",
+    "author": "kai zhu <kaizhu256@gmail.com>",
+    "buildNpmdoc": "strider",
+    "description": "api documentation for [strider (v1.9.6)](https://github.com/Strider-CD/strider#readme) [![npm package](https://img.shields.io/npm/v/npmdoc-strider.svg?style=flat-square)](https://www.npmjs.org/package/npmdoc-strider) [![travis-ci.org build-status](https://api.travis-ci.org/npmdoc/node-npmdoc-strider.svg)](https://travis-ci.org/npmdoc/node-npmdoc-strider)",
     "devDependencies": {
-        "strider": "*",
         "electron-lite": "kaizhu256/node-electron-lite#alpha",
+        "strider": "*",
         "utility2": "kaizhu256/node-utility2#alpha"
     },
-    "name":"npmdoc-strider",
+    "engines": {
+        "node": ">=4.0"
+    },
+    "homepage": "https://github.com/npmdoc/node-npmdoc-strider",
+    "keywords": [
+        "documentation",
+        "strider"
+    ],
+    "license": "MIT",
+    "main": "lib.npmdoc_strider.js",
+    "name": "npmdoc-strider",
+    "nameAlias": "npmdoc_strider",
+    "nameOriginal": "npmdoc-strider",
+    "os": [
+        "darwin",
+        "linux"
+    ],
     "repository": {
         "type": "git",
         "url": "https://github.com/npmdoc/node-npmdoc-strider.git"
     },
     "scripts": {
-        "build-ci": "utility2 shReadmeTest build_ci.sh"
+        "build-ci": "utility2 shReadmeTest build_ci.sh",
+        "env": "env",
+        "heroku-postbuild": "(set -e; npm install \"kaizhu256/node-utility2#alpha\"; utility2 shDeployHeroku)",
+        "postinstall": "if [ -f npm_scripts.sh ]; then ./npm_scripts.sh postinstall; fi",
+        "start": "(set -e; export PORT=${PORT:-8080}; utility2 start test.js)",
+        "test": "(set -e; export PORT=$(utility2 shServerPortRandom); utility2 test test.js)"
     },
     "version": "0.0.1"
 }
