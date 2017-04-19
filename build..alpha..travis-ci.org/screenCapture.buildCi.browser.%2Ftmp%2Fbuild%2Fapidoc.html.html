@@ -1,4 +1,4 @@
-<div class="apidocDiv">
+<html><head></head><body><div class="apidocDiv">
 <style>
 /*csslint
 */
@@ -47,17 +47,10 @@
 }
 </style>
 <h1>api documentation for
-    <a
-
-        href="https://github.com/Strider-CD/strider#readme"
-
-    >strider (v1.9.6)</a>
+    <a href="https://github.com/Strider-CD/strider#readme">strider (v1.9.6)</a>
 </h1>
 <h4>Brilliant continuous deployment platform</h4>
-<div class="apidocSectionDiv"><a
-    href="#apidoc.tableOfContents"
-    id="apidoc.tableOfContents"
-><h1>table of contents</h1></a><ol>
+<div class="apidocSectionDiv"><a href="#apidoc.tableOfContents" id="apidoc.tableOfContents"><h1>table of contents</h1></a><ol>
 
     <li class="apidocModuleLi"><a href="#apidoc.module.strider">module strider</a><ol>
 
@@ -2035,11 +2028,11 @@
     }
   }
 
-  if (typeof Loader !== &#x27;function&#x27;) {
-    throw new Error(&#x27;Your version of strider-extension-loader is out of date&#x27;);
+  if (typeof Loader !== 'function') {
+    throw new Error('Your version of strider-extension-loader is out of date');
   }
 
-  var loader = new Loader([path.join(__dirname, &#x27;client/styles&#x27;)], true);
+  var loader = new Loader([path.join(__dirname, 'client/styles')], true);
   appInstance.loader = loader;
   common.loader = loader;
   //
@@ -2083,9 +2076,9 @@
       killZombies(function () {
         var tasks = [];
 
-        if (!common.extensions.runner || typeof common.extensions.runner !== &#x27;object&#x27;) {
-          console.error(&#x27;Strider seems to have been misconfigured - there are no available runner plugins. &#x27; +
-            &#x27;Please make sure all dependencies are up to date.&#x27;);
+        if (!common.extensions.runner || typeof common.extensions.runner !== 'object') {
+          console.error('Strider seems to have been misconfigured - there are no available runner plugins. ' +
+            'Please make sure all dependencies are up to date.');
           process.exit(1);
         }
 
@@ -2093,13 +2086,13 @@
           var runner = common.extensions.runner[name];
 
           if (!runner) {
-            console.log(&#x27;no runner&#x27;, name);
+            console.log('no runner', name);
             return;
           }
 
           tasks.push(function (next) {
             Job.find({
-              &#x27;runner.id&#x27;: name,
+              'runner.id': name,
               finished: null
             }, function (error, jobs) {
               if (error) {
@@ -2123,7 +2116,7 @@
             $set: {
               finished: now,
               errored: true,
-              error: {message: &#x27;Job timeout&#x27;, stack: &#x27;&#x27;}
+              error: {message: 'Job timeout', stack: ''}
             }
           }, function () {
             Job.update({_id: {$in: ids}, started: null}, {$set: {started: now}}, function (err) {
@@ -2155,10 +2148,10 @@
   this.public = {};
   this.waiting = {};
 
-  emitter.on(&#x27;job.prepare&#x27;, prepareJob.bind(null, emitter));
-  emitter.on(&#x27;job.new&#x27;, this.newJob.bind(this));
-  emitter.on(&#x27;browser.update&#x27;, this.onUpdate.bind(this));
-  emitter.on(&#x27;job.done&#x27;, this.jobDone.bind(this, emitter));
+  emitter.on('job.prepare', prepareJob.bind(null, emitter));
+  emitter.on('job.new', this.newJob.bind(this));
+  emitter.on('browser.update', this.onUpdate.bind(this));
+  emitter.on('job.done', this.jobDone.bind(this, emitter));
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -2181,11 +2174,11 @@
     <li>example usage<pre class="apidocCodePre">...
 
 function renderPug(filepath) {
-return pug.compile(fs.readFileSync(filepath, &#x27;utf8&#x27;), { filename: filepath });
+return pug.compile(fs.readFileSync(filepath, 'utf8'), { filename: filepath });
 }
 
 exports.sendInvite = function (code, email) {
-var subject = &#x27;Strider Invitation&#x27;;
+var subject = 'Strider Invitation';
 var bodyHtml = html.<span class="apidocCodeKeywordSpan">invite</span>({code: code, strider_server_name: config.server_name});
 var bodyText = text.invite({code: code, strider_server_name: config.server_name});
 
@@ -2193,7 +2186,7 @@ mailer.send(email, subject, bodyText, bodyHtml);
 };
 
 exports.revokeInvite = function (code, email) {
-var subject = &#x27;Strider Invitation&#x27;;
+var subject = 'Strider Invitation';
 ...</pre></li>
     </ul>
 
@@ -2217,14 +2210,14 @@ var subject = &#x27;Strider Invitation&#x27;;
     this.sock.on(`job.status.${status}`, this.update.bind(this, status));
   }
 },
-// access: &#x27;yours&#x27;, &#x27;public&#x27;, &#x27;admin&#x27;
+// access: 'yours', 'public', 'admin'
 update: function (event, args, access, dontchange) {
   var id = args.shift();
   var job = this.<span class="apidocCodeKeywordSpan">job</span>(id, access);
   var handler = this.statuses[event];
   if (!job) return this.unknown(id, event, args, access);
   if (!handler) return;
-  if (&#x27;string&#x27; === typeof handler) {
+  if ('string' === typeof handler) {
     job.status = handler;
   } else {
     handler.apply(job, args);
@@ -2329,13 +2322,13 @@ update: function (event, args, access, dontchange) {
   this.sio = sio;
   this.sockets = {};
   this.sessionStore = sessionStore;
-  //sio.enable(&#x27;browser client minification&#x27;);  // send minified client
-  //sio.enable(&#x27;browser client etag&#x27;);          // apply etag caching logic based on version number
-  //sio.enable(&#x27;browser client gzip&#x27;);
-  //sio.set(&#x27;log level&#x27;, 1);
-  //sio.set(&#x27;authorization&#x27;, authorize.bind(this, sessionStore))
+  //sio.enable('browser client minification');  // send minified client
+  //sio.enable('browser client etag');          // apply etag caching logic based on version number
+  //sio.enable('browser client gzip');
+  //sio.set('log level', 1);
+  //sio.set('authorization', authorize.bind(this, sessionStore))
   sio.use(authorize.bind(this, sessionStore));
-  sio.sockets.on(&#x27;connection&#x27;, this.connected.bind(this));
+  sio.sockets.on('connection', this.connected.bind(this));
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -2398,8 +2391,8 @@ update: function (event, args, access, dontchange) {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function authenticate(req, res, next) {
   if (http.IncomingMessage.prototype.logIn
-      &#x26;&#x26; http.IncomingMessage.prototype.logIn !== IncomingMessageExt.logIn) {
-    require(&#x27;../framework/connect&#x27;).__monkeypatchNode();
+      &amp;&amp; http.IncomingMessage.prototype.logIn !== IncomingMessageExt.logIn) {
+    require('../framework/connect').__monkeypatchNode();
   }
 
 
@@ -2425,23 +2418,23 @@ update: function (event, args, access, dontchange) {
 
     if (options.failureFlash) {
       var flash = options.failureFlash;
-      if (typeof flash == &#x27;string&#x27;) {
-        flash = { type: &#x27;error&#x27;, message: flash };
+      if (typeof flash == 'string') {
+        flash = { type: 'error', message: flash };
       }
-      flash.type = flash.type || &#x27;error&#x27;;
+      flash.type = flash.type || 'error';
 
-      var type = flash.type || challenge.type || &#x27;error&#x27;;
+      var type = flash.type || challenge.type || 'error';
       msg = flash.message || challenge.message || challenge;
-      if (typeof msg == &#x27;string&#x27;) {
+      if (typeof msg == 'string') {
         req.flash(type, msg);
       }
     }
     if (options.failureMessage) {
       msg = options.failureMessage;
-      if (typeof msg == &#x27;boolean&#x27;) {
+      if (typeof msg == 'boolean') {
         msg = challenge.message || challenge;
       }
-      if (typeof msg == &#x27;string&#x27;) {
+      if (typeof msg == 'string') {
         req.session.messages = req.session.messages || [];
         req.session.messages.push(msg);
       }
@@ -2458,20 +2451,20 @@ update: function (event, args, access, dontchange) {
     var rchallenge = []
       , rstatus, status;
 
-    for (var j = 0, len = failures.length; j &#x3c; len; j++) {
+    for (var j = 0, len = failures.length; j &lt; len; j++) {
       failure = failures[j];
       challenge = failure.challenge;
       status = failure.status;
 
       rstatus = rstatus || status;
-      if (typeof challenge == &#x27;string&#x27;) {
+      if (typeof challenge == 'string') {
         rchallenge.push(challenge);
       }
     }
 
     res.statusCode = rstatus || 401;
-    if (res.statusCode == 401 &#x26;&#x26; rchallenge.length) {
-      res.setHeader(&#x27;WWW-Authenticate&#x27;, rchallenge);
+    if (res.statusCode == 401 &amp;&amp; rchallenge.length) {
+      res.setHeader('WWW-Authenticate', rchallenge);
     }
     if (options.failWithError) {
       return next(new AuthenticationError(http.STATUS_CODES[res.statusCode], rstatus));
@@ -2488,7 +2481,7 @@ update: function (event, args, access, dontchange) {
     // a new instance.  Action functions will then be bound to the strategy
     // within the context of the HTTP request/response pair.
     var prototype = passport._strategy(layer);
-    if (!prototype) { return next(new Error(&#x27;Unknown authentication strategy &#x22;&#x27; + layer + &#x27;&#x22;&#x27;)); }
+    if (!prototype) { return next(new Error('Unknown authentication strategy "' + layer + '"')); }
 
     var strategy = Object.create(prototype);
 
@@ -2511,14 +2504,14 @@ update: function (event, args, access, dontchange) {
 
 function setupPasswordAuth() {
   passport.use(new LocalStrategy({
-usernameField: &#x27;email&#x27;
+usernameField: 'email'
   }, function (username, password, done) {
-console.log(&#x27;username: %s&#x27;, username);
+console.log('username: %s', username);
 
 User.<span class="apidocCodeKeywordSpan">authenticate</span>(username, password, function (err, user) {
   if (err || !user) {
-    console.log(&#x27;no user&#x27;);
-    return done(null, false, {message: &#x27;Incorrect username.&#x27;});
+    console.log('no user');
+    return done(null, false, {message: 'Incorrect username.'});
   }
 
   return done(null, user);
@@ -2538,15 +2531,15 @@ User.<span class="apidocCodeKeywordSpan">authenticate</span>(username, password,
     <li>description and source-code<pre class="apidocCodePre">function forgot(req, res) {
   var email = req.body.email.toLowerCase();
 
-  User.findOne({email: {$regex: new RegExp(email, &#x27;i&#x27;)}}, function (error, user) {
+  User.findOne({email: {$regex: new RegExp(email, 'i')}}, function (error, user) {
     if (error) {
-      req.flash(&#x27;error&#x27;, &#x27;An error occured while attempting to reset your password.&#x27;);
-      return res.redirect(&#x27;/forgot&#x27;);
+      req.flash('error', 'An error occured while attempting to reset your password.');
+      return res.redirect('/forgot');
     }
 
     if (user) {
       randomBytes(20).then(function (buffer) {
-        return buffer.toString(&#x27;hex&#x27;);
+        return buffer.toString('hex');
       }).then(function (token) {
         user.resetPasswordToken = token;
         user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
@@ -2562,14 +2555,14 @@ User.<span class="apidocCodeKeywordSpan">authenticate</span>(username, password,
         });
       }).then(function (user) {
         mailer.sendPasswordReset(user);
-        req.flash(&#x27;info&#x27;, &#x27;Please check your email for the password reset url. Thank you!&#x27;);
-        res.redirect(&#x27;/&#x27;);
+        req.flash('info', 'Please check your email for the password reset url. Thank you!');
+        res.redirect('/');
       }).catch(function (error) {
-        console.error(&#x27;Password reset error: &#x27;, error);
+        console.error('Password reset error: ', error);
       });
     } else {
-      req.flash(&#x27;error&#x27;, &#x27;We could not find a user with that email.&#x27;);
-      return res.redirect(&#x27;/forgot&#x27;);
+      req.flash('error', 'We could not find a user with that email.');
+      return res.redirect('/forgot');
     }
   });
 }</pre></li>
@@ -2587,24 +2580,24 @@ User.<span class="apidocCodeKeywordSpan">authenticate</span>(username, password,
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function logout(req, res) {
   req.logout();
-  res.redirect(&#x27;/&#x27;);
+  res.redirect('/');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
-var _authenticate = passport.authenticate(&#x27;local&#x27;, {
-successRedirect: &#x27;/&#x27;,
-failureRedirect: &#x27;/login?failed=true&#x27;
+var _authenticate = passport.authenticate('local', {
+successRedirect: '/',
+failureRedirect: '/login?failed=true'
 });
 
 function logout(req, res) {
 req.<span class="apidocCodeKeywordSpan">logout</span>();
-res.redirect(&#x27;/&#x27;);
+res.redirect('/');
 }
 
 function forgot(req, res) {
 var email = req.body.email.toLowerCase();
 
-User.findOne({email: {$regex: new RegExp(email, &#x27;i&#x27;)}}, function (error, user) {
+User.findOne({email: {$regex: new RegExp(email, 'i')}}, function (error, user) {
 ...</pre></li>
     </ul>
 
@@ -2618,8 +2611,8 @@ User.findOne({email: {$regex: new RegExp(email, &#x27;i&#x27;)}}, function (erro
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function requireAdminOr401(req, res, next) {
-  if (!req.user || !req.user[&#x27;account_level&#x27;] || req.user.account_level &#x3c; 1) {
-    res.status(401).send(&#x27;not authorized&#x27;);
+  if (!req.user || !req.user['account_level'] || req.user.account_level &lt; 1) {
+    res.status(401).send('not authorized');
   } else {
     next();
   }
@@ -2637,11 +2630,11 @@ User.findOne({email: {$regex: new RegExp(email, &#x27;i&#x27;)}}, function (erro
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function requireProjectAdmin(req, res, next) {
-  if (!req.project) return res.status(404).send(&#x27;Project not loaded&#x27;);
-  if (!req.user) return res.status(401).send(&#x27;No user&#x27;);
-  var isAdmin = req.user.account_level &#x26;&#x26; req.user.account_level &#x3e; 0;
-  var notAuthed = (!req.accessLevel || req.accessLevel &#x3c; 2) &#x26;&#x26; !isAdmin;
-  if (notAuthed) return res.status(401).send(&#x27;Not authorized for configuring this project&#x27;);
+  if (!req.project) return res.status(404).send('Project not loaded');
+  if (!req.user) return res.status(401).send('No user');
+  var isAdmin = req.user.account_level &amp;&amp; req.user.account_level &gt; 0;
+  var notAuthed = (!req.accessLevel || req.accessLevel &lt; 2) &amp;&amp; !isAdmin;
+  if (notAuthed) return res.status(401).send('Not authorized for configuring this project');
   next();
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -2661,7 +2654,7 @@ User.findOne({email: {$regex: new RegExp(email, &#x27;i&#x27;)}}, function (erro
     next();
   } else {
     req.session.return_to = req.url;
-    res.redirect(&#x27;/login&#x27;);
+    res.redirect('/login');
   }
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -2680,7 +2673,7 @@ User.findOne({email: {$regex: new RegExp(email, &#x27;i&#x27;)}}, function (erro
   if (req.user) {
     next();
   } else {
-    res.status(401).send(&#x27;not authorized&#x27;);
+    res.status(401).send('not authorized');
   }
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -2703,11 +2696,11 @@ User.findOne({email: {$regex: new RegExp(email, &#x27;i&#x27;)}}, function (erro
     resetPasswordExpires: {$gt: Date.now()}
   }, function (err, user) {
     if (!user) {
-      req.flash(&#x27;error&#x27;, &#x27;Password reset token is invalid or has expired.&#x27;);
-      return res.redirect(&#x27;/forgot&#x27;);
+      req.flash('error', 'Password reset token is invalid or has expired.');
+      return res.redirect('/forgot');
     }
 
-    res.render(&#x27;reset.html&#x27;, {
+    res.render('reset.html', {
       token: token,
       user: user
     });
@@ -2735,8 +2728,8 @@ User.findOne({email: {$regex: new RegExp(email, &#x27;i&#x27;)}}, function (erro
       resetPasswordExpires: {$gt: Date.now()}
     }, function (err, user) {
       if (!user) {
-        req.flash(&#x27;error&#x27;, &#x27;Password reset token is invalid or has expired.&#x27;);
-        return res.redirect(&#x27;back&#x27;);
+        req.flash('error', 'Password reset token is invalid or has expired.');
+        return res.redirect('back');
       }
 
       user.password = password;
@@ -2745,21 +2738,21 @@ User.findOne({email: {$regex: new RegExp(email, &#x27;i&#x27;)}}, function (erro
 
       user.save(function (err) {
         if (err) {
-          req.flash(&#x27;error&#x27;, &#x27;Couldn\&#x27;t save changes with new password.&#x27;);
-          return res.redirect(&#x27;/&#x27;);
+          req.flash('error', 'Couldn\'t save changes with new password.');
+          return res.redirect('/');
         }
 
         req.login(user, function (err) {
           if (err) {
-            req.flash(&#x27;error&#x27;, &#x27;You\&#x27;r user authentication was not successful.&#x27;);
+            req.flash('error', 'You\'r user authentication was not successful.');
           }
 
-          res.redirect(&#x27;/&#x27;);
+          res.redirect('/');
         });
       });
     });
   } else {
-    res.redirect(req.header(&#x27;Referer&#x27;));
+    res.redirect(req.header('Referer'));
   }
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -2780,13 +2773,13 @@ User.findOne({email: {$regex: new RegExp(email, &#x27;i&#x27;)}}, function (erro
   };
 
   app.authenticate = function () {
-    console.log(&#x27;AUTHENTICATE&#x27;, arguments);
+    console.log('AUTHENTICATE', arguments);
 
     var res = passport.authenticate.apply(passport, arguments);
-    console.log(&#x27;!!!&#x27;, res);
+    console.log('!!!', res);
 
     return function (req) {
-      console.log(&#x27;&#x3e;&#x3e;&#x3e;&#x3e; AUTHENTICATE&#x27;, req._passport, req._passport.instance._strategies.github);
+      console.log('&gt;&gt;&gt;&gt; AUTHENTICATE', req._passport, req._passport.instance._strategies.github);
       res.apply(this, arguments);
     };
   };
@@ -2844,10 +2837,10 @@ User.findOne({email: {$regex: new RegExp(email, &#x27;i&#x27;)}}, function (erro
   this.public = {};
   this.waiting = {};
 
-  emitter.on(&#x27;job.prepare&#x27;, prepareJob.bind(null, emitter));
-  emitter.on(&#x27;job.new&#x27;, this.newJob.bind(this));
-  emitter.on(&#x27;browser.update&#x27;, this.onUpdate.bind(this));
-  emitter.on(&#x27;job.done&#x27;, this.jobDone.bind(this, emitter));
+  emitter.on('job.prepare', prepareJob.bind(null, emitter));
+  emitter.on('job.new', this.newJob.bind(this));
+  emitter.on('browser.update', this.onUpdate.bind(this));
+  emitter.on('job.done', this.jobDone.bind(this, emitter));
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -2869,29 +2862,29 @@ User.findOne({email: {$regex: new RegExp(email, &#x27;i&#x27;)}}, function (erro
     <li>description and source-code<pre class="apidocCodePre">jobDone = function (emitter, data) {
   var self = this;
   Job.findById(data.id, function (err, job) {
-    if (err) return debug(&#x27;Error finding job&#x27;, err.message);
-    if (!job) return debug(&#x27;job.done but job not found:&#x27;, data.id);
+    if (err) return debug('Error finding job', err.message);
+    if (!job) return debug('job.done but job not found:', data.id);
     _.extend(job, data);
     try {
       job.duration = data.finished.getTime() - data.started.getTime();
     } catch (ignore) {
       job.duration = 1;
     }
-    job.markModified(&#x27;phases&#x27;);
-    job.markModified(&#x27;plugin_data&#x27;);
-    job.test_exitcode = job.phases.test &#x26;&#x26; job.phases.test.exitCode;
-    job.deploy_exitcode = job.phases.deploy &#x26;&#x26; job.phases.deploy.exitCode;
+    job.markModified('phases');
+    job.markModified('plugin_data');
+    job.test_exitcode = job.phases.test &amp;&amp; job.phases.test.exitCode;
+    job.deploy_exitcode = job.phases.deploy &amp;&amp; job.phases.deploy.exitCode;
     job.save();
     job = job.toJSON();
 
     Project.findOne({name: job.project}).lean().exec(function (err, project) {
-      if (err) return debug(&#x27;Error finding project for job&#x27;, err.message, job.project);
-      if (!project) return debug(&#x27;Project for job.done not found&#x27;, job.project);
+      if (err) return debug('Error finding project for job', err.message, job.project);
+      if (!project) return debug('Project for job.done not found', job.project);
 
       job.project = utils.sanitizeProject(project);
       job.status = jobs.status(job);
-      self.sendJobs(project.name, &#x27;job.done&#x27;, [job]);
-      emitter.emit(&#x27;job.doneAndSaved&#x27;, job);
+      self.sendJobs(project.name, 'job.done', [job]);
+      emitter.emit('job.doneAndSaved', job);
     });
   });
 }</pre></li>
@@ -2908,7 +2901,7 @@ User.findOne({email: {$regex: new RegExp(email, &#x27;i&#x27;)}}, function (erro
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">newJob = function (job) {
-  debug(&#x27;new job was created&#x27;);
+  debug('new job was created');
   var self = this;
   var name = job.project.name;
 
@@ -2926,8 +2919,8 @@ User.findOne({email: {$regex: new RegExp(email, &#x27;i&#x27;)}}, function (erro
       User.admins(paraCallback);
     }
   }, function (err, users) {
-    if (err) return debug(&#x27;new job: Failed to query for users&#x27;);
-    if (!users.collaborators) return debug(&#x27;new job: no users found&#x27;);
+    if (err) return debug('new job: Failed to query for users');
+    if (!users.collaborators) return debug('new job: no users found');
     self.users[name] = [];
 
     users.collaborators.forEach(function (user) {
@@ -2944,7 +2937,7 @@ User.findOne({email: {$regex: new RegExp(email, &#x27;i&#x27;)}}, function (erro
     var njob = jobs.small(job);
 
     njob.project = utils.sanitizeProject(job.project);
-    self.sendJobs(name, &#x27;job.new&#x27;, [njob]);
+    self.sendJobs(name, 'job.new', [njob]);
 
     var waiting = self.waiting[name];
     if (Array.isArray(waiting)) {
@@ -2972,10 +2965,10 @@ User.findOne({email: {$regex: new RegExp(email, &#x27;i&#x27;)}}, function (erro
     return this.waiting[project].push([event, args]);
   }
   this.send(project, event, args);
-  if (event === &#x27;job.status.started&#x27;) {
+  if (event === 'job.status.started') {
     Job.findById(args[0], function (err, job) {
-      if (err) return debug(&#x27;[backchannel][job.status.started] error getting job&#x27;, args[0], err);
-      if (!job) return debug(&#x27;[backchannel][job.status.started] job not found&#x27;, args[0]);
+      if (err) return debug('[backchannel][job.status.started] error getting job', args[0], err);
+      if (!job) return debug('[backchannel][job.status.started] job not found', args[0]);
       job.started = args[1];
       job.save();
     });
@@ -2995,21 +2988,21 @@ User.findOne({email: {$regex: new RegExp(email, &#x27;i&#x27;)}}, function (erro
     <ul>
     <li>description and source-code<pre class="apidocCodePre">send = function (project, event, args) {
   if (this.users[project]) {
-    this.ws.send(this.users[project], [event, args, &#x27;yours&#x27;]);
+    this.ws.send(this.users[project], [event, args, 'yours']);
   }
   if (this.public[project]) {
-    this.ws.sendPublic(this.users[project], [event, args, &#x27;public&#x27;]);
+    this.ws.sendPublic(this.users[project], [event, args, 'public']);
   }
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-    console.error(&#x27;Invalid auth header&#x27;);
+    console.error('Invalid auth header');
     return next();
   }
 
-  User.authenticate(plain[0], plain.slice(1).join(&#x27;:&#x27;), function (err, user) {
+  User.authenticate(plain[0], plain.slice(1).join(':'), function (err, user) {
     if (err || !user) {
-      console.log(&#x27;basic auth: user not found&#x27;);
-      return res.status(401).<span class="apidocCodeKeywordSpan">send</span>(&#x27;Invalid username/password in basic auth&#x27;);
+      console.log('basic auth: user not found');
+      return res.status(401).<span class="apidocCodeKeywordSpan">send</span>('Invalid username/password in basic auth');
     }
 
     req.user = user;
@@ -3037,7 +3030,7 @@ User.findOne({email: {$regex: new RegExp(email, &#x27;i&#x27;)}}, function (erro
         job.project = _.assign({}, job.project);
         job.project.access_level = User.projectAccessLevel(user, job.project);
         return job;
-      }), &#x27;yours&#x27;];
+      }), 'yours'];
     });
   }
   if (this.public[project]) {
@@ -3046,7 +3039,7 @@ User.findOne({email: {$regex: new RegExp(email, &#x27;i&#x27;)}}, function (erro
       job.project = _.assign({}, job.project);
       job.project.access_level = 0;
       return job;
-    }), &#x27;public&#x27;]);
+    }), 'public']);
   }
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
@@ -3057,7 +3050,7 @@ self.users[name] = _.uniq(self.users[name]);
 var njob = jobs.small(job);
 
 njob.project = utils.sanitizeProject(job.project);
-self.<span class="apidocCodeKeywordSpan">sendJobs</span>(name, &#x27;job.new&#x27;, [njob]);
+self.<span class="apidocCodeKeywordSpan">sendJobs</span>(name, 'job.new', [njob]);
 
 var waiting = self.waiting[name];
 if (Array.isArray(waiting)) {
@@ -3109,14 +3102,14 @@ if (Array.isArray(waiting)) {
     <li>description and source-code<pre class="apidocCodePre">notifyNewAdmin = function (user, email) {
   var currentTime = new Date();
   var subject = `[STRIDER] - New Admin  - ${user} - ${currentTime.getHours()}:${currentTime.getMinutes()}`;
-  var body = `Hello Core,\n\nYou have a new admin colleague: ${user}\n\nHopefully this isn&#x27;t unexpected.\n\nRegards,\n - StriderCD
+  var body = `Hello Core,\n\nYou have a new admin colleague: ${user}\n\nHopefully this isn't unexpected.\n\nRegards,\n - StriderCD
 .com\n   Brilliant Continuous Delivery`;
 
   mailer.send(email, subject, body, body);
   console.log(`Sending admin notification for new admin ${user}`);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-    if (env === &#x27;production&#x27;) {
+    if (env === 'production') {
       getAdmins(function (err, admins) {
         admins
           .filter(function removeSelf(admin) {
@@ -3165,7 +3158,7 @@ if (Array.isArray(waiting)) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">revokeInvite = function (code, email) {
-  var subject = &#x27;Strider Invitation&#x27;;
+  var subject = 'Strider Invitation';
   var bodyHtml = html.revoke_invite({code: code, strider_server_name: config.server_name});
   var bodyText = text.revoke_invite({code: code, strider_server_name: config.server_name});
 
@@ -3184,7 +3177,7 @@ if (Array.isArray(waiting)) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">sendInvite = function (code, email) {
-  var subject = &#x27;Strider Invitation&#x27;;
+  var subject = 'Strider Invitation';
   var bodyHtml = html.invite({code: code, strider_server_name: config.server_name});
   var bodyText = text.invite({code: code, strider_server_name: config.server_name});
 
@@ -3204,7 +3197,7 @@ if (Array.isArray(waiting)) {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">sendInviteCollaboratorExistingUser = function (req, email, url) {
   // not actually properly capitalized right now
-  var displayName = url.replace(/^.*com\//gi, &#x27;&#x27;);
+  var displayName = url.replace(/^.*com\//gi, '');
   var subject = `[STRIDER] Invite to ${displayName}`;
   var to = email;
   var pugVariables = {
@@ -3233,7 +3226,7 @@ if (Array.isArray(waiting)) {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">sendInviteCollaboratorNewUser = function (inviter, email, code, url) {
   // not actually properly capitalized right now
-  var displayName = url.replace(/^.*com\//gi, &#x27;&#x27;);
+  var displayName = url.replace(/^.*com\//gi, '');
   var subject = `[STRIDER] Invite to ${displayName}`;
   var to = email;
   var pugVariables = {
@@ -3284,13 +3277,13 @@ if (Array.isArray(waiting)) {
     });
   }).then(function (user) {
     mailer.<span class="apidocCodeKeywordSpan">sendPasswordReset</span>(user);
-    req.flash(&#x27;info&#x27;, &#x27;Please check your email for the password reset url. Thank you!&#x27;);
-    res.redirect(&#x27;/&#x27;);
+    req.flash('info', 'Please check your email for the password reset url. Thank you!');
+    res.redirect('/');
   }).catch(function (error) {
-    console.error(&#x27;Password reset error: &#x27;, error);
+    console.error('Password reset error: ', error);
   });
 } else {
-  req.flash(&#x27;error&#x27;, &#x27;We could not find a user with that email.&#x27;);
+  req.flash('error', 'We could not find a user with that email.');
 ...</pre></li>
     </ul>
 
@@ -3314,21 +3307,21 @@ if (Array.isArray(waiting)) {
   }
 
   var lang = {
-    ago: &#x27;Ago&#x27;,
-    from: &#x27;&#x27;,
-    now: &#x27;Just Now&#x27;,
-    minute: &#x27;Minute&#x27;,
-    minutes: &#x27;Minutes&#x27;,
-    hour: &#x27;Hour&#x27;,
-    hours: &#x27;Hours&#x27;,
-    day: &#x27;Day&#x27;,
-    days: &#x27;Days&#x27;,
-    week: &#x27;Week&#x27;,
-    weeks: &#x27;Weeks&#x27;,
-    month: &#x27;Month&#x27;,
-    months: &#x27;Months&#x27;,
-    year: &#x27;Year&#x27;,
-    years: &#x27;Years&#x27;
+    ago: 'Ago',
+    from: '',
+    now: 'Just Now',
+    minute: 'Minute',
+    minutes: 'Minutes',
+    hour: 'Hour',
+    hours: 'Hours',
+    day: 'Day',
+    days: 'Days',
+    week: 'Week',
+    weeks: 'Weeks',
+    month: 'Month',
+    months: 'Months',
+    year: 'Year',
+    years: 'Years'
   };
   var formats = [
     [60, lang.now],
@@ -3339,63 +3332,63 @@ if (Array.isArray(waiting)) {
     [31536000, lang.month, lang.months, 2628000], // 1 year, ~1 month
     [Infinity, lang.year, lang.years, 31536000] // Infinity, 1 year
   ];
-  var isString = typeof date == &#x27;string&#x27;;
+  var isString = typeof date == 'string';
   date = isString ?
-    new Date(date.replace(/-/g, &#x27;/&#x27;).replace(/[TZ]/g, &#x27; &#x27;)) :
+    new Date(date.replace(/-/g, '/').replace(/[TZ]/g, ' ')) :
     date;
 
   compareTo = compareTo || new Date;
   var seconds = (compareTo - date +
       (compareTo.getTimezoneOffset() -
-        // if we received a GMT time from a string, doesn&#x27;t include time zone bias
+        // if we received a GMT time from a string, doesn't include time zone bias
         // if we got a date object, the time zone is built in, we need to remove it.
         (isString ? 0 : date.getTimezoneOffset())
       ) * 60000
     ) / 1000;
 
   var token;
-  if (seconds &#x3c; 0) {
+  if (seconds &lt; 0) {
     seconds = Math.abs(seconds);
-    token = lang.from ? ` ${lang.from}` : &#x27;&#x27;;
+    token = lang.from ? ` ${lang.from}` : '';
   } else {
-    token = lang.ago ? ` ${lang.ago}` : &#x27;&#x27;;
+    token = lang.ago ? ` ${lang.ago}` : '';
   }
 
 <span class="apidocCodeCommentSpan">  /*
-   * 0 seconds &#x26;&#x26; &#x3c; 60 seconds        Now
+   * 0 seconds &amp;&amp; &lt; 60 seconds        Now
    * 60 seconds                       1 Minute
-   * &#x3e; 60 seconds &#x26;&#x26; &#x3c; 60 minutes     X Minutes
+   * &gt; 60 seconds &amp;&amp; &lt; 60 minutes     X Minutes
    * 60 minutes                       1 Hour
-   * &#x3e; 60 minutes &#x26;&#x26; &#x3c; 24 hours       X Hours
+   * &gt; 60 minutes &amp;&amp; &lt; 24 hours       X Hours
    * 24 hours                         1 Day
-   * &#x3e; 24 hours &#x26;&#x26; &#x3c; 7 days           X Days
+   * &gt; 24 hours &amp;&amp; &lt; 7 days           X Days
    * 7 days                           1 Week
-   * &#x3e; 7 days &#x26;&#x26; &#x3c; ~ 1 Month          X Weeks
+   * &gt; 7 days &amp;&amp; &lt; ~ 1 Month          X Weeks
    * ~ 1 Month                        1 Month
-   * &#x3e; ~ 1 Month &#x26;&#x26; &#x3c; 1 Year          X Months
+   * &gt; ~ 1 Month &amp;&amp; &lt; 1 Year          X Months
    * 1 Year                           1 Year
-   * &#x3e; 1 Year                         X Years
+   * &gt; 1 Year                         X Years
    *
    * Single units are +10%. 1 Year shows first at 1 Year + 10%
    */
 </span>
   function normalize(val, single) {
     var margin = 0.1;
-    if (val &#x3e;= single &#x26;&#x26; val &#x3c;= single * (1 + margin)) {
+    if (val &gt;= single &amp;&amp; val &lt;= single * (1 + margin)) {
       return single;
     }
     return val;
   }
 
   for (var i = 0, format = formats[0]; formats[i]; format = formats[++i]) {
-    if (seconds &#x3c; format[0]) {
+    if (seconds &lt; format[0]) {
       if (i === 0) {
         // Now
         return format[1];
       }
 
       var val = Math.ceil(normalize(seconds, format[3]) / (format[3]));
-      return `${val} ${(val != 1 ? format[2] : format[1])}${(i &#x3e; 0 ? token : &#x27;&#x27;)}`;
+      return `${val} ${(val != 1 ? format[2] : format[1])}${(i &gt; 0 ? token : '')}`;
     }
   }
 }</pre></li>
@@ -3425,11 +3418,11 @@ if (Array.isArray(waiting)) {
     <li>example usage<pre class="apidocCodePre">...
 
 function renderPug(filepath) {
-return pug.compile(fs.readFileSync(filepath, &#x27;utf8&#x27;), { filename: filepath });
+return pug.compile(fs.readFileSync(filepath, 'utf8'), { filename: filepath });
 }
 
 exports.sendInvite = function (code, email) {
-var subject = &#x27;Strider Invitation&#x27;;
+var subject = 'Strider Invitation';
 var bodyHtml = html.<span class="apidocCodeKeywordSpan">invite</span>({code: code, strider_server_name: config.server_name});
 var bodyText = text.invite({code: code, strider_server_name: config.server_name});
 
@@ -3437,7 +3430,7 @@ mailer.send(email, subject, bodyText, bodyHtml);
 };
 
 exports.revokeInvite = function (code, email) {
-var subject = &#x27;Strider Invitation&#x27;;
+var subject = 'Strider Invitation';
 ...</pre></li>
     </ul>
 
@@ -3468,17 +3461,17 @@ var subject = &#x27;Strider Invitation&#x27;;
     <ul>
     <li>description and source-code<pre class="apidocCodePre">insertMany = function (arr, options, callback) {
   var Promise = PromiseProvider.get();
-  if (typeof options === &#x27;function&#x27;) {
+  if (typeof options === 'function') {
     callback = options;
     options = null;
   }
   return new Promise.ES6(function(resolve, reject) {
     model.$__insertMany(arr, options, function(error, result) {
       if (error) {
-        callback &#x26;&#x26; callback(error);
+        callback &amp;&amp; callback(error);
         return reject(error);
       }
-      callback &#x26;&#x26; callback(null, result);
+      callback &amp;&amp; callback(null, result);
       resolve(result);
     });
   });
@@ -3501,12 +3494,12 @@ var subject = &#x27;Strider Invitation&#x27;;
     <li>example usage<pre class="apidocCodePre">...
       project: String,
       access_level: Number,
-      invited_by: {type: Schema.ObjectId, ref: &#x27;user&#x27;}
+      invited_by: {type: Schema.ObjectId, ref: 'user'}
     }
   ]
 });
 
-module.exports = mongoose.<span class="apidocCodeKeywordSpan">model</span>(&#x27;InviteCode&#x27;, InviteCodeSchema);
+module.exports = mongoose.<span class="apidocCodeKeywordSpan">model</span>('InviteCode', InviteCodeSchema);
 ...</pre></li>
     </ul>
 
@@ -3545,7 +3538,7 @@ module.exports = mongoose.<span class="apidocCodeKeywordSpan">model</span>(&#x27
   var fn;
   var originalError = new Error();
   var $results;
-  if (lastArg &#x26;&#x26; typeof lastArg !== &#x27;function&#x27;) {
+  if (lastArg &amp;&amp; typeof lastArg !== 'function') {
     args.push(lastArg);
   } else {
     fn = lastArg;
@@ -3566,7 +3559,7 @@ module.exports = mongoose.<span class="apidocCodeKeywordSpan">model</span>(&#x27
       }
 
       // There may be multiple results and promise libs other than
-      // mpromise don&#x27;t support passing multiple values to `resolve()`
+      // mpromise don't support passing multiple values to `resolve()`
       $results = Array.prototype.slice.call(arguments, 1);
       resolve.apply(promise, $results);
     });
@@ -3595,7 +3588,7 @@ module.exports = mongoose.<span class="apidocCodeKeywordSpan">model</span>(&#x27
 }
 this.sockets[uid].add(socket);
   },
-  // -&#x3e; true if the socket was found and removed. false if it wasn&#x27;t found
+  // -&gt; true if the socket was found and removed. false if it wasn't found
   removeSocket: function (uid, socket) {
 var socks = this.sockets[uid];
 if (!socks) return false;
@@ -3605,7 +3598,7 @@ return socks.<span class="apidocCodeKeywordSpan">remove</span>(socket);
   connected: function (socket) {
 var session = socket.handshake.session;
 
-if (session &#x26;&#x26; session.passport) {
+if (session &amp;&amp; session.passport) {
   this.addSocket(session.passport.user, socket);
 ...</pre></li>
     </ul>
@@ -3628,7 +3621,7 @@ if (session &#x26;&#x26; session.passport) {
   var fn;
   var originalError = new Error();
   var $results;
-  if (lastArg &#x26;&#x26; typeof lastArg !== &#x27;function&#x27;) {
+  if (lastArg &amp;&amp; typeof lastArg !== 'function') {
     args.push(lastArg);
   } else {
     fn = lastArg;
@@ -3649,7 +3642,7 @@ if (session &#x26;&#x26; session.passport) {
       }
 
       // There may be multiple results and promise libs other than
-      // mpromise don&#x27;t support passing multiple values to `resolve()`
+      // mpromise don't support passing multiple values to `resolve()`
       $results = Array.prototype.slice.call(arguments, 1);
       resolve.apply(promise, $results);
     });
@@ -3676,7 +3669,7 @@ if (session &#x26;&#x26; session.passport) {
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
       randomBytes(20).then(function (buffer) {
-return buffer.toString(&#x27;hex&#x27;);
+return buffer.toString('hex');
       }).then(function (token) {
 user.resetPasswordToken = token;
 user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
@@ -3711,7 +3704,7 @@ return new BluebirdPromise(function (resolve, reject) {
   var fn;
   var originalError = new Error();
   var $results;
-  if (lastArg &#x26;&#x26; typeof lastArg !== &#x27;function&#x27;) {
+  if (lastArg &amp;&amp; typeof lastArg !== 'function') {
     args.push(lastArg);
   } else {
     fn = lastArg;
@@ -3732,7 +3725,7 @@ return new BluebirdPromise(function (resolve, reject) {
       }
 
       // There may be multiple results and promise libs other than
-      // mpromise don&#x27;t support passing multiple values to `resolve()`
+      // mpromise don't support passing multiple values to `resolve()`
       $results = Array.prototype.slice.call(arguments, 1);
       resolve.apply(promise, $results);
     });
@@ -3795,14 +3788,14 @@ return new BluebirdPromise(function (resolve, reject) {
     this.sock.on(`job.status.${status}`, this.update.bind(this, status));
   }
 },
-// access: &#x27;yours&#x27;, &#x27;public&#x27;, &#x27;admin&#x27;
+// access: 'yours', 'public', 'admin'
 update: function (event, args, access, dontchange) {
   var id = args.shift();
   var job = this.<span class="apidocCodeKeywordSpan">job</span>(id, access);
   var handler = this.statuses[event];
   if (!job) return this.unknown(id, event, args, access);
   if (!handler) return;
-  if (&#x27;string&#x27; === typeof handler) {
+  if ('string' === typeof handler) {
     job.status = handler;
   } else {
     handler.apply(job, args);
@@ -3836,17 +3829,17 @@ update: function (event, args, access, dontchange) {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">insertMany = function (arr, options, callback) {
   var Promise = PromiseProvider.get();
-  if (typeof options === &#x27;function&#x27;) {
+  if (typeof options === 'function') {
     callback = options;
     options = null;
   }
   return new Promise.ES6(function(resolve, reject) {
     model.$__insertMany(arr, options, function(error, result) {
       if (error) {
-        callback &#x26;&#x26; callback(error);
+        callback &amp;&amp; callback(error);
         return reject(error);
       }
-      callback &#x26;&#x26; callback(null, result);
+      callback &amp;&amp; callback(null, result);
       resolve(result);
     });
   });
@@ -3869,12 +3862,12 @@ update: function (event, args, access, dontchange) {
     <li>example usage<pre class="apidocCodePre">...
       project: String,
       access_level: Number,
-      invited_by: {type: Schema.ObjectId, ref: &#x27;user&#x27;}
+      invited_by: {type: Schema.ObjectId, ref: 'user'}
     }
   ]
 });
 
-module.exports = mongoose.<span class="apidocCodeKeywordSpan">model</span>(&#x27;InviteCode&#x27;, InviteCodeSchema);
+module.exports = mongoose.<span class="apidocCodeKeywordSpan">model</span>('InviteCode', InviteCodeSchema);
 ...</pre></li>
     </ul>
 
@@ -3913,7 +3906,7 @@ module.exports = mongoose.<span class="apidocCodeKeywordSpan">model</span>(&#x27
   var fn;
   var originalError = new Error();
   var $results;
-  if (lastArg &#x26;&#x26; typeof lastArg !== &#x27;function&#x27;) {
+  if (lastArg &amp;&amp; typeof lastArg !== 'function') {
     args.push(lastArg);
   } else {
     fn = lastArg;
@@ -3934,7 +3927,7 @@ module.exports = mongoose.<span class="apidocCodeKeywordSpan">model</span>(&#x27
       }
 
       // There may be multiple results and promise libs other than
-      // mpromise don&#x27;t support passing multiple values to `resolve()`
+      // mpromise don't support passing multiple values to `resolve()`
       $results = Array.prototype.slice.call(arguments, 1);
       resolve.apply(promise, $results);
     });
@@ -3963,7 +3956,7 @@ module.exports = mongoose.<span class="apidocCodeKeywordSpan">model</span>(&#x27
 }
 this.sockets[uid].add(socket);
   },
-  // -&#x3e; true if the socket was found and removed. false if it wasn&#x27;t found
+  // -&gt; true if the socket was found and removed. false if it wasn't found
   removeSocket: function (uid, socket) {
 var socks = this.sockets[uid];
 if (!socks) return false;
@@ -3973,7 +3966,7 @@ return socks.<span class="apidocCodeKeywordSpan">remove</span>(socket);
   connected: function (socket) {
 var session = socket.handshake.session;
 
-if (session &#x26;&#x26; session.passport) {
+if (session &amp;&amp; session.passport) {
   this.addSocket(session.passport.user, socket);
 ...</pre></li>
     </ul>
@@ -3996,7 +3989,7 @@ if (session &#x26;&#x26; session.passport) {
   var fn;
   var originalError = new Error();
   var $results;
-  if (lastArg &#x26;&#x26; typeof lastArg !== &#x27;function&#x27;) {
+  if (lastArg &amp;&amp; typeof lastArg !== 'function') {
     args.push(lastArg);
   } else {
     fn = lastArg;
@@ -4017,7 +4010,7 @@ if (session &#x26;&#x26; session.passport) {
       }
 
       // There may be multiple results and promise libs other than
-      // mpromise don&#x27;t support passing multiple values to `resolve()`
+      // mpromise don't support passing multiple values to `resolve()`
       $results = Array.prototype.slice.call(arguments, 1);
       resolve.apply(promise, $results);
     });
@@ -4044,7 +4037,7 @@ if (session &#x26;&#x26; session.passport) {
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
       randomBytes(20).then(function (buffer) {
-return buffer.toString(&#x27;hex&#x27;);
+return buffer.toString('hex');
       }).then(function (token) {
 user.resetPasswordToken = token;
 user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
@@ -4079,7 +4072,7 @@ return new BluebirdPromise(function (resolve, reject) {
   var fn;
   var originalError = new Error();
   var $results;
-  if (lastArg &#x26;&#x26; typeof lastArg !== &#x27;function&#x27;) {
+  if (lastArg &amp;&amp; typeof lastArg !== 'function') {
     args.push(lastArg);
   } else {
     fn = lastArg;
@@ -4100,7 +4093,7 @@ return new BluebirdPromise(function (resolve, reject) {
       }
 
       // There may be multiple results and promise libs other than
-      // mpromise don&#x27;t support passing multiple values to `resolve()`
+      // mpromise don't support passing multiple values to `resolve()`
       $results = Array.prototype.slice.call(arguments, 1);
       resolve.apply(promise, $results);
     });
@@ -4173,20 +4166,20 @@ return new BluebirdPromise(function (resolve, reject) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">addJob = function () {
-  throw new Error(&#x27;You must implement&#x27;);
+  throw new Error('You must implement');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
 JobMonitor.prototype = {
 emits: {
-  getUnknown: &#x27;dashboard:unknown&#x27;
+  getUnknown: 'dashboard:unknown'
 },
 events: {
-  &#x27;job.new&#x27;: function (job, access) {
+  'job.new': function (job, access) {
     this.<span class="apidocCodeKeywordSpan">addJob</span>(job[0], access);
     this.changed();
   },
-  &#x27;job.done&#x27;: function (job, access) {
+  'job.done': function (job, access) {
     this.addJob(job[0], access);
     this.changed();
   }
@@ -4204,16 +4197,16 @@ events: {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">gotUnknown = function (job) {
-  if (!this.waiting[job._id]) return console.warn(&#x27;Got unknownjob:response but wan\&#x27;t waiting for it...&#x27;);
+  if (!this.waiting[job._id]) return console.warn('Got unknownjob:response but wan\'t waiting for it...');
   var access = this.waiting[job._id][0][2];
-  if (job.status === &#x27;submitted&#x27;) {
-    job.status = &#x27;running&#x27;;
+  if (job.status === 'submitted') {
+    job.status = 'running';
     job.started = new Date();
   }
-  // job.phase = job.phase || &#x27;environment&#x27;;
+  // job.phase = job.phase || 'environment';
   this.addJob(job, access);
   // TODO: this.update searches for the job again. optimize
-  for (var i = 0; i &#x3c; this.waiting[job._id]; i++) {
+  for (var i = 0; i &lt; this.waiting[job._id]; i++) {
     this.update.apply(this, this.waiting[i].concat([true]));
   }
   delete this.waiting[job._id];
@@ -4232,21 +4225,21 @@ events: {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">job = function () {
-  throw new Error(&#x27;You must override this&#x27;);
+  throw new Error('You must override this');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
   for (var status in this.statuses) {
     this.sock.on(`job.status.${status}`, this.update.bind(this, status));
   }
 },
-// access: &#x27;yours&#x27;, &#x27;public&#x27;, &#x27;admin&#x27;
+// access: 'yours', 'public', 'admin'
 update: function (event, args, access, dontchange) {
   var id = args.shift();
   var job = this.<span class="apidocCodeKeywordSpan">job</span>(id, access);
   var handler = this.statuses[event];
   if (!job) return this.unknown(id, event, args, access);
   if (!handler) return;
-  if (&#x27;string&#x27; === typeof handler) {
+  if ('string' === typeof handler) {
     job.status = handler;
   } else {
     handler.apply(job, args);
@@ -4266,7 +4259,7 @@ update: function (event, args, access, dontchange) {
   var handler;
   for (var event in this.events) {
     handler = this.events[event];
-    if (&#x27;string&#x27; === typeof handler) handler = this[handler];
+    if ('string' === typeof handler) handler = this[handler];
     this.sock.on(event, handler.bind(this));
   }
   for (var status in this.statuses) {
@@ -4286,9 +4279,9 @@ function UserSockets(sio, sessionStore) {
 this.sio = sio;
 this.sockets = {};
 this.sessionStore = sessionStore;
-//sio.enable(&#x27;browser client minification&#x27;);  // send minified client
-//sio.enable(&#x27;browser client etag&#x27;);          // apply etag caching logic based on version number
-//sio.enable(&#x27;browser client gzip&#x27;);
+//sio.enable('browser client minification');  // send minified client
+//sio.enable('browser client etag');          // apply etag caching logic based on version number
+//sio.enable('browser client gzip');
 ...</pre></li>
     </ul>
 
@@ -4312,14 +4305,14 @@ this.sessionStore = sessionStore;
     <li>example usage<pre class="apidocCodePre">...
   }
 },
-// access: &#x27;yours&#x27;, &#x27;public&#x27;, &#x27;admin&#x27;
+// access: 'yours', 'public', 'admin'
 update: function (event, args, access, dontchange) {
   var id = args.shift();
   var job = this.job(id, access);
   var handler = this.statuses[event];
   if (!job) return this.<span class="apidocCodeKeywordSpan">unknown</span>(id, event, args, access);
   if (!handler) return;
-  if (&#x27;string&#x27; === typeof handler) {
+  if ('string' === typeof handler) {
     job.status = handler;
   } else {
     handler.apply(job, args);
@@ -4343,7 +4336,7 @@ update: function (event, args, access, dontchange) {
   var handler = this.statuses[event];
   if (!job) return this.unknown(id, event, args, access);
   if (!handler) return;
-  if (&#x27;string&#x27; === typeof handler) {
+  if ('string' === typeof handler) {
     job.status = handler;
   } else {
     handler.apply(job, args);
@@ -4362,7 +4355,7 @@ Job.<span class="apidocCodeKeywordSpan">update</span>({_id: {$in: ids}}, {
   $set: {
     finished: now,
     errored: true,
-    error: {message: &#x27;Job timeout&#x27;, stack: &#x27;&#x27;}
+    error: {message: 'Job timeout', stack: ''}
   }
 }, function () {
   Job.update({_id: {$in: ids}, started: null}, {$set: {started: now}}, function (err) {
@@ -4413,20 +4406,20 @@ Job.<span class="apidocCodeKeywordSpan">update</span>({_id: {$in: ids}}, {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">addJob = function () {
-  throw new Error(&#x27;You must implement&#x27;);
+  throw new Error('You must implement');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 
 JobMonitor.prototype = {
 emits: {
-  getUnknown: &#x27;dashboard:unknown&#x27;
+  getUnknown: 'dashboard:unknown'
 },
 events: {
-  &#x27;job.new&#x27;: function (job, access) {
+  'job.new': function (job, access) {
     this.<span class="apidocCodeKeywordSpan">addJob</span>(job[0], access);
     this.changed();
   },
-  &#x27;job.done&#x27;: function (job, access) {
+  'job.done': function (job, access) {
     this.addJob(job[0], access);
     this.changed();
   }
@@ -4444,16 +4437,16 @@ events: {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">gotUnknown = function (job) {
-  if (!this.waiting[job._id]) return console.warn(&#x27;Got unknownjob:response but wan\&#x27;t waiting for it...&#x27;);
+  if (!this.waiting[job._id]) return console.warn('Got unknownjob:response but wan\'t waiting for it...');
   var access = this.waiting[job._id][0][2];
-  if (job.status === &#x27;submitted&#x27;) {
-    job.status = &#x27;running&#x27;;
+  if (job.status === 'submitted') {
+    job.status = 'running';
     job.started = new Date();
   }
-  // job.phase = job.phase || &#x27;environment&#x27;;
+  // job.phase = job.phase || 'environment';
   this.addJob(job, access);
   // TODO: this.update searches for the job again. optimize
-  for (var i = 0; i &#x3c; this.waiting[job._id]; i++) {
+  for (var i = 0; i &lt; this.waiting[job._id]; i++) {
     this.update.apply(this, this.waiting[i].concat([true]));
   }
   delete this.waiting[job._id];
@@ -4472,21 +4465,21 @@ events: {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">job = function () {
-  throw new Error(&#x27;You must override this&#x27;);
+  throw new Error('You must override this');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
   for (var status in this.statuses) {
     this.sock.on(`job.status.${status}`, this.update.bind(this, status));
   }
 },
-// access: &#x27;yours&#x27;, &#x27;public&#x27;, &#x27;admin&#x27;
+// access: 'yours', 'public', 'admin'
 update: function (event, args, access, dontchange) {
   var id = args.shift();
   var job = this.<span class="apidocCodeKeywordSpan">job</span>(id, access);
   var handler = this.statuses[event];
   if (!job) return this.unknown(id, event, args, access);
   if (!handler) return;
-  if (&#x27;string&#x27; === typeof handler) {
+  if ('string' === typeof handler) {
     job.status = handler;
   } else {
     handler.apply(job, args);
@@ -4506,7 +4499,7 @@ update: function (event, args, access, dontchange) {
   var handler;
   for (var event in this.events) {
     handler = this.events[event];
-    if (&#x27;string&#x27; === typeof handler) handler = this[handler];
+    if ('string' === typeof handler) handler = this[handler];
     this.sock.on(event, handler.bind(this));
   }
   for (var status in this.statuses) {
@@ -4526,9 +4519,9 @@ function UserSockets(sio, sessionStore) {
 this.sio = sio;
 this.sockets = {};
 this.sessionStore = sessionStore;
-//sio.enable(&#x27;browser client minification&#x27;);  // send minified client
-//sio.enable(&#x27;browser client etag&#x27;);          // apply etag caching logic based on version number
-//sio.enable(&#x27;browser client gzip&#x27;);
+//sio.enable('browser client minification');  // send minified client
+//sio.enable('browser client etag');          // apply etag caching logic based on version number
+//sio.enable('browser client gzip');
 ...</pre></li>
     </ul>
 
@@ -4552,14 +4545,14 @@ this.sessionStore = sessionStore;
     <li>example usage<pre class="apidocCodePre">...
   }
 },
-// access: &#x27;yours&#x27;, &#x27;public&#x27;, &#x27;admin&#x27;
+// access: 'yours', 'public', 'admin'
 update: function (event, args, access, dontchange) {
   var id = args.shift();
   var job = this.job(id, access);
   var handler = this.statuses[event];
   if (!job) return this.<span class="apidocCodeKeywordSpan">unknown</span>(id, event, args, access);
   if (!handler) return;
-  if (&#x27;string&#x27; === typeof handler) {
+  if ('string' === typeof handler) {
     job.status = handler;
   } else {
     handler.apply(job, args);
@@ -4583,7 +4576,7 @@ update: function (event, args, access, dontchange) {
   var handler = this.statuses[event];
   if (!job) return this.unknown(id, event, args, access);
   if (!handler) return;
-  if (&#x27;string&#x27; === typeof handler) {
+  if ('string' === typeof handler) {
     job.status = handler;
   } else {
     handler.apply(job, args);
@@ -4602,7 +4595,7 @@ Job.<span class="apidocCodeKeywordSpan">update</span>({_id: {$in: ids}}, {
   $set: {
     finished: now,
     errored: true,
-    error: {message: &#x27;Job timeout&#x27;, stack: &#x27;&#x27;}
+    error: {message: 'Job timeout', stack: ''}
   }
 }, function () {
   Job.update({_id: {$in: ids}, started: null}, {$set: {started: now}}, function (err) {
@@ -4673,13 +4666,13 @@ Job.<span class="apidocCodeKeywordSpan">update</span>({_id: {$in: ids}}, {
   },
 
   events: {
-&#x27;dashboard:jobs&#x27;: function (done) {
+'dashboard:jobs': function (done) {
   jobs.<span class="apidocCodeKeywordSpan">latestJobs</span>(this.user, function (err, jobs) {
     done(jobs);
   });
 },
 
-&#x27;dashboard:unknown&#x27;: function (id, done) {
+'dashboard:unknown': function (id, done) {
   var user = this.user;
 ...</pre></li>
     </ul>
@@ -4694,7 +4687,7 @@ Job.<span class="apidocCodeKeywordSpan">update</span>({_id: {$in: ids}}, {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function small(job) {
-  var big = [&#x27;phases&#x27;, &#x27;plugin_data&#x27;, &#x27;std&#x27;, &#x27;stderr&#x27;, &#x27;stdout&#x27;, &#x27;stdmerged&#x27;];
+  var big = ['phases', 'plugin_data', 'std', 'stderr', 'stdout', 'stdmerged'];
   var njob = {};
   if (job.toJSON) job = job.toJSON();
   for (var name in job) {
@@ -4715,7 +4708,7 @@ self.users[name] = _.uniq(self.users[name]);
 var njob = jobs.<span class="apidocCodeKeywordSpan">small</span>(job);
 
 njob.project = utils.sanitizeProject(job.project);
-self.sendJobs(name, &#x27;job.new&#x27;, [njob]);
+self.sendJobs(name, 'job.new', [njob]);
 
 var waiting = self.waiting[name];
 if (Array.isArray(waiting)) {
@@ -4738,16 +4731,16 @@ if (Array.isArray(waiting)) {
     return -1;
   }
   if (b.nojobs) return 1;
-  if (a.status === &#x27;running&#x27;) {
-    if (b.status === &#x27;running&#x27;) return 0;
+  if (a.status === 'running') {
+    if (b.status === 'running') return 0;
     return -1;
   }
-  if (b.status === &#x27;running&#x27;) return 1;
-  if (a.status === &#x27;submitted&#x27;) {
-    if (b.status === &#x27;submitted&#x27;) return 0;
+  if (b.status === 'running') return 1;
+  if (a.status === 'submitted') {
+    if (b.status === 'submitted') return 0;
     return -1;
   }
-  if (b.status === &#x27;submitted&#x27;) return 1;
+  if (b.status === 'submitted') return 1;
   if (!a.finished || !a.finished.getTime) return -1;
   if (!b.finished || !b.finished.getTime) return 1;
   return b.finished.getTime() - a.finished.getTime();
@@ -4765,7 +4758,7 @@ var query = Job.find({project: project.name.toLowerCase(), archived: null})
   .lean();
 
 if (small) {
-  query = query.select(&#x27;-phases -std&#x27;);
+  query = query.select('-phases -std');
 }
 ...</pre></li>
     </ul>
@@ -4780,22 +4773,22 @@ if (small) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function status(job) {
-  if (job.errored) return &#x27;errored&#x27;;
-  if (!job.started) return &#x27;submitted&#x27;;
-  if (!job.finished) return &#x27;running&#x27;;
-  if (job.test_exitcode !== 0) return &#x27;failed&#x27;;
-  if (job.type !== TEST_ONLY &#x26;&#x26; job.deploy_exitcode !== 0) return &#x27;failed&#x27;;
-  return &#x27;passed&#x27;;
+  if (job.errored) return 'errored';
+  if (!job.started) return 'submitted';
+  if (!job.finished) return 'running';
+  if (job.test_exitcode !== 0) return 'failed';
+  if (job.type !== TEST_ONLY &amp;&amp; job.deploy_exitcode !== 0) return 'failed';
+  return 'passed';
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-    console.error(&#x27;Invalid auth header&#x27;);
+    console.error('Invalid auth header');
     return next();
   }
 
-  User.authenticate(plain[0], plain.slice(1).join(&#x27;:&#x27;), function (err, user) {
+  User.authenticate(plain[0], plain.slice(1).join(':'), function (err, user) {
     if (err || !user) {
-      console.log(&#x27;basic auth: user not found&#x27;);
-      return res.<span class="apidocCodeKeywordSpan">status</span>(401).send(&#x27;Invalid username/password in basic auth&#x27;);
+      console.log('basic auth: user not found');
+      return res.<span class="apidocCodeKeywordSpan">status</span>(401).send('Invalid username/password in basic auth');
     }
 
     req.user = user;
@@ -4825,12 +4818,12 @@ if (small) {
   if (!rc.plugins) rc.plugins = {};
   for (var key in env) {
     if (!key.match(/^plugin_/i)) continue;
-    parts = key.toLowerCase().split(&#x27;_&#x27;);
+    parts = key.toLowerCase().split('_');
     if (parts.length === 2) {
       try {
         rc.plugins[parts[1]] = JSON.parse(env[key]);
       } catch (e) {
-        console.warn(&#x27;Ignoring config because it\&#x27;s not valid JSON: &#x27;, key, env[key]);
+        console.warn('Ignoring config because it\'s not valid JSON: ', key, env[key]);
       }
       continue;
     }
@@ -4854,7 +4847,7 @@ if (small) {
   return words[0] + words.slice(1)
     .map(function (word) {
       return word[0].toUpperCase() + word.slice(1);
-    }).join(&#x27;&#x27;);
+    }).join('');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -4871,28 +4864,28 @@ if (small) {
     <li>description and source-code<pre class="apidocCodePre">function deprecated(env) {
   var nenv = _.extend({}, env);
   if (env.APP_ID) {
-    console.warn(&#x27;WARNING: You are using APP_ID to configure Github OAuth application id.&#x27;);
-    console.warn(&#x27;This name has been deprecated. Please use PLUGIN_GITHUB_APP_ID instead.\n&#x27;);
+    console.warn('WARNING: You are using APP_ID to configure Github OAuth application id.');
+    console.warn('This name has been deprecated. Please use PLUGIN_GITHUB_APP_ID instead.\n');
     nenv.PLUGIN_GITHUB_APP_ID = env.APP_ID;
   }
   if (env.APP_SECRET) {
-    console.warn(&#x27;WARNING: You are using APP_SECRET to configure Github OAuth application secret.&#x27;);
-    console.warn(&#x27;This name has been deprecated. Please use PLUGIN_GITHUB_APP_SECRET instead.\n&#x27;);
+    console.warn('WARNING: You are using APP_SECRET to configure Github OAuth application secret.');
+    console.warn('This name has been deprecated. Please use PLUGIN_GITHUB_APP_SECRET instead.\n');
     nenv.PLUGIN_GITHUB_APP_SECRET = env.APP_SECRET;
   }
   if (env.GITHUB_APP_ID) {
-    console.warn(&#x27;WARNING: You are using GITHUB_APP_ID to configure Github OAuth application id.&#x27;);
-    console.warn(&#x27;This name has been deprecated. Please use PLUGIN_GITHUB_APP_ID instead.\n&#x27;);
+    console.warn('WARNING: You are using GITHUB_APP_ID to configure Github OAuth application id.');
+    console.warn('This name has been deprecated. Please use PLUGIN_GITHUB_APP_ID instead.\n');
     nenv.PLUGIN_GITHUB_APP_ID = env.GITHUB_APP_ID;
   }
   if (env.GITHUB_SECRET) {
-    console.warn(&#x27;WARNING: You are using GITHUB_SECRET to configure Github OAuth application secret.&#x27;);
-    console.warn(&#x27;This name has been deprecated. Please use PLUGIN_GITHUB_APP_SECRET instead.\n&#x27;);
+    console.warn('WARNING: You are using GITHUB_SECRET to configure Github OAuth application secret.');
+    console.warn('This name has been deprecated. Please use PLUGIN_GITHUB_APP_SECRET instead.\n');
     nenv.PLUGIN_GITHUB_APP_SECRET = env.GITHUB_SECRET;
   }
   if (env.GITHUB_API_ENDPOINT) {
-    console.warn(&#x27;WARNING: You are using GITHUB_API_ENDPOINT to configure Github API base URL.&#x27;);
-    console.warn(&#x27;This name has been deprecated. Please use PLUGIN_GITHUB_API_BASE instead.\n&#x27;);
+    console.warn('WARNING: You are using GITHUB_API_ENDPOINT to configure Github API base URL.');
+    console.warn('This name has been deprecated. Please use PLUGIN_GITHUB_API_BASE instead.\n');
     nenv.PLUGIN_GITHUB_API_BASE = env.GITHUB_API_ENDPOINT;
   }
   return nenv;
@@ -4934,12 +4927,12 @@ if (small) {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function getConfig() {
   process.env = filterEnv(deprecated(process.env), envDefaults);
-  var rc = require(&#x27;rc&#x27;)(&#x27;strider&#x27;, defaults);
+  var rc = require('rc')('strider', defaults);
 
   if (!rc.smtp) rc.smtp = smtp(rc);
   if (!rc.smtp) rc.stubSmtp = true;
 
-  rc.ldap = getConfigByName(&#x27;ldap&#x27;);
+  rc.ldap = getConfigByName('ldap');
 
   addPlugins(rc, process.env);
 
@@ -4959,9 +4952,9 @@ if (small) {
 
 
 
-&#x27;use strict&#x27;;
+'use strict';
 
-module.exports = require(&#x27;./libconfig&#x27;).<span class="apidocCodeKeywordSpan">getConfig</span>();
+module.exports = require('./libconfig').<span class="apidocCodeKeywordSpan">getConfig</span>();
 ...</pre></li>
     </ul>
 
@@ -5032,17 +5025,17 @@ module.exports = require(&#x27;./libconfig&#x27;).<span class="apidocCodeKeyword
 connected: function (socket) {
   var session = socket.handshake.session;
 
-  if (session &#x26;&#x26; session.passport) {
+  if (session &amp;&amp; session.passport) {
     this.addSocket(session.passport.user, socket);
   } else {
-    console.<span class="apidocCodeKeywordSpan">debug</span>(&#x27;Websocket connection does not have authorization - nothing to
- do.&#x27;);
+    console.<span class="apidocCodeKeywordSpan">debug</span>('Websocket connection does not have authorization - nothing to
+ do.');
   }
 },
 // send a message to a number of users
 // send([uid, uid, ...], arguments)
 send: function (users, args) {
-  for (var i = 0; i &#x3c; users.length; i++) {
+  for (var i = 0; i &lt; users.length; i++) {
     if (!this.sockets[users[i]]) continue;
 ...</pre></li>
     </ul>
@@ -5068,10 +5061,10 @@ send: function (users, args) {
       killZombies(function () {
 var tasks = [];
 
-if (!common.extensions.runner || typeof common.extensions.runner !== &#x27;object&#x27;) {
-  console.<span class="apidocCodeKeywordSpan">error</span>(&#x27;Strider seems to have been misconfigured - there are no available
- runner plugins. &#x27; +
-    &#x27;Please make sure all dependencies are up to date.&#x27;);
+if (!common.extensions.runner || typeof common.extensions.runner !== 'object') {
+  console.<span class="apidocCodeKeywordSpan">error</span>('Strider seems to have been misconfigured - there are no available
+ runner plugins. ' +
+    'Please make sure all dependencies are up to date.');
   process.exit(1);
 }
 
@@ -5148,12 +5141,12 @@ Object.keys(common.extensions.runner).forEach(function (name) {
     <li>example usage<pre class="apidocCodePre">...
   for (var key in env) {
     if (!key.match(/^plugin_/i)) continue;
-    parts = key.toLowerCase().split(&#x27;_&#x27;);
+    parts = key.toLowerCase().split('_');
     if (parts.length === 2) {
       try {
         rc.plugins[parts[1]] = JSON.parse(env[key]);
       } catch (e) {
-        console.<span class="apidocCodeKeywordSpan">warn</span>(&#x27;Ignoring config because it\&#x27;s not valid JSON: &#x27;,
+        console.<span class="apidocCodeKeywordSpan">warn</span>('Ignoring config because it\'s not valid JSON: ',
 key, env[key]);
       }
       continue;
@@ -5209,27 +5202,27 @@ key, env[key]);
   name = name.toLowerCase();
 
   Project.findOne({name: name})
-    .populate(&#x27;creator&#x27;)
+    .populate('creator')
     .exec(function (err, project) {
       if (err) {
         return res.status(500).send({
-          error: &#x27;Failed to find project&#x27;,
+          error: 'Failed to find project',
           info: err
         });
       }
 
       if (!project) {
-        return res.status(404).send(&#x27;Project not found&#x27;);
+        return res.status(404).send('Project not found');
       }
 
       if (!project.creator) {
-        return res.status(400).send(&#x27;Project malformed; project creator user is missing.&#x27;);
+        return res.status(400).send('Project malformed; project creator user is missing.');
       }
 
       req.project = project;
       req.accessLevel = User.projectAccessLevel(req.user, project);
 
-      if (req.user &#x26;&#x26; project.creator) {
+      if (req.user &amp;&amp; project.creator) {
         req.user.isProjectCreator = project.creator._id.toString() === req.user._id.toString();
       }
 
@@ -5253,15 +5246,15 @@ key, env[key]);
     return next();
   }
 
-  req.post_body = req.post_body || &#x27;&#x27;;
+  req.post_body = req.post_body || '';
 
-  if (&#x27;POST&#x27; !== req.method) {
+  if ('POST' !== req.method) {
     return next();
   }
 
   req._post_body = true;
 
-  req.on(&#x27;data&#x27;, function (chunk) {
+  req.on('data', function (chunk) {
     req.post_body += chunk;
   });
 
@@ -5280,12 +5273,12 @@ key, env[key]);
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function custom404(req, res, next) {
-  if (req.method !== &#x27;GET&#x27;) {
+  if (req.method !== 'GET') {
     return next();
   }
 
   res.statusCode = 404;
-  res.render(&#x27;doesnotexist.html&#x27;);
+  res.render('doesnotexist.html');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -5300,21 +5293,21 @@ key, env[key]);
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function project(req, res, next) {
-  if (req.params.org === &#x27;auth&#x27;) {
+  if (req.params.org === 'auth') {
     return next();
   }
 
   anonProject(req, res, function () {
-    if (req.accessLevel &#x3e; -1) {
+    if (req.accessLevel &gt; -1) {
       return next();
     }
 
     if (!req.user) {
       req.session.return_to = req.url;
-      return res.redirect(&#x27;/login&#x27;);
+      return res.redirect('/login');
     }
 
-    res.status(401).send(&#x27;Not authorized&#x27;);
+    res.status(401).send('Not authorized');
   });
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -5331,7 +5324,7 @@ key, env[key]);
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function projectPlugin(req, res, next) {
   var pluginid;
-  // if only 3 args, then get pluginid from params &#x22;:plugin&#x22;
+  // if only 3 args, then get pluginid from params ":plugin"
   if (arguments.length === 4) {
     pluginid = req;
     req = res;
@@ -5345,14 +5338,14 @@ key, env[key]);
   var plugin = null;
 
   if (!branch) {
-    return res.status(404).send(&#x27;Specified branch not found for the project&#x27;);
+    return res.status(404).send('Specified branch not found for the project');
   }
-  // if it&#x27;s just mirroring master
+  // if it's just mirroring master
   if (branch.mirror_master) {
-    return res.status(400).send(&#x27;Branch not individually configurable&#x27;);
+    return res.status(400).send('Branch not individually configurable');
   }
 
-  for (var i = 0; i &#x3c; branch.plugins.length; i++) {
+  for (var i = 0; i &lt; branch.plugins.length; i++) {
     if (branch.plugins[i].id === pluginid) {
       plugin = branch.plugins[i];
       break;
@@ -5360,7 +5353,7 @@ key, env[key]);
   }
 
   if (plugin === null) {
-    return res.status(404).send(&#x27;Plugin not enabled for the specified project&#x27;);
+    return res.status(404).send('Plugin not enabled for the specified project');
   }
 
   req.pluginConfig = function (config, next) {
@@ -5369,7 +5362,7 @@ key, env[key]);
     }
 
     plugin.config = config;
-    req.project.markModified(&#x27;branches&#x27;);
+    req.project.markModified('branches');
     req.project.save(function (err) {
       next(err, config);
     });
@@ -5381,23 +5374,23 @@ key, env[key]);
         return false;
       }
 
-      return next(new Error(&#x27;Current user is not the creator - cannot set the creator config&#x27;));
+      return next(new Error('Current user is not the creator - cannot set the creator config'));
     }
 
     if (arguments.length === 0) {
       return req.project.creator.jobplugins[pluginid];
     }
 
-    var schema = common.userConfigs.job &#x26;&#x26; common.userConfigs.job[pluginid];
+    var schema = common.userConfigs.job &amp;&amp; common.userConfigs.job[pluginid];
 
     if (!schema) {
-      return next(new Error(`Plugin ${pluginid} doesn&#x27;t define any user config`));
+      return next(new Error(`Plugin ${pluginid} doesn't define any user config`));
     }
 
     config = utils.validateAgainstSchema(config, schema);
     // TODO: validation
     req.project.creator.jobplugins[pluginid] = config;
-    req.project.creator.markModified(&#x27;jobplugins&#x27;);
+    req.project.creator.markModified('jobplugins');
 
     req.project.creator.save(function (err) {
       next(err, config);
@@ -5427,7 +5420,7 @@ key, env[key]);
     }
 
     project.provider.config = config;
-    project.markModified(&#x27;provider&#x27;);
+    project.markModified('provider');
     project.save(next);
   };
   // make this conditional?
@@ -5440,7 +5433,7 @@ key, env[key]);
       }
 
       account.config = config;
-      project.creator.markModified(&#x27;accounts&#x27;);
+      project.creator.markModified('accounts');
       project.creator.save(next);
     };
   }
@@ -5462,14 +5455,14 @@ key, env[key]);
     <li>description and source-code<pre class="apidocCodePre">function requireBody(paramsList) {
   return function (req, res, next) {
     var errors = [];
-    var status = &#x27;ok&#x27;;
+    var status = 'ok';
 
-    for (var i = 0; i &#x3c; paramsList.length; i++) {
+    for (var i = 0; i &lt; paramsList.length; i++) {
       var val = req.body[paramsList[i]];
 
       if (!val) {
         errors.push(`required parameter \`${paramsList[i]}\` not found.`);
-        status = &#x27;error&#x27;;
+        status = 'error';
       }
     }
 
@@ -5496,8 +5489,8 @@ key, env[key]);
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function requireAdminOr401(req, res, next) {
-  if (!req.user || !req.user[&#x27;account_level&#x27;] || req.user.account_level &#x3c; 1) {
-    res.status(401).send(&#x27;not authorized&#x27;);
+  if (!req.user || !req.user['account_level'] || req.user.account_level &lt; 1) {
+    res.status(401).send('not authorized');
   } else {
     next();
   }
@@ -5518,7 +5511,7 @@ key, env[key]);
   if (req.user) {
     next();
   } else {
-    res.status(401).send(&#x27;not authorized&#x27;);
+    res.status(401).send('not authorized');
   }
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -5538,7 +5531,7 @@ key, env[key]);
     next();
   } else {
     req.session.return_to = req.url;
-    res.redirect(&#x27;/login&#x27;);
+    res.redirect('/login');
   }
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -5554,11 +5547,11 @@ key, env[key]);
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function requireProjectAdmin(req, res, next) {
-  if (!req.project) return res.status(404).send(&#x27;Project not loaded&#x27;);
-  if (!req.user) return res.status(401).send(&#x27;No user&#x27;);
-  var isAdmin = req.user.account_level &#x26;&#x26; req.user.account_level &#x3e; 0;
-  var notAuthed = (!req.accessLevel || req.accessLevel &#x3c; 2) &#x26;&#x26; !isAdmin;
-  if (notAuthed) return res.status(401).send(&#x27;Not authorized for configuring this project&#x27;);
+  if (!req.project) return res.status(404).send('Project not loaded');
+  if (!req.user) return res.status(401).send('No user');
+  var isAdmin = req.user.account_level &amp;&amp; req.user.account_level &gt; 0;
+  var notAuthed = (!req.accessLevel || req.accessLevel &lt; 2) &amp;&amp; !isAdmin;
+  if (notAuthed) return res.status(401).send('Not authorized for configuring this project');
   next();
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -5581,7 +5574,7 @@ key, env[key]);
     <li>description and source-code<pre class="apidocCodePre">function engine(path, options, fn) {
   options.filename = path;
 
-  fs.readFile(path, &#x27;utf8&#x27;, function (err, str) {
+  fs.readFile(path, 'utf8', function (err, str) {
     if (err) return fn(err);
     engine.render(str, options, fn);
   });
@@ -5616,8 +5609,8 @@ key, env[key]);
     <li>description and source-code<pre class="apidocCodePre">function registerTemplate(name, template, dir) {
   cache[name] = function (context, cb) {
     if (/\.html$/.test(template)){
-      dir = dir || &#x27;.&#x27;;
-      template = fs.readFileSync(path.join(dir, template), &#x27;utf8&#x27;);
+      dir = dir || '.';
+      template = fs.readFileSync(path.join(dir, template), 'utf8');
     }
 
     cb(null, template);
@@ -5634,7 +5627,7 @@ function (next) {
       pluginTemplates.<span class="apidocCodeKeywordSpan">registerTemplate</span>(name, templates[name]);
     }
 
-    debug(&#x27;loaded templates&#x27;);
+    debug('loaded templates');
     next();
   });
 },
@@ -5693,8 +5686,8 @@ function (next) {
   // Default to all projects
   var query = {};
 
-  // If we are not an admin i.e account level is not set or &#x3c; 1, show only user projects
-  if (!user.account_level || user.account_level &#x3c; 1) {
+  // If we are not an admin i.e account level is not set or &lt; 1, show only user projects
+  if (!user.account_level || user.account_level &lt; 1) {
     if (!user.projects) {
       return done(null, []);
     }
@@ -5744,17 +5737,17 @@ if (a.nojobs) {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">insertMany = function (arr, options, callback) {
   var Promise = PromiseProvider.get();
-  if (typeof options === &#x27;function&#x27;) {
+  if (typeof options === 'function') {
     callback = options;
     options = null;
   }
   return new Promise.ES6(function(resolve, reject) {
     model.$__insertMany(arr, options, function(error, result) {
       if (error) {
-        callback &#x26;&#x26; callback(error);
+        callback &amp;&amp; callback(error);
         return reject(error);
       }
-      callback &#x26;&#x26; callback(null, result);
+      callback &amp;&amp; callback(null, result);
       resolve(result);
     });
   });
@@ -5777,12 +5770,12 @@ if (a.nojobs) {
     <li>example usage<pre class="apidocCodePre">...
       project: String,
       access_level: Number,
-      invited_by: {type: Schema.ObjectId, ref: &#x27;user&#x27;}
+      invited_by: {type: Schema.ObjectId, ref: 'user'}
     }
   ]
 });
 
-module.exports = mongoose.<span class="apidocCodeKeywordSpan">model</span>(&#x27;InviteCode&#x27;, InviteCodeSchema);
+module.exports = mongoose.<span class="apidocCodeKeywordSpan">model</span>('InviteCode', InviteCodeSchema);
 ...</pre></li>
     </ul>
 
@@ -5827,7 +5820,7 @@ module.exports = mongoose.<span class="apidocCodeKeywordSpan">model</span>(&#x27
     }
 
     if (!changed) {
-      return done(new Error(&#x27;no projects affected by adding the branch&#x27;));
+      return done(new Error('no projects affected by adding the branch'));
     }
 
     done(null, branch);
@@ -5853,16 +5846,16 @@ module.exports = mongoose.<span class="apidocCodeKeywordSpan">model</span>(&#x27
     jjob.fromStriderJson = false;
   }
 } else {
-  debug(&#x27;Using configuration from &#x22;strider.json&#x22;.&#x27;);
+  debug('Using configuration from "strider.json".');
 }
 
-var branch = project.<span class="apidocCodeKeywordSpan">branch</span>(job.ref.branch || &#x27;master&#x27;);
+var branch = project.<span class="apidocCodeKeywordSpan">branch</span>(job.ref.branch || 'master');
 
 if (!branch) {
-  return debug(&#x27;job.prepare - branch not found&#x27;, job.ref.branch || &#x27;master&#x27;, project.name);
+  return debug('job.prepare - branch not found', job.ref.branch || 'master', project.name);
 }
 
-branch = branch.mirror_master ? project.branch(&#x27;master&#x27;) : branch;
+branch = branch.mirror_master ? project.branch('master') : branch;
 jjob.providerConfig = _.extend({}, project.provider.config, config.provider || {});
 ...</pre></li>
     </ul>
@@ -5886,7 +5879,7 @@ jjob.providerConfig = _.extend({}, project.provider.config, config.provider || {
   });
 
   if (!clone) {
-    return done(new Error(&#x27;source branch can not be found&#x27;));
+    return done(new Error('source branch can not be found'));
   }
 
   clone.name = cloneName;
@@ -5900,7 +5893,7 @@ jjob.providerConfig = _.extend({}, project.provider.config, config.provider || {
     }
 
     if (!changed) {
-      return done(new Error(&#x27;no projects affected by cloning the branch&#x27;));
+      return done(new Error('no projects affected by cloning the branch'));
     }
     done(null, clone);
   });
@@ -5926,7 +5919,7 @@ jjob.providerConfig = _.extend({}, project.provider.config, config.provider || {
   var fn;
   var originalError = new Error();
   var $results;
-  if (lastArg &#x26;&#x26; typeof lastArg !== &#x27;function&#x27;) {
+  if (lastArg &amp;&amp; typeof lastArg !== 'function') {
     args.push(lastArg);
   } else {
     fn = lastArg;
@@ -5947,7 +5940,7 @@ jjob.providerConfig = _.extend({}, project.provider.config, config.provider || {
       }
 
       // There may be multiple results and promise libs other than
-      // mpromise don&#x27;t support passing multiple values to `resolve()`
+      // mpromise don't support passing multiple values to `resolve()`
       $results = Array.prototype.slice.call(arguments, 1);
       resolve.apply(promise, $results);
     });
@@ -5976,7 +5969,7 @@ jjob.providerConfig = _.extend({}, project.provider.config, config.provider || {
 }
 this.sockets[uid].add(socket);
   },
-  // -&#x3e; true if the socket was found and removed. false if it wasn&#x27;t found
+  // -&gt; true if the socket was found and removed. false if it wasn't found
   removeSocket: function (uid, socket) {
 var socks = this.sockets[uid];
 if (!socks) return false;
@@ -5986,7 +5979,7 @@ return socks.<span class="apidocCodeKeywordSpan">remove</span>(socket);
   connected: function (socket) {
 var session = socket.handshake.session;
 
-if (session &#x26;&#x26; session.passport) {
+if (session &amp;&amp; session.passport) {
   this.addSocket(session.passport.user, socket);
 ...</pre></li>
     </ul>
@@ -6009,7 +6002,7 @@ if (session &#x26;&#x26; session.passport) {
   var fn;
   var originalError = new Error();
   var $results;
-  if (lastArg &#x26;&#x26; typeof lastArg !== &#x27;function&#x27;) {
+  if (lastArg &amp;&amp; typeof lastArg !== 'function') {
     args.push(lastArg);
   } else {
     fn = lastArg;
@@ -6030,7 +6023,7 @@ if (session &#x26;&#x26; session.passport) {
       }
 
       // There may be multiple results and promise libs other than
-      // mpromise don&#x27;t support passing multiple values to `resolve()`
+      // mpromise don't support passing multiple values to `resolve()`
       $results = Array.prototype.slice.call(arguments, 1);
       resolve.apply(promise, $results);
     });
@@ -6057,7 +6050,7 @@ if (session &#x26;&#x26; session.passport) {
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
       randomBytes(20).then(function (buffer) {
-return buffer.toString(&#x27;hex&#x27;);
+return buffer.toString('hex');
       }).then(function (token) {
 user.resetPasswordToken = token;
 user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
@@ -6092,7 +6085,7 @@ return new BluebirdPromise(function (resolve, reject) {
   var fn;
   var originalError = new Error();
   var $results;
-  if (lastArg &#x26;&#x26; typeof lastArg !== &#x27;function&#x27;) {
+  if (lastArg &amp;&amp; typeof lastArg !== 'function') {
     args.push(lastArg);
   } else {
     fn = lastArg;
@@ -6113,7 +6106,7 @@ return new BluebirdPromise(function (resolve, reject) {
       }
 
       // There may be multiple results and promise libs other than
-      // mpromise don&#x27;t support passing multiple values to `resolve()`
+      // mpromise don't support passing multiple values to `resolve()`
       $results = Array.prototype.slice.call(arguments, 1);
       resolve.apply(promise, $results);
     });
@@ -6177,8 +6170,8 @@ return new BluebirdPromise(function (resolve, reject) {
           project = utils.sanitizeProject(project);
           project.created_date = utils.timeFromId(project._id);
           project.users = [];
-          for (var i = 0; i &#x3c; users.length; i++) {
-            if (&#x27;undefined&#x27; !== typeof users[i].projects[project.name]) {
+          for (var i = 0; i &lt; users.length; i++) {
+            if ('undefined' !== typeof users[i].projects[project.name]) {
               project.users.push({
                 email: users[i].email,
                 access: users[i].projects[project.name]
@@ -6208,13 +6201,13 @@ return new BluebirdPromise(function (resolve, reject) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">generateKeyPair = function (comment, callback) {
-  debug(&#x27;Generating SSH key pair...&#x27;);
+  debug('Generating SSH key pair...');
   try {
     var key = new NodeRSA();
     key.generateKeyPair();
-    var privateKeyPem = key.exportKey(&#x27;pkcs1-private-pem&#x27;);
-    var publicKeyPem = key.exportKey(&#x27;pkcs1-public-pem&#x27;);
-    var publicKey = sshpk.parseKey(publicKeyPem, &#x27;pem&#x27;);
+    var privateKeyPem = key.exportKey('pkcs1-private-pem');
+    var publicKeyPem = key.exportKey('pkcs1-public-pem');
+    var publicKey = sshpk.parseKey(publicKeyPem, 'pem');
     publicKey.comment = comment;
 
     callback(null, privateKeyPem, publicKey.toString());
@@ -6228,13 +6221,13 @@ return new BluebirdPromise(function (resolve, reject) {
  * @param callback
  */
 exports.generateKeyPair = function (comment, callback) {
-  debug(&#x27;Generating SSH key pair...&#x27;);
+  debug('Generating SSH key pair...');
   try {
 var key = new NodeRSA();
 key.<span class="apidocCodeKeywordSpan">generateKeyPair</span>();
-var privateKeyPem = key.exportKey(&#x27;pkcs1-private-pem&#x27;);
-var publicKeyPem = key.exportKey(&#x27;pkcs1-public-pem&#x27;);
-var publicKey = sshpk.parseKey(publicKeyPem, &#x27;pem&#x27;);
+var privateKeyPem = key.exportKey('pkcs1-private-pem');
+var publicKeyPem = key.exportKey('pkcs1-public-pem');
+var publicKey = sshpk.parseKey(publicKeyPem, 'pem');
 publicKey.comment = comment;
 
 callback(null, privateKeyPem, publicKey.toString());
@@ -6256,7 +6249,7 @@ callback(null, privateKeyPem, publicKey.toString());
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">scriptjson = function (input) {
-  return JSON.stringify(input).replace(/&#x3c;\//g, &#x27;&#x3c;\\/&#x27;);
+  return JSON.stringify(input).replace(/&lt;\//g, '&lt;\\/');
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -6310,7 +6303,7 @@ callback(null, privateKeyPem, publicKey.toString());
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">admins = function (done) {
-  var query = {&#x27;account_level&#x27;: 1};
+  var query = {'account_level': 1};
 
   this.find(query, done);
 }</pre></li>
@@ -6325,8 +6318,8 @@ admins: function (paraCallback) {
   User.<span class="apidocCodeKeywordSpan">admins</span>(paraCallback);
 }
     }, function (err, users) {
-if (err) return debug(&#x27;new job: Failed to query for users&#x27;);
-if (!users.collaborators) return debug(&#x27;new job: no users found&#x27;);
+if (err) return debug('new job: Failed to query for users');
+if (!users.collaborators) return debug('new job: no users found');
 self.users[name] = [];
 
 users.collaborators.forEach(function (user) {
@@ -6348,14 +6341,14 @@ users.collaborators.forEach(function (user) {
 
     this.loginByActiveDirectory(email, password, function (err, adUser) {
       console.log(`Active directory login msg: ${err},  User info`, adUser);
-      if (err &#x26;&#x26; !adUser) {
+      if (err &amp;&amp; !adUser) {
         this.findOne({email: email, isAdUser: false}, function (err, user) {
           if (err) {
             return callback(err);
           }
 
           if (!user) {
-            return callback(&#x27;No User&#x27;, false);
+            return callback('No User', false);
           }
 
           user.verifyPassword(password, function (err, passwordCorrect) {
@@ -6364,7 +6357,7 @@ users.collaborators.forEach(function (user) {
             }
 
             if (!passwordCorrect) {
-              return callback(&#x27;Incorrect Password&#x27;, false);
+              return callback('Incorrect Password', false);
             }
 
             return callback(null, user);
@@ -6381,7 +6374,7 @@ users.collaborators.forEach(function (user) {
 
         if (!user) {
           var isAdmin = false;
-          if (config.ldap.adminDN &#x26;&#x26; adUser.dn.indexOf(config.ldap.adminDN) !== -1) {
+          if (config.ldap.adminDN &amp;&amp; adUser.dn.indexOf(config.ldap.adminDN) !== -1) {
             isAdmin = true;
           }
           // register and return new user
@@ -6404,7 +6397,7 @@ users.collaborators.forEach(function (user) {
       }
 
       if (!user) {
-        return callback(&#x27;No User&#x27;, false);
+        return callback('No User', false);
       }
 
       user.verifyPassword(password, function (err, passwordCorrect) {
@@ -6413,7 +6406,7 @@ users.collaborators.forEach(function (user) {
         }
 
         if (!passwordCorrect) {
-          return callback(&#x27;Incorrect Password&#x27;, false);
+          return callback('Incorrect Password', false);
         }
 
         return callback(null, user);
@@ -6425,14 +6418,14 @@ users.collaborators.forEach(function (user) {
 
 function setupPasswordAuth() {
   passport.use(new LocalStrategy({
-usernameField: &#x27;email&#x27;
+usernameField: 'email'
   }, function (username, password, done) {
-console.log(&#x27;username: %s&#x27;, username);
+console.log('username: %s', username);
 
 User.<span class="apidocCodeKeywordSpan">authenticate</span>(username, password, function (err, user) {
   if (err || !user) {
-    console.log(&#x27;no user&#x27;);
-    return done(null, false, {message: &#x27;Incorrect username.&#x27;});
+    console.log('no user');
+    return done(null, false, {message: 'Incorrect username.'});
   }
 
   return done(null, user);
@@ -6456,10 +6449,10 @@ User.<span class="apidocCodeKeywordSpan">authenticate</span>(username, password,
   }
 
   var query = {
-    &#x27;projects&#x27;: {
-      &#x27;$elemMatch&#x27;: {
-        &#x27;name&#x27;: project.toLowerCase(),
-        &#x27;access_level&#x27;: {$gte: accessLevel}
+    'projects': {
+      '$elemMatch': {
+        'name': project.toLowerCase(),
+        'access_level': {$gte: accessLevel}
       }
     }
   };
@@ -6495,7 +6488,7 @@ admins: function (paraCallback) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">findByEmail = function (email, cb) {
-  this.find({email: {$regex: new RegExp(email, &#x27;i&#x27;)}}, cb);
+  this.find({email: {$regex: new RegExp(email, 'i')}}, cb);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -6516,7 +6509,7 @@ admins: function (paraCallback) {
     }
 
     if (!user) {
-      return callback(&#x27;No User&#x27;, false);
+      return callback('No User', false);
     }
 
     return callback(null, user);
@@ -6527,14 +6520,14 @@ admins: function (paraCallback) {
   }
 
   if (!auth) {
-    return callback(&#x27;No User&#x27;, false);
+    return callback('No User', false);
   }
 
   return this.<span class="apidocCodeKeywordSpan">getUserInfoFromActiveDirectory</span>(email, callback);
 }.bind(this));
 });
 
-UserSchema.static(&#x27;authenticate&#x27;, function (email, password, callback) {
+UserSchema.static('authenticate', function (email, password, callback) {
 // Has ad config
 if (config.ldap) {
 ...</pre></li>
@@ -6551,17 +6544,17 @@ if (config.ldap) {
     <ul>
     <li>description and source-code<pre class="apidocCodePre">insertMany = function (arr, options, callback) {
   var Promise = PromiseProvider.get();
-  if (typeof options === &#x27;function&#x27;) {
+  if (typeof options === 'function') {
     callback = options;
     options = null;
   }
   return new Promise.ES6(function(resolve, reject) {
     model.$__insertMany(arr, options, function(error, result) {
       if (error) {
-        callback &#x26;&#x26; callback(error);
+        callback &amp;&amp; callback(error);
         return reject(error);
       }
-      callback &#x26;&#x26; callback(null, result);
+      callback &amp;&amp; callback(null, result);
       resolve(result);
     });
   });
@@ -6585,7 +6578,7 @@ if (config.ldap) {
     }
 
     if (!auth) {
-      return callback(&#x27;No User&#x27;, false);
+      return callback('No User', false);
     }
 
     return this.getUserInfoFromActiveDirectory(email, callback);
@@ -6595,13 +6588,13 @@ if (config.ldap) {
   }.bind(this));
 });
 
-UserSchema.static(&#x27;authenticate&#x27;, function (email, password, callback) {
+UserSchema.static('authenticate', function (email, password, callback) {
   // Has ad config
   if (config.ldap) {
 
 this.<span class="apidocCodeKeywordSpan">loginByActiveDirectory</span>(email, password, function (err, adUser) {
   console.log(`Active directory login msg: ${err},  User info`, adUser);
-  if (err &#x26;&#x26; !adUser) {
+  if (err &amp;&amp; !adUser) {
     this.findOne({email: email, isAdUser: false}, function (err, user) {
       if (err) {
         return callback(err);
@@ -6624,12 +6617,12 @@ this.<span class="apidocCodeKeywordSpan">loginByActiveDirectory</span>(email, pa
     <li>example usage<pre class="apidocCodePre">...
       project: String,
       access_level: Number,
-      invited_by: {type: Schema.ObjectId, ref: &#x27;user&#x27;}
+      invited_by: {type: Schema.ObjectId, ref: 'user'}
     }
   ]
 });
 
-module.exports = mongoose.<span class="apidocCodeKeywordSpan">model</span>(&#x27;InviteCode&#x27;, InviteCodeSchema);
+module.exports = mongoose.<span class="apidocCodeKeywordSpan">model</span>('InviteCode', InviteCodeSchema);
 ...</pre></li>
     </ul>
 
@@ -6663,7 +6656,7 @@ if (this.users[project]) {
       job.project = _.assign({}, job.project);
       job.project.access_level = User.<span class="apidocCodeKeywordSpan">projectAccessLevel</span>(user, job.project);
       return job;
-    }), &#x27;yours&#x27;];
+    }), 'yours'];
   });
 }
 if (this.public[project]) {
@@ -6688,7 +6681,7 @@ if (this.public[project]) {
   user.account_level = u.isAdmin ? 1 : 0;
   user.email = u.email.toLowerCase();
   user.created = new Date();
-  user.set(&#x27;password&#x27;, u.isAdUser ? &#x27;&#x27; : u.password);
+  user.set('password', u.isAdUser ? '' : u.password);
   user.projects = u.projects || [];
 
   user.save(function (error, user) {
@@ -6702,7 +6695,7 @@ if (this.public[project]) {
 
 if (!user) {
   var isAdmin = false;
-  if (config.ldap.adminDN &#x26;&#x26; adUser.dn.indexOf(config.ldap.adminDN) !== -1) {
+  if (config.ldap.adminDN &amp;&amp; adUser.dn.indexOf(config.ldap.adminDN) !== -1) {
     isAdmin = true;
   }
   // register and return new user
@@ -6734,12 +6727,12 @@ return callback(null, user);
     consumed_timestamp: null
   }, function (err, invite) {
     if (err || !invite) {
-      return cb(&#x27;Invalid Invite&#x27;);
+      return cb('Invalid Invite');
     }
 
     var projects = [];
     // For each collaboration in the invite, add permissions to the repo_config
-    if (invite.collaborations !== undefined &#x26;&#x26; invite.collaborations.length &#x3e; 0) {
+    if (invite.collaborations !== undefined &amp;&amp; invite.collaborations.length &gt; 0) {
       invite.collaborations.forEach(function (item) {
         projects.push({
           name: item.project.toLowerCase(),
@@ -6762,7 +6755,7 @@ return callback(null, user);
       InviteCode.update({
         code: inviteCode
       }, {
-        &#x27;$set&#x27;: {
+        '$set': {
           consumed_timestamp: new Date(),
           consumed_by_user: user._id
         }
@@ -6778,18 +6771,18 @@ return callback(null, user);
   }.bind(this));
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-if (!req.body.email) errors.push(&#x27;Missing email&#x27;);
-if (!req.body.password) errors.push(&#x27;Missing password&#x27;);
+if (!req.body.email) errors.push('Missing email');
+if (!req.body.password) errors.push('Missing password');
 
 if (errors.length) {
-  return res.render(&#x27;register.html&#x27;, {errors: errors});
+  return res.render('register.html', {errors: errors});
 }
 
 User.<span class="apidocCodeKeywordSpan">registerWithInvite</span>(
   req.body.invite_code, req.body.email, req.body.password
   , function (err, user) {
     if (err) {
-      return res.render(&#x27;register.html&#x27;, {
+      return res.render('register.html', {
         errors: [err],
         invite_code: req.body.invite_code,
         email: req.body.email,
@@ -6828,8 +6821,8 @@ User.<span class="apidocCodeKeywordSpan">registerWithInvite</span>(
     provider = provider.id;
   }
 
-  for (var i = 0; i &#x3c; this.accounts.length; i++) {
-    if (this.accounts[i].provider == provider &#x26;&#x26;
+  for (var i = 0; i &lt; this.accounts.length; i++) {
+    if (this.accounts[i].provider == provider &amp;&amp;
       this.accounts[i].id == account) {
       return this.accounts[i];
     }
@@ -6842,12 +6835,12 @@ User.<span class="apidocCodeKeywordSpan">registerWithInvite</span>(
  }
 
  if (!provider.hosted) {
-   return provider.getFile(&#x27;strider.json&#x27;, ref, project.provider.config, project, finished);
+   return provider.getFile('strider.json', ref, project.provider.config, project, finished);
  }
 
  var account = project.creator.<span class="apidocCodeKeywordSpan">account</span>(project.provider.id, project.provider.account);
 
- provider.getFile(&#x27;strider.json&#x27;, ref, account.config, project.provider.config, project, finished);
+ provider.getFile('strider.json', ref, account.config, project.provider.config, project, finished);
 }
 
 /**
@@ -6875,7 +6868,7 @@ User.<span class="apidocCodeKeywordSpan">registerWithInvite</span>(
   }
 
   this.jobplugins[name] = config;
-  this.markModified(&#x27;jobplugins&#x27;);
+  this.markModified('jobplugins');
   this.save(done);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -6891,12 +6884,12 @@ User.<span class="apidocCodeKeywordSpan">registerWithInvite</span>(
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">projectAccessLevel = function (project) {
-  if (this.account_level &#x3e; 0) {
+  if (this.account_level &gt; 0) {
     return 2;
   }
 
   if (this.projects) {
-    for (var i = 0; i &#x3c; this.projects.length; i++) {
+    for (var i = 0; i &lt; this.projects.length; i++) {
       if (this.projects[i].name === project.name) {
         return this.projects[i].access_level;
       }
@@ -6919,7 +6912,7 @@ if (this.users[project]) {
       job.project = _.assign({}, job.project);
       job.project.access_level = User.<span class="apidocCodeKeywordSpan">projectAccessLevel</span>(user, job.project);
       return job;
-    }), &#x27;yours&#x27;];
+    }), 'yours'];
   });
 }
 if (this.public[project]) {
@@ -6946,7 +6939,7 @@ if (this.public[project]) {
   var fn;
   var originalError = new Error();
   var $results;
-  if (lastArg &#x26;&#x26; typeof lastArg !== &#x27;function&#x27;) {
+  if (lastArg &amp;&amp; typeof lastArg !== 'function') {
     args.push(lastArg);
   } else {
     fn = lastArg;
@@ -6967,7 +6960,7 @@ if (this.public[project]) {
       }
 
       // There may be multiple results and promise libs other than
-      // mpromise don&#x27;t support passing multiple values to `resolve()`
+      // mpromise don't support passing multiple values to `resolve()`
       $results = Array.prototype.slice.call(arguments, 1);
       resolve.apply(promise, $results);
     });
@@ -6996,7 +6989,7 @@ if (this.public[project]) {
 }
 this.sockets[uid].add(socket);
   },
-  // -&#x3e; true if the socket was found and removed. false if it wasn&#x27;t found
+  // -&gt; true if the socket was found and removed. false if it wasn't found
   removeSocket: function (uid, socket) {
 var socks = this.sockets[uid];
 if (!socks) return false;
@@ -7006,7 +6999,7 @@ return socks.<span class="apidocCodeKeywordSpan">remove</span>(socket);
   connected: function (socket) {
 var session = socket.handshake.session;
 
-if (session &#x26;&#x26; session.passport) {
+if (session &amp;&amp; session.passport) {
   this.addSocket(session.passport.user, socket);
 ...</pre></li>
     </ul>
@@ -7029,7 +7022,7 @@ if (session &#x26;&#x26; session.passport) {
   var fn;
   var originalError = new Error();
   var $results;
-  if (lastArg &#x26;&#x26; typeof lastArg !== &#x27;function&#x27;) {
+  if (lastArg &amp;&amp; typeof lastArg !== 'function') {
     args.push(lastArg);
   } else {
     fn = lastArg;
@@ -7050,7 +7043,7 @@ if (session &#x26;&#x26; session.passport) {
       }
 
       // There may be multiple results and promise libs other than
-      // mpromise don&#x27;t support passing multiple values to `resolve()`
+      // mpromise don't support passing multiple values to `resolve()`
       $results = Array.prototype.slice.call(arguments, 1);
       resolve.apply(promise, $results);
     });
@@ -7077,7 +7070,7 @@ if (session &#x26;&#x26; session.passport) {
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
       randomBytes(20).then(function (buffer) {
-return buffer.toString(&#x27;hex&#x27;);
+return buffer.toString('hex');
       }).then(function (token) {
 user.resetPasswordToken = token;
 user.resetPasswordExpires = Date.now() + 3600000; // 1 hour
@@ -7112,7 +7105,7 @@ return new BluebirdPromise(function (resolve, reject) {
   var fn;
   var originalError = new Error();
   var $results;
-  if (lastArg &#x26;&#x26; typeof lastArg !== &#x27;function&#x27;) {
+  if (lastArg &amp;&amp; typeof lastArg !== 'function') {
     args.push(lastArg);
   } else {
     fn = lastArg;
@@ -7133,7 +7126,7 @@ return new BluebirdPromise(function (resolve, reject) {
       }
 
       // There may be multiple results and promise libs other than
-      // mpromise don&#x27;t support passing multiple values to `resolve()`
+      // mpromise don't support passing multiple values to `resolve()`
       $results = Array.prototype.slice.call(arguments, 1);
       resolve.apply(promise, $results);
     });
@@ -7171,14 +7164,14 @@ return new BluebirdPromise(function (resolve, reject) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">verifyPassword = function (password, callback) {
-  bcrypt.compare(password, this.get(&#x27;hash&#x27;), callback);
+  bcrypt.compare(password, this.get('hash'), callback);
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
 return callback(err);
           }
 
           if (!user) {
-return callback(&#x27;No User&#x27;, false);
+return callback('No User', false);
           }
 
           user.<span class="apidocCodeKeywordSpan">verifyPassword</span>(password, function (err, passwordCorrect) {
@@ -7187,7 +7180,7 @@ if (err) {
 }
 
 if (!passwordCorrect) {
-  return callback(&#x27;Incorrect Password&#x27;, false);
+  return callback('Incorrect Password', false);
 }
 ...</pre></li>
     </ul>
@@ -7263,7 +7256,7 @@ addSocket: function (uid, socket) {
   }
   this.sockets[uid].<span class="apidocCodeKeywordSpan">add</span>(socket);
 },
-// -&#x3e; true if the socket was found and removed. false if it wasn&#x27;t found
+// -&gt; true if the socket was found and removed. false if it wasn't found
 removeSocket: function (uid, socket) {
   var socks = this.sockets[uid];
   if (!socks) return false;
@@ -7294,14 +7287,14 @@ if (config) {
   config = utils.mergeConfigs(branch, config);
 }
 
-emitter.<span class="apidocCodeKeywordSpan">emit</span>(&#x27;job.new&#x27;, jjob, config);
+emitter.<span class="apidocCodeKeywordSpan">emit</span>('job.new', jjob, config);
 
 if (!mjob.runner) mjob.runner = {};
 
 mjob.runner.id = config.runner.id;
 mjob.save()
-  .then(() =&#x3e; debug(&#x27;job saved&#x27;))
-  .catch(e =&#x3e; debug(e));
+  .then(() =&gt; debug('job saved'))
+  .catch(e =&gt; debug(e));
 ...</pre></li>
     </ul>
 
@@ -7319,11 +7312,11 @@ mjob.save()
   var self = this;
 
   User.findById(this.userid, function (err, user) {
-    if (err) console.error(&#x27;failed to get user - socket&#x27;, err);
+    if (err) console.error('failed to get user - socket', err);
     if (!user) {
-      console.error(&#x27;user not found for the websocket - there\&#x27;s something strange going on w/ websocket auth. User Id: &#x27;, self.
+      console.error('user not found for the websocket - there\'s something strange going on w/ websocket auth. User Id: ', self.
 userid);
-      self.emit([&#x27;auth.failed&#x27;]);
+      self.emit(['auth.failed']);
       return;
     }
     self.user = user;
@@ -7371,10 +7364,10 @@ this.users = {};
 this.public = {};
 this.waiting = {};
 
-emitter.<span class="apidocCodeKeywordSpan">on</span>(&#x27;job.prepare&#x27;, prepareJob.bind(null, emitter));
-emitter.on(&#x27;job.new&#x27;, this.newJob.bind(this));
-emitter.on(&#x27;browser.update&#x27;, this.onUpdate.bind(this));
-emitter.on(&#x27;job.done&#x27;, this.jobDone.bind(this, emitter));
+emitter.<span class="apidocCodeKeywordSpan">on</span>('job.prepare', prepareJob.bind(null, emitter));
+emitter.on('job.new', this.newJob.bind(this));
+emitter.on('browser.update', this.onUpdate.bind(this));
+emitter.on('job.done', this.jobDone.bind(this, emitter));
 }
 
 BackChannel.prototype = {
@@ -7401,7 +7394,7 @@ send: function (project, event, args) {
 }
 this.sockets[uid].add(socket);
   },
-  // -&#x3e; true if the socket was found and removed. false if it wasn&#x27;t found
+  // -&gt; true if the socket was found and removed. false if it wasn't found
   removeSocket: function (uid, socket) {
 var socks = this.sockets[uid];
 if (!socks) return false;
@@ -7411,7 +7404,7 @@ return socks.<span class="apidocCodeKeywordSpan">remove</span>(socket);
   connected: function (socket) {
 var session = socket.handshake.session;
 
-if (session &#x26;&#x26; session.passport) {
+if (session &amp;&amp; session.passport) {
   this.addSocket(session.passport.user, socket);
 ...</pre></li>
     </ul>
@@ -7433,7 +7426,7 @@ if (session &#x26;&#x26; session.passport) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">function makeAdmin(user, done) {
-  if (typeof user !== &#x27;string&#x27; &#x26;&#x26; user.email) {
+  if (typeof user !== 'string' &amp;&amp; user.email) {
     user = user.email;
   }
 
@@ -7444,7 +7437,7 @@ if (session &#x26;&#x26; session.passport) {
     console.log(`Admin status granted to: ${user}`);
 
     // if in production, notify all other admins about new admin
-    if (env === &#x27;production&#x27;) {
+    if (env === 'production') {
       getAdmins(function (err, admins) {
         admins
           .filter(function removeSelf(admin) {
@@ -7480,13 +7473,13 @@ if (session &#x26;&#x26; session.passport) {
   this.sio = sio;
   this.sockets = {};
   this.sessionStore = sessionStore;
-  //sio.enable(&#x27;browser client minification&#x27;);  // send minified client
-  //sio.enable(&#x27;browser client etag&#x27;);          // apply etag caching logic based on version number
-  //sio.enable(&#x27;browser client gzip&#x27;);
-  //sio.set(&#x27;log level&#x27;, 1);
-  //sio.set(&#x27;authorization&#x27;, authorize.bind(this, sessionStore))
+  //sio.enable('browser client minification');  // send minified client
+  //sio.enable('browser client etag');          // apply etag caching logic based on version number
+  //sio.enable('browser client gzip');
+  //sio.set('log level', 1);
+  //sio.set('authorization', authorize.bind(this, sessionStore))
   sio.use(authorize.bind(this, sessionStore));
-  sio.sockets.on(&#x27;connection&#x27;, this.connected.bind(this));
+  sio.sockets.on('connection', this.connected.bind(this));
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
     </ul>
@@ -7549,10 +7542,10 @@ function defaultCallback(err) {
 connected: function (socket) {
   var session = socket.handshake.session;
 
-  if (session &#x26;&#x26; session.passport) {
+  if (session &amp;&amp; session.passport) {
     this.<span class="apidocCodeKeywordSpan">addSocket</span>(session.passport.user, socket);
   } else {
-    console.debug(&#x27;Websocket connection does not have authorization - nothing to do.&#x27;);
+    console.debug('Websocket connection does not have authorization - nothing to do.');
   }
 },
 // send a message to a number of users
@@ -7573,10 +7566,10 @@ send: function (users, args) {
     <li>description and source-code<pre class="apidocCodePre">connected = function (socket) {
   var session = socket.handshake.session;
 
-  if (session &#x26;&#x26; session.passport) {
+  if (session &amp;&amp; session.passport) {
     this.addSocket(session.passport.user, socket);
   } else {
-    console.debug(&#x27;Websocket connection does not have authorization - nothing to do.&#x27;);
+    console.debug('Websocket connection does not have authorization - nothing to do.');
   }
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">n/a</pre></li>
@@ -7609,20 +7602,20 @@ send: function (users, args) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">send = function (users, args) {
-  for (var i = 0; i &#x3c; users.length; i++) {
+  for (var i = 0; i &lt; users.length; i++) {
     if (!this.sockets[users[i]]) continue;
     this.sockets[users[i]].emit(args);
   }
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
-    console.error(&#x27;Invalid auth header&#x27;);
+    console.error('Invalid auth header');
     return next();
   }
 
-  User.authenticate(plain[0], plain.slice(1).join(&#x27;:&#x27;), function (err, user) {
+  User.authenticate(plain[0], plain.slice(1).join(':'), function (err, user) {
     if (err || !user) {
-      console.log(&#x27;basic auth: user not found&#x27;);
-      return res.status(401).<span class="apidocCodeKeywordSpan">send</span>(&#x27;Invalid username/password in basic auth&#x27;);
+      console.log('basic auth: user not found');
+      return res.status(401).<span class="apidocCodeKeywordSpan">send</span>('Invalid username/password in basic auth');
     }
 
     req.user = user;
@@ -7643,14 +7636,14 @@ send: function (users, args) {
     </h2>
     <ul>
     <li>description and source-code<pre class="apidocCodePre">sendEach = function (users, fn) {
-  for (var i = 0; i &#x3c; users.length; i++) {
+  for (var i = 0; i &lt; users.length; i++) {
     if (!this.sockets[users[i]] || !this.sockets[users[i]].user) continue;
     this.sockets[users[i]].emit(fn(this.sockets[users[i]].user));
   }
 }</pre></li>
     <li>example usage<pre class="apidocCodePre">...
   if (this.public[project]) {
-    this.ws.sendPublic(this.users[project], [event, args, &#x27;public&#x27;]);
+    this.ws.sendPublic(this.users[project], [event, args, 'public']);
   }
 },
 
@@ -7662,7 +7655,7 @@ sendJobs: function (project, event, args) {
         job.project = _.assign({}, job.project);
         job.project.access_level = User.projectAccessLevel(user, job.project);
         return job;
-      }), &#x27;yours&#x27;];
+      }), 'yours'];
     });
 ...</pre></li>
     </ul>
@@ -7687,10 +7680,10 @@ sendJobs: function (project, event, args) {
 BackChannel.prototype = {
 send: function (project, event, args) {
   if (this.users[project]) {
-    this.ws.send(this.users[project], [event, args, &#x27;yours&#x27;]);
+    this.ws.send(this.users[project], [event, args, 'yours']);
   }
   if (this.public[project]) {
-    this.ws.<span class="apidocCodeKeywordSpan">sendPublic</span>(this.users[project], [event, args, &#x27;public&#x27;]);
+    this.ws.<span class="apidocCodeKeywordSpan">sendPublic</span>(this.users[project], [event, args, 'public']);
   }
 },
 
@@ -7710,3 +7703,4 @@ sendJobs: function (project, event, args) {
     ]
 </div>
 </div>
+</body></html>
